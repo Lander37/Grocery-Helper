@@ -7,79 +7,85 @@ package com.example.myfirstapp.classes;
 public class DietaryPreference {
 
     private int DP_ID;
-    private boolean Halal;
-    private boolean Vegetarian;
-    private boolean HealthierChoice;
-    private boolean GlutenFree;
+    private boolean halal;
+    private boolean vegetarian;
+    private boolean healthierChoice;
+    private boolean glutenFree;
+
+    public DietaryPreference(int DP_ID){
+        this.DP_ID = DP_ID;
+        this.halal = false;
+        this.vegetarian = false;
+        this.healthierChoice = false;
+        this.glutenFree = false;
+    }
+
+    public DietaryPreference(int DP_ID, boolean halal, boolean vegetarian, boolean healthierChoice, boolean glutenFree){
+        this.DP_ID = DP_ID;
+        this.halal = halal;
+        this.vegetarian = vegetarian;
+        this.healthierChoice = healthierChoice;
+        this.glutenFree = glutenFree;
+    }
 
     public boolean getHalal() {
-        // TODO - implement DietaryPreference.getHalal
-        throw new UnsupportedOperationException();
+        return this.halal;
     }
 
     /**
      *
-     * @param Halal
+     * @param halal - is halal?
      */
-    public void setHalal(boolean Halal) {
-        // TODO - implement DietaryPreference.setHalal
-        throw new UnsupportedOperationException();
+    public void setHalal(boolean halal) {
+        this.halal = halal;
     }
 
     public boolean getVegetarian() {
-        // TODO - implement DietaryPreference.getVegetarian
-        throw new UnsupportedOperationException();
+        return this.vegetarian;
     }
 
     /**
      *
-     * @param Vegetarian
+     * @param vegetarian - is vegetarian?
      */
-    public void setVegetarian(boolean Vegetarian) {
-        // TODO - implement DietaryPreference.setVegetarian
-        throw new UnsupportedOperationException();
+    public void setVegetarian(boolean vegetarian) {
+        this.vegetarian = vegetarian;
     }
 
     public boolean getHealthierChoice() {
-        // TODO - implement DietaryPreference.getHealthierChoice
-        throw new UnsupportedOperationException();
+        return this.healthierChoice;
     }
 
     /**
      *
-     * @param HealthierChoice
+     * @param healthierChoice - has the healthier choice label?
      */
-    public void setHealthierChoice(boolean HealthierChoice) {
-        // TODO - implement DietaryPreference.setHealthierChoice
-        throw new UnsupportedOperationException();
+    public void setHealthierChoice(boolean healthierChoice) {
+        this.healthierChoice = healthierChoice;
     }
 
     public boolean getGlutenFree() {
-        // TODO - implement DietaryPreference.getGlutenFree
-        throw new UnsupportedOperationException();
+        return this.glutenFree;
     }
 
     /**
      *
-     * @param GlutenFree
+     * @param glutenFree - is gluten free?
      */
-    public void setGlutenFree(boolean GlutenFree) {
-        // TODO - implement DietaryPreference.setGlutenFree
-        throw new UnsupportedOperationException();
+    public void setGlutenFree(boolean glutenFree) {
+        this.glutenFree = glutenFree;
     }
 
     public int getDP_ID() {
-        // TODO - implement DietaryPreference.getDP_ID
-        throw new UnsupportedOperationException();
+        return this.DP_ID;
     }
 
     /**
      *
-     * @param DP_ID
+     * @param DP_ID - (Integer) id of the dietary preference setting
      */
     public void setDP_ID(int DP_ID) {
-        // TODO - implement DietaryPreference.setDP_ID
-        throw new UnsupportedOperationException();
+        this.DP_ID = DP_ID;
     }
 
 }
