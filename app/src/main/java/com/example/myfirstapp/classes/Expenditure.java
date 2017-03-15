@@ -75,7 +75,7 @@ public class Expenditure {
      * @param monthlyIncome - user's monthly income
      */
     public float calculateBudget(float monthlyIncome) {
-        float factor = 1;
+        float factor = (float)0.4;
         float calculatedBudget;
 
         calculatedBudget = factor * monthlyIncome;
