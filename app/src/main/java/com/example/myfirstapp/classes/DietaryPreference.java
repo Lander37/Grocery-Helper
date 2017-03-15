@@ -6,22 +6,22 @@ package com.example.myfirstapp.classes;
 
 public class DietaryPreference {
 
-    private int DP_ID;
+    private int dpId;
     private boolean halal;
     private boolean vegetarian;
     private boolean healthierChoice;
     private boolean glutenFree;
 
-    public DietaryPreference(int DP_ID){
-        this.DP_ID = DP_ID;
+    public DietaryPreference(int dpId){
+        this.dpId = dpId;
         this.halal = false;
         this.vegetarian = false;
         this.healthierChoice = false;
         this.glutenFree = false;
     }
 
-    public DietaryPreference(int DP_ID, boolean halal, boolean vegetarian, boolean healthierChoice, boolean glutenFree){
-        this.DP_ID = DP_ID;
+    public DietaryPreference(int dpId, boolean halal, boolean vegetarian, boolean healthierChoice, boolean glutenFree){
+        this.dpId = dpId;
         this.halal = halal;
         this.vegetarian = vegetarian;
         this.healthierChoice = healthierChoice;
@@ -77,15 +77,15 @@ public class DietaryPreference {
     }
 
     public int getDP_ID() {
-        return this.DP_ID;
+        return this.dpId;
     }
 
     /**
      *
-     * @param DP_ID - (Integer) id of the dietary preference setting
+     * @param dpId - (Integer) id of the dietary preference setting
      */
-    public void setDP_ID(int DP_ID) {
-        this.DP_ID = DP_ID;
+    public void setDP_ID(int dpId) {
+        this.dpId = dpId;
     }
 
 }
