@@ -12,6 +12,7 @@ public class GroceryList {
     private Calendar creationDate;
     private Product[] ArrayProduct;
 
+
     public String getName() {
         // TODO - implement GroceryList.getName
         throw new UnsupportedOperationException();
@@ -23,11 +24,14 @@ public class GroceryList {
      */
     public void setName(String Name) {
         // TODO - implement GroceryList.setName
+        name =
         throw new UnsupportedOperationException();
     }
 
     public float getTotalCost() {
         // TODO - implement GroceryList.getTotalCost
+        for i in getArrayProduct()
+                totalcost = price*QTY
         throw new UnsupportedOperationException();
     }
 
@@ -70,6 +74,7 @@ public class GroceryList {
 
     public Product[] getArrayProduct() {
         // TODO - implement GroceryList.getArrayProduct
+
         throw new UnsupportedOperationException();
     }
 
