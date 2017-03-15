@@ -6,17 +6,26 @@ package com.example.myfirstapp.classes;
 
 public class Product {
 
-    private String Product_ID;
-    private String Category;
-    private String Brand;
-    private String ProductName;
-    private float UnitPrice;
-    private DietaryPreference Nutritional_Info;
-    private int DP_ID;
+    private String productID;
+    private String category;
+    private String brand;
+    private String productName;
+    private float unitPrice;
+    private DietaryPreference nutriInfo;
+    private int dpId;
+
+    public Product(String ProductID, String Category, String Brand, String ProductName, float UnitPrice, DietaryPreference NutriInfo, int dpId) {
+        this.productID = ProductID;
+        this.category = Category;
+        this.brand = Brand;
+        this.productName = ProductName;
+        this.unitPrice = UnitPrice;
+        this.nutriInfo = NutriInfo;
+        this.dpId = dpId;
+    }
 
     public String getCategory() {
-        // TODO - implement Product.getCategory
-        throw new UnsupportedOperationException();
+        return this.category;
     }
 
     /**
@@ -24,13 +33,11 @@ public class Product {
      * @param Category
      */
     public void setCategory(String Category) {
-        // TODO - implement Product.setCategory
-        throw new UnsupportedOperationException();
+        this.category = Category;
     }
 
     public String getBrand() {
-        // TODO - implement Product.getBrand
-        throw new UnsupportedOperationException();
+        return this.brand;
     }
 
     /**
@@ -38,13 +45,11 @@ public class Product {
      * @param Brand
      */
     public void setBrand(String Brand) {
-        // TODO - implement Product.setBrand
-        throw new UnsupportedOperationException();
+       this.brand = Brand;
     }
 
     public String getProductName() {
-        // TODO - implement Product.getProductName
-        throw new UnsupportedOperationException();
+       return this.productName;
     }
 
     /**
@@ -52,13 +57,11 @@ public class Product {
      * @param ProductName
      */
     public void setProductName(String ProductName) {
-        // TODO - implement Product.setProductName
-        throw new UnsupportedOperationException();
+        this.productName = ProductName;
     }
 
     public float getUnitPrice() {
-        // TODO - implement Product.getUnitPrice
-        throw new UnsupportedOperationException();
+        return this.unitPrice;
     }
 
     /**
@@ -66,50 +69,43 @@ public class Product {
      * @param UnitPrice
      */
     public void setUnitPrice(float UnitPrice) {
-        // TODO - implement Product.setUnitPrice
-        throw new UnsupportedOperationException();
+        this.unitPrice = UnitPrice;
     }
 
-    public DietaryPreference getNutritional_Info() {
-        // TODO - implement Product.getNutritional_Info
-        throw new UnsupportedOperationException();
+    public DietaryPreference getNutriInfo() {
+        return this.nutriInfo;
     }
 
     /**
      *
      * @param Nutritional_Info
      */
-    public void setNutritional_Info(DietaryPreference Nutritional_Info) {
-        // TODO - implement Product.setNutritional_Info
-        throw new UnsupportedOperationException();
+    public void setNutriInfo(DietaryPreference Nutritional_Info) {
+        this.nutriInfo = Nutritional_Info;
     }
 
-    public String getProduct_ID() {
-        // TODO - implement Product.getProduct_ID
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param Product_ID
-     */
-    public void setProduct_ID(String Product_ID) {
-        // TODO - implement Product.setProduct_ID
-        throw new UnsupportedOperationException();
-    }
-
-    public int getDP_ID() {
-        // TODO - implement Product.getDP_ID
-        throw new UnsupportedOperationException();
+    public String getProductID() {
+        return this.productID;
     }
 
     /**
      *
-     * @param DP_ID
+     * @param ProductID
      */
-    public void setDP_ID(int DP_ID) {
-        // TODO - implement Product.setDP_ID
-        throw new UnsupportedOperationException();
+    public void setProductID(String ProductID) {
+        this.productID = ProductID;
+    }
+
+    public int getDpId() {
+        return this.dpId;
+    }
+
+    /**
+     *
+     * @param dpId
+     */
+    public void setDP_ID(int dpId) {
+        this.dpId = dpId;
     }
 
 }
