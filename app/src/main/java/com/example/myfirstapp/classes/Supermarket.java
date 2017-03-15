@@ -4,6 +4,8 @@ package com.example.myfirstapp.classes;
  * Created by XY on 8/3/2017.
  */
 
+
+
 public class Supermarket {
 
     private String SM_ID;
@@ -12,6 +14,7 @@ public class Supermarket {
 
     public String getLocation() {
         // TODO - implement Supermarket.getLocation
+        return this.Location
         throw new UnsupportedOperationException();
     }
 
@@ -19,13 +22,16 @@ public class Supermarket {
      *
      * @param Location
      */
+
     public void setLocation(String Location) {
         // TODO - implement Supermarket.setLocation
+        location = Locarion
         throw new UnsupportedOperationException();
     }
 
     public String getSM_ID() {
         // TODO - implement Supermarket.getSM_ID
+        return this.SM_ID
         throw new UnsupportedOperationException();
     }
 
@@ -40,6 +46,7 @@ public class Supermarket {
 
     public Product[] getArrayProduct() {
         // TODO - implement Supermarket.getArrayProduct
+        return this.ArrayProduct
         throw new UnsupportedOperationException();
     }
 
@@ -49,6 +56,7 @@ public class Supermarket {
      */
     public void setArrayProduct(Product[] ArrayProduct) {
         // TODO - implement Supermarket.setArrayProduct
+
         throw new UnsupportedOperationException();
     }
 
@@ -69,6 +77,7 @@ public class Supermarket {
      */
     public void removeProduct(String prod_ID, int QTY) {
         // TODO - implement Supermarket.removeProduct
+        prod_ID =
         throw new UnsupportedOperationException();
     }
 
@@ -78,6 +87,7 @@ public class Supermarket {
      */
     public int updateQTY(String prod_ID) {
         // TODO - implement Supermarket.updateQTY
+        QTY = setQTY
         throw new UnsupportedOperationException();
     }
 
