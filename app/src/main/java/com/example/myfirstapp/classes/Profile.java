@@ -11,6 +11,13 @@ public class Profile {
     private String defaultLocation;
     private DietaryPreference healthPreference;
 
+    public Profile(String username, String password, String defaultLocation, DietaryPreference healthPreference){
+        this.username = username;
+        this.password = password;
+        this.defaultLocation = defaultLocation;
+        this.healthPreference = healthPreference;
+    }
+
     public String getUsername() {
         return this.username;
     }
