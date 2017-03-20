@@ -30,7 +30,7 @@ public class Product {
 
     /**
      *
-     * @param Category 
+     * @param Category
      */
     public void setCategory(String Category) {
         this.category = Category;
