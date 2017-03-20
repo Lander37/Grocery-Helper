@@ -1,5 +1,7 @@
 package com.example.myfirstapp.classes;
 
+import static android.os.Build.ID;
+
 /**
  * Created by XY on 8/3/2017.
  */
@@ -9,12 +11,12 @@ package com.example.myfirstapp.classes;
 public class Supermarket {
 
     private String SM_ID;
-    private String Location;
-    private Product[] ArrayProduct;
+    private String location;
+    private Product[][] arrayProduct;
 
     public String getLocation() {
         // TODO - implement Supermarket.getLocation
-        return this.Location
+        return this.location
         throw new UnsupportedOperationException();
     }
 
@@ -25,7 +27,7 @@ public class Supermarket {
 
     public void setLocation(String Location) {
         // TODO - implement Supermarket.setLocation
-        location = Locarion
+        this.location = Location
         throw new UnsupportedOperationException();
     }
 
@@ -41,12 +43,13 @@ public class Supermarket {
      */
     public void setSM_ID(String SM_ID) {
         // TODO - implement Supermarket.setSM_ID
+        this.SM_ID = SM_ID
         throw new UnsupportedOperationException();
     }
 
     public Product[] getArrayProduct() {
         // TODO - implement Supermarket.getArrayProduct
-        return this.ArrayProduct
+        return this.arrayProduct =
         throw new UnsupportedOperationException();
     }
 
@@ -56,7 +59,7 @@ public class Supermarket {
      */
     public void setArrayProduct(Product[] ArrayProduct) {
         // TODO - implement Supermarket.setArrayProduct
-
+        arrayProduct = ArrayProduct
         throw new UnsupportedOperationException();
     }
 
@@ -65,8 +68,9 @@ public class Supermarket {
      * @param prod_ID
      * @param QTY
      */
-    public void addProduct(String prod_ID, int QTY) {
+    public void addProduct(String Prod_ID, int QTY) {
         // TODO - implement Supermarket.addProduct
+
         throw new UnsupportedOperationException();
     }
 
@@ -75,9 +79,9 @@ public class Supermarket {
      * @param prod_ID
      * @param QTY
      */
-    public void removeProduct(String prod_ID, int QTY) {
+    public void removeProduct(String Prod_ID, int QTY) {
         // TODO - implement Supermarket.removeProduct
-        prod_ID =
+        prod_ID = Prod_ID
         throw new UnsupportedOperationException();
     }
 
