@@ -1,19 +1,51 @@
 package com.example.myfirstapp.mgr;
 
+import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.classes.Product;
+import com.example.myfirstapp.classes.Supermarket;
+
 /**
  * Created by XY on 8/3/2017.
  */
 
 public class GroceryManager {
 
+    private int currentListID;
+    private GroceryList[] gListArray;
+
+    public int getcurrentListID() {
+            return this.currentListID;
+    }
+
+    /**
+     *
+     * @param list_ID
+     */
+    public void setcurrentListID(int list_ID) {
+        this.currentListID = list_ID;
+    }
+
+    /**
+     *
+     * @param tobeAdded
+     */
+    public void addGroceryList(GroceryList tobeAdded) {
+        // TODO - implement GroceryManager.addGroceryList
+    }
+
     /**
      *
      * @param prod_ID
      * @param QTY
      */
-    public void addProduct(String prod_ID, int QTY) {
+    public void addProduct(int prod_ID, int QTY) {
         // TODO - implement GroceryManager.addProduct
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < gListArray.length; i++){
+            if (currentListID == i){
+                gListArray[i].addProdtoList(prod_ID , QTY);
+                break;
+            }
+        }
     }
 
     /**

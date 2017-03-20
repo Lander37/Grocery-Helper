@@ -6,7 +6,7 @@ package com.example.myfirstapp.classes;
 
 public class Product {
 
-    private String productID;
+    private int productID;
     private String category;
     private String brand;
     private String productName;
@@ -14,7 +14,7 @@ public class Product {
     private DietaryPreference nutriInfo;
     private int dpId;
 
-    public Product(String ProductID, String Category, String Brand, String ProductName, float UnitPrice, DietaryPreference NutriInfo, int dpId) {
+    public Product(int ProductID, String Category, String Brand, String ProductName, float UnitPrice, DietaryPreference NutriInfo, int dpId) {
         this.productID = ProductID;
         this.category = Category;
         this.brand = Brand;
@@ -30,7 +30,7 @@ public class Product {
 
     /**
      *
-     * @param Category
+     * @param Category 
      */
     public void setCategory(String Category) {
         this.category = Category;
@@ -84,7 +84,7 @@ public class Product {
         this.nutriInfo = Nutritional_Info;
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return this.productID;
     }
 
@@ -92,7 +92,7 @@ public class Product {
      *
      * @param ProductID
      */
-    public void setProductID(String ProductID) {
+    public void setProductID(int ProductID) {
         this.productID = ProductID;
     }
 
