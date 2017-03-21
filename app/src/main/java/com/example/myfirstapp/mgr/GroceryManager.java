@@ -39,9 +39,8 @@ public class GroceryManager {
      * @param QTY
      */
     public void addProduct(int prod_ID, int QTY) {
-        // TODO - implement GroceryManager.addProduct
         for (int i = 0; i < gListArray.length; i++){
-            if (currentListID == i){
+            if (currentListID == gListArray[i].getGL_ID()){
                 gListArray[i].addProdtoList(prod_ID , QTY);
                 break;
             }

@@ -12,9 +12,9 @@ public class GroceryList {
     private Calendar creationDate;
     private int[][] ArrayProduct; // Stores ProductID & Quantity
 
+
     public String getName() {
-        // TODO - implement GroceryList.getName
-        throw new UnsupportedOperationException();
+        return this.Name;
     }
 
     /**
@@ -22,13 +22,11 @@ public class GroceryList {
      * @param Name
      */
     public void setName(String Name) {
-        // TODO - implement GroceryList.setName
-        throw new UnsupportedOperationException();
+        this.Name = Name;
     }
 
     public float getTotalCost() {
-        // TODO - implement GroceryList.getTotalCost
-        throw new UnsupportedOperationException();
+        return this.TotalCost;
     }
 
     /**
@@ -36,13 +34,11 @@ public class GroceryList {
      * @param TotalCost
      */
     public void setTotalCost(float TotalCost) {
-        // TODO - implement GroceryList.setTotalCost
-        throw new UnsupportedOperationException();
+        this.TotalCost = TotalCost;
     }
 
     public Calendar getDate() {
-        // TODO - implement GroceryList.getDate
-        throw new UnsupportedOperationException();
+        return this.creationDate;
     }
 
     /**
@@ -50,13 +46,11 @@ public class GroceryList {
      * @param creationDate
      */
     public void setDate(Calendar creationDate) {
-        // TODO - implement GroceryList.setDate
-        throw new UnsupportedOperationException();
+        this.creationDate = creationDate;
     }
 
     public int getGL_ID() {
-        // TODO - implement GroceryList.getGL_ID
-        throw new UnsupportedOperationException();
+        return this.GL_ID;
     }
 
     /**
@@ -64,13 +58,11 @@ public class GroceryList {
      * @param GL_ID
      */
     public void setGL_ID(int GL_ID) {
-        // TODO - implement GroceryList.setGL_ID
-        throw new UnsupportedOperationException();
+        this.GL_ID = GL_ID;
     }
 
-    public int getArrayProduct() {
-        // TODO - implement GroceryList.getArrayProduct
-        throw new UnsupportedOperationException();
+    public int[][] getArrayProduct() {
+        return this.ArrayProduct;
     }
 
     /**
@@ -79,13 +71,14 @@ public class GroceryList {
      * @param QTY
      */
     public void addProdtoList(int prod_ID, int QTY) {
-        // TODO - implement GroceryList.setArrayProduct
-        for (int i = 0; i < ArrayProduct.length; i++){
+        int i = 0;
+        while (true){
                 if (ArrayProduct[i][1] == 0) {
                     ArrayProduct[i][0] = prod_ID;
                     ArrayProduct[i][1] = QTY;
                     break;
                 }
+                i++;
         }
     }
 
