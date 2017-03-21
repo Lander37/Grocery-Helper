@@ -40,6 +40,14 @@ public class GroceryManager {
      * @param tobeAdded
      */
     public void addGroceryList(GroceryList tobeAdded) {
+        int i = 0;
+        while (true){
+            if (gListArray[i] == null){
+                gListArray[i] = tobeAdded;
+                break;
+            }
+            i++;
+        }
     }
 
     /**
@@ -54,6 +62,15 @@ public class GroceryManager {
                 break;
             }
         }
+    }
+
+    /**
+     *
+     * @param prod_ID
+     * @param QTY
+     */
+    public void addRecommended (String ProductName){
+
     }
 
     /**

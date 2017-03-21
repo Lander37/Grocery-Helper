@@ -12,6 +12,7 @@ public class Supermarket {
     private String Location;
     private Product[] ArrayProduct;
 
+
     public String getLocation() {
         return this.Location;
     }
