@@ -1,8 +1,6 @@
 package com.example.myfirstapp.mgr;
 
 import com.example.myfirstapp.classes.GroceryList;
-import com.example.myfirstapp.classes.Product;
-import com.example.myfirstapp.classes.Supermarket;
 
 /**
  * Created by XY on 8/3/2017.
@@ -14,7 +12,7 @@ public class GroceryManager {
     private GroceryList[] gListArray;
 
     public int getcurrentListID() {
-            return this.currentListID;
+        return this.currentListID;
     }
 
     /**
@@ -25,12 +23,23 @@ public class GroceryManager {
         this.currentListID = list_ID;
     }
 
+    public GroceryList[] getgListArray () {
+        return this.gListArray;
+    }
+
+    /**
+     *
+     * @param gListArray
+     */
+    public void setgListArray(GroceryList[] gListArray) {
+        this.gListArray = gListArray;
+    }
+
     /**
      *
      * @param tobeAdded
      */
     public void addGroceryList(GroceryList tobeAdded) {
-        // TODO - implement GroceryManager.addGroceryList
     }
 
     /**

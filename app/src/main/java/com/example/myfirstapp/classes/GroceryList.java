@@ -67,6 +67,14 @@ public class GroceryList {
 
     /**
      *
+     * @param ArrayProduct
+     */
+    public void setArrayProduct(int[][] ArrayProduct) {
+        this.ArrayProduct = ArrayProduct;
+    }
+
+    /**
+     *
      * @param prod_ID
      * @param QTY
      */
