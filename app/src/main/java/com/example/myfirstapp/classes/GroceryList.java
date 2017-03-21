@@ -70,7 +70,7 @@ public class GroceryList {
      * @param prod_ID
      * @param QTY
      */
-    public void addProdtoList(int prod_ID, int QTY) {
+    public void addProdToList(int prod_ID, int QTY) {
         int i = 0;
         while (true){
                 if (ArrayProduct[i][1] == 0) {
