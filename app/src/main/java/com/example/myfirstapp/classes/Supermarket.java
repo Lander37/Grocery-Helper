@@ -8,7 +8,7 @@ package com.example.myfirstapp.classes;
 
 public class Supermarket {
 
-    private String SM_ID;
+    private int SM_ID;
     private String Location;
     private Product[] ArrayProduct;
 
@@ -26,7 +26,7 @@ public class Supermarket {
         this.Location = Location;
     }
 
-    public String getSM_ID() {
+    public int getSM_ID() {
         return this.SM_ID;
     }
 
@@ -34,7 +34,7 @@ public class Supermarket {
      *
      * @param SM_ID
      */
-    public void setSM_ID(String SM_ID) {
+    public void setSM_ID(int SM_ID) {
         this.SM_ID = SM_ID;
     }
 
@@ -48,35 +48,6 @@ public class Supermarket {
      */
     public void setArrayProduct(Product[] ArrayProduct) {
         this.ArrayProduct = ArrayProduct;
-    }
-
-    /**
-     *
-     * @param prod_ID
-     * @param QTY
-     */
-    public void addProduct(String prod_ID, int QTY) {
-        // TODO - implement Supermarket.addProduct
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param prod_ID
-     * @param QTY
-     */
-    public void removeProduct(String prod_ID, int QTY) {
-        // TODO - implement Supermarket.removeProduct
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param prod_ID
-     */
-    public int updateQTY(String prod_ID) {
-        // TODO - implement Supermarket.updateQTY
-        throw new UnsupportedOperationException();
     }
 
 }

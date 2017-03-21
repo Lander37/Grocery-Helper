@@ -1,6 +1,10 @@
 package com.example.myfirstapp.mgr;
 
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.classes.Product;
+import com.example.myfirstapp.mgr.SupermarketManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by XY on 8/3/2017.
@@ -9,7 +13,7 @@ import com.example.myfirstapp.classes.GroceryList;
 public class GroceryManager {
 
     private int currentListID;
-    private GroceryList[] gListArray;
+    private ArrayList<GroceryList> gListArray;
 
     public int getcurrentListID() {
         return this.currentListID;
@@ -23,7 +27,7 @@ public class GroceryManager {
         this.currentListID = list_ID;
     }
 
-    public GroceryList[] getgListArray () {
+    public ArrayList<GroceryList> getgListArray () {
         return this.gListArray;
     }
 
@@ -31,7 +35,7 @@ public class GroceryManager {
      *
      * @param gListArray
      */
-    public void setgListArray(GroceryList[] gListArray) {
+    public void setgListArray(ArrayList<GroceryList> gListArray) {
         this.gListArray = gListArray;
     }
 
@@ -42,26 +46,26 @@ public class GroceryManager {
     public void addGroceryList(GroceryList tobeAdded) {
         int i = 0;
         while (true){
-            if (gListArray[i] == null){
-                gListArray[i] = tobeAdded;
+            if (gListArray.get(i) == null){
+                gListArray.set(i, tobeAdded);
                 break;
             }
             i++;
         }
     }
 
-    /**
-     *
-     * @param prod_ID
-     * @param QTY
-     */
-    public void addProduct(int prod_ID, int QTY) {
-        for (int i = 0; i < gListArray.length; i++){
-            if (currentListID == gListArray[i].getGL_ID()){
-                gListArray[i].addProdToList(prod_ID , QTY);
-                break;
-            }
+    public void addProduct(String productName, SupermarketManager smManager){
+        Product[] availProd = smManager.findSMProductList();
+        ArrayList<Product> sameProductName = new ArrayList<Product>();
+
+        for (int i = 0; i < availProd.length; i++){
+            if (productName.equals(availProd[i].getProductName()))
+                sameProductName.add(availProd[i]);
         }
+        //Out of those products, use algorithm?? to decide which one to add -> Need to Code
+
+        //Get Product ID & Qty and pass into addItem(int prod_ID, int QTY) -> Need to Code
+
     }
 
     /**
@@ -69,8 +73,13 @@ public class GroceryManager {
      * @param prod_ID
      * @param QTY
      */
-    public void addRecommended (String ProductName){
-
+    public void addSpecificItem(int prod_ID, int QTY) {
+        for (int i = 0; i < gListArray.size(); i++){
+            if (currentListID == gListArray.get(i).getGL_ID()){
+                gListArray.get(i).addProdToList(prod_ID , QTY);
+                break;
+            }
+        }
     }
 
     /**
