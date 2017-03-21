@@ -22,28 +22,13 @@ public class MainActivity extends AppCompatActivity {
         btCreateProfile = (Button) findViewById(R.id.createProfile);
 
         btCreateProfile.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
-                                                 public void onClick(View view) {
-
-                                                     launchActivity();
-                                                 }
+            @Override
+            public void onClick(View view) {
+                launchActivity();
+            }
         });
     }
 
-
-    /** Called when the user clicks the Send button */
-
-
-    public static class CreateProfile extends AppCompatActivity {
-
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_create_profile);
-
-        }
-
-    }
     private void launchActivity() {
 
         Intent intent = new Intent(this, CreateProfileActivity.class);

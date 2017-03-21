@@ -24,14 +24,14 @@ public class GroceryList {
      */
     public void setName(String Name) {
         // TODO - implement GroceryList.setName
-        name =
+       // name =
         throw new UnsupportedOperationException();
     }
 
     public float getTotalCost() {
         // TODO - implement GroceryList.getTotalCost
-        for i in getArrayProduct()
-                totalcost = price*QTY
+      //  for i in getArrayProduct()
+       //         totalcost = price*QTY
         throw new UnsupportedOperationException();
     }
 
