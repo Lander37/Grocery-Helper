@@ -10,7 +10,12 @@ public class GroceryList {
     private String Name;
     private float TotalCost;
     private Calendar creationDate;
-    private Product[] ArrayProduct;
+    private int[][] ArrayProduct; // Stores ProductID & Quantity
+
+    public GroceryList(String listName, int list_id){
+        this.GL_ID = list_id;
+        this.Name = listName;
+    }
 
     public String getName() {
         // TODO - implement GroceryList.getName
@@ -68,18 +73,25 @@ public class GroceryList {
         throw new UnsupportedOperationException();
     }
 
-    public Product[] getArrayProduct() {
+    public int getArrayProduct() {
         // TODO - implement GroceryList.getArrayProduct
         throw new UnsupportedOperationException();
     }
 
     /**
      *
-     * @param ArrayProduct
+     * @param prod_ID
+     * @param QTY
      */
-    public void setArrayProduct(Product[] ArrayProduct) {
+    public void addProdtoList(int prod_ID, int QTY) {
         // TODO - implement GroceryList.setArrayProduct
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < ArrayProduct.length; i++){
+                if (ArrayProduct[i][1] == 0) {
+                    ArrayProduct[i][0] = prod_ID;
+                    ArrayProduct[i][1] = QTY;
+                    break;
+                }
+        }
     }
 
 }
