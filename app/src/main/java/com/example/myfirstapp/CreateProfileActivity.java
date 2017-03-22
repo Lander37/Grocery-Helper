@@ -1,5 +1,4 @@
 package com.example.myfirstapp;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,10 +25,12 @@ public class CreateProfileActivity extends AppCompatActivity {
     private ToggleButton tbVegetarian;
     private ToggleButton tbGluten;
     Profile newProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
+
         btDone = (Button) findViewById(R.id.Done);
         etEditUsername = (EditText) findViewById(R.id.editUserName);
         etEditPassword = (EditText) findViewById(R.id.editPassword);
@@ -77,7 +78,5 @@ public class CreateProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 };
-
-
 
 
