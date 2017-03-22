@@ -1,7 +1,5 @@
 package com.example.myfirstapp.classes;
 
-import static android.os.Build.ID;
-
 /**
  * Created by XY on 8/3/2017.
  */
@@ -10,20 +8,14 @@ import static android.os.Build.ID;
 
 public class Supermarket {
 
-
     private int SM_ID;
     private String Location;
     private Product[] ArrayProduct;
 
 
-
     public String getLocation() {
 
-
         return this.Location;
-
-
-
     }
 
     /**
@@ -33,9 +25,7 @@ public class Supermarket {
 
     public void setLocation(String Location) {
 
-
         this.Location = Location;
-
     }
 
     public int getSM_ID() {
@@ -47,7 +37,6 @@ public class Supermarket {
      *
      * @param SM_ID
      */
-
     public void setSM_ID(int SM_ID) {
         this.SM_ID = SM_ID;
     }
@@ -62,11 +51,9 @@ public class Supermarket {
      *
      * @param ArrayProduct
      */
-
     public void setArrayProduct(Product[] ArrayProduct) {
 
         this.ArrayProduct = ArrayProduct;
-
 
     }
 
