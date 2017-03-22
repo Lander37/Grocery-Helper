@@ -57,4 +57,6 @@ public class Supermarket {
 
     }
 
+    public void test(){}
+
 }
