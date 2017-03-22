@@ -3,7 +3,7 @@ package com.example.myfirstapp.mgr;
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.classes.Supermarket;
-import com.example.myfirstapp.ui.GroceryUI;
+import com.example.myfirstapp.GroceryUI;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,8 +16,13 @@ public class GroceryManager {
 
     private int currentListID;
     private int latestListID;
+    private GroceryUI linkedActivity;
     private ArrayList<GroceryList> gListArray;
     //private GroceryList[] gListArray;
+
+    public GroceryManager(GroceryUI linkedActivity){
+        this.linkedActivity = linkedActivity;
+    }
 
     public int getcurrentListID() {
 
@@ -105,9 +110,17 @@ public class GroceryManager {
         throw new UnsupportedOperationException();
     }
 
+//    private String[] interpretGroceryLists(GroceryList[] groceryLists){
+//        String[] strings = new String[groceryLists.length];
+//        for(int i = 0; i < groceryLists.length; i++){
+//
+//        }
+//        return strings;
+//    }
+
     public void loadGroceryUI(){
         //this.getGroceryLists(new Date(), new Date());
-        //GroceryUI.displayGroceryLists(gListArray.toArray(new GroceryList[gListArray.size()]));
+        linkedActivity.displayGroceryLists(gListArray.toArray(new GroceryList[gListArray.size()]));
     }
 
 //    public void updateGroceryUI(){
