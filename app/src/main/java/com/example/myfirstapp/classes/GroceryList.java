@@ -10,12 +10,12 @@ public class GroceryList {
     private String Name;
     private float TotalCost;
     private Calendar creationDate;
-    private Product[] ArrayProduct;
+    private int[][] ArrayProduct; // Stores ProductID & Quantity
+
 
 
     public String getName() {
-        // TODO - implement GroceryList.getName
-        throw new UnsupportedOperationException();
+        return this.Name;
     }
 
     /**
@@ -23,16 +23,13 @@ public class GroceryList {
      * @param Name
      */
     public void setName(String Name) {
-        // TODO - implement GroceryList.setName
-        name =
-        throw new UnsupportedOperationException();
+
+        this.Name = Name;
     }
 
     public float getTotalCost() {
-        // TODO - implement GroceryList.getTotalCost
-        for i in getArrayProduct()
-                totalcost = price*QTY
-        throw new UnsupportedOperationException();
+        return this.TotalCost;
+
     }
 
     /**
@@ -40,13 +37,11 @@ public class GroceryList {
      * @param TotalCost
      */
     public void setTotalCost(float TotalCost) {
-        // TODO - implement GroceryList.setTotalCost
-        throw new UnsupportedOperationException();
+        this.TotalCost = TotalCost;
     }
 
     public Calendar getDate() {
-        // TODO - implement GroceryList.getDate
-        throw new UnsupportedOperationException();
+        return this.creationDate;
     }
 
     /**
@@ -54,13 +49,11 @@ public class GroceryList {
      * @param creationDate
      */
     public void setDate(Calendar creationDate) {
-        // TODO - implement GroceryList.setDate
-        throw new UnsupportedOperationException();
+        this.creationDate = creationDate;
     }
 
     public int getGL_ID() {
-        // TODO - implement GroceryList.getGL_ID
-        throw new UnsupportedOperationException();
+        return this.GL_ID;
     }
 
     /**
@@ -68,23 +61,40 @@ public class GroceryList {
      * @param GL_ID
      */
     public void setGL_ID(int GL_ID) {
-        // TODO - implement GroceryList.setGL_ID
-        throw new UnsupportedOperationException();
+        this.GL_ID = GL_ID;
     }
+
 
     public Product[] getArrayProduct() {
         // TODO - implement GroceryList.getArrayProduct
 
         throw new UnsupportedOperationException();
+
     }
 
     /**
      *
      * @param ArrayProduct
      */
-    public void setArrayProduct(Product[] ArrayProduct) {
-        // TODO - implement GroceryList.setArrayProduct
-        throw new UnsupportedOperationException();
+    public void setArrayProduct(int[][] ArrayProduct) {
+        this.ArrayProduct = ArrayProduct;
+    }
+
+    /**
+     *
+     * @param prod_ID
+     * @param QTY
+     */
+    public void addProdToList(int prod_ID, int QTY) {
+        int i = 0;
+        while (true){
+                if (ArrayProduct[i][1] == 0) {
+                    ArrayProduct[i][0] = prod_ID;
+                    ArrayProduct[i][1] = QTY;
+                    break;
+                }
+                i++;
+        }
     }
 
 }
