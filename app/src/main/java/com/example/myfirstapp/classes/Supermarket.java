@@ -56,5 +56,4 @@ public class Supermarket {
         this.ArrayProduct = ArrayProduct;
 
     }
-    public void test(){}
 }
