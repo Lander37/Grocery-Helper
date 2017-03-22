@@ -2,4 +2,16 @@
     <string name="app_name">My First App</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="title_activity_creating_profile">CreatingProfile</string>
+    <string name="title_activity_create_profile">CreateProfileActivity</string>
+
+    <string-array name="location_array">
+        <item>1 Jurong West Central 2, #B1-09, Jurong Point, Jurong Point, Singapore 648886</item>
+        <item>221 Boon Lay Place, #02-200, Boon Lay Shopping Complex, Boon Lay Shopping Centre, Singapore 640221</item>
+        <item>399 Yung Sheng Road, #01-35, Taman Jurong Shopping Centre, N S Household Taman Jurong, Singapore 610399</item>
+        <item> 345 Jurong East Street 31 #01-29, Singapore 600345 </item>
+        <item> 498 Jurong West Street 41, Singapore 640498 </item>
+    </string-array>
+
+
 </resources>
