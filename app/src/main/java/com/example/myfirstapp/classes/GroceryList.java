@@ -13,6 +13,7 @@ public class GroceryList {
     private int[][] ArrayProduct; // Stores ProductID & Quantity
 
 
+
     public String getName() {
         return this.Name;
     }
@@ -22,11 +23,13 @@ public class GroceryList {
      * @param Name
      */
     public void setName(String Name) {
+
         this.Name = Name;
     }
 
     public float getTotalCost() {
         return this.TotalCost;
+
     }
 
     /**
@@ -61,8 +64,12 @@ public class GroceryList {
         this.GL_ID = GL_ID;
     }
 
-    public int[][] getArrayProduct() {
-        return this.ArrayProduct;
+
+    public Product[] getArrayProduct() {
+        // TODO - implement GroceryList.getArrayProduct
+
+        throw new UnsupportedOperationException();
+
     }
 
     /**

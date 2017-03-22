@@ -14,7 +14,10 @@ public class Supermarket {
 
 
     public String getLocation() {
+
         return this.Location;
+
+
     }
 
     /**
@@ -23,11 +26,13 @@ public class Supermarket {
      */
 
     public void setLocation(String Location) {
+
         this.Location = Location;
     }
 
     public int getSM_ID() {
         return this.SM_ID;
+
     }
 
     /**
@@ -39,7 +44,9 @@ public class Supermarket {
     }
 
     public Product[] getArrayProduct() {
+
         return this.ArrayProduct;
+
     }
 
     /**
@@ -47,7 +54,9 @@ public class Supermarket {
      * @param ArrayProduct
      */
     public void setArrayProduct(Product[] ArrayProduct) {
+
         this.ArrayProduct = ArrayProduct;
+
     }
 
 }
