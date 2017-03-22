@@ -54,17 +54,17 @@ public class GroceryManager {
         }
     }
 
-    public void addProduct(String productName, SupermarketManager smManager){
+    public void addProduct(String productType, SupermarketManager smManager){
         Product[] availProd = smManager.findSMProductList();
-        ArrayList<Product> sameProductName = new ArrayList<Product>();
+        ArrayList<Product> sameProductType = new ArrayList<Product>();
 
         for (int i = 0; i < availProd.length; i++){
-            if (productName.equals(availProd[i].getProductName()))
-                sameProductName.add(availProd[i]);
+            if (productType.equals(availProd[i].getProductType()))
+                sameProductType.add(availProd[i]);
         }
         //Out of those products, use algorithm?? to decide which one to add -> Need to Code
 
-        //Get Product ID & Qty and pass into addItem(int prod_ID, int QTY) -> Need to Code
+        //Get Product ID & Qty and pass into addSpecificItem(int prod_ID, int QTY) -> Need to Code
 
     }
 

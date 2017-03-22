@@ -10,18 +10,32 @@ public class Product {
     private String category;
     private String brand;
     private String productName;
+    private String productType;
     private float unitPrice;
     private DietaryPreference nutriInfo;
     private int dpId;
 
-    public Product(int ProductID, String Category, String Brand, String ProductName, float UnitPrice, DietaryPreference NutriInfo, int dpId) {
+    public Product(int ProductID, String Category, String Brand, String ProductName, String ProductType, float UnitPrice, DietaryPreference NutriInfo, int dpId) {
         this.productID = ProductID;
         this.category = Category;
         this.brand = Brand;
         this.productName = ProductName;
+        this.productType = ProductType;
         this.unitPrice = UnitPrice;
         this.nutriInfo = NutriInfo;
         this.dpId = dpId;
+    }
+
+    public String getProductType() {
+        return this.productType;
+    }
+
+    /**
+     *
+     * @param ProductType
+     */
+    public void setProductType(String ProductType) {
+        this.productType = ProductType;
     }
 
     public String getCategory() {
