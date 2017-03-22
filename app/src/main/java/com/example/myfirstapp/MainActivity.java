@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         btCreateProfile = (Button) findViewById(R.id.createProfile);
 
         btCreateProfile.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 launchActivity();
@@ -34,4 +35,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateProfileActivity.class);
         startActivity(intent);
     }
+
 }
