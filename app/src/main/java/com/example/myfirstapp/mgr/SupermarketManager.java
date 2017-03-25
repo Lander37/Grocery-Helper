@@ -43,16 +43,16 @@ public class SupermarketManager {
      * @param tobeAdded
      */
     public void addSupermarket(Supermarket tobeAdded) {
-        int i = 0;
-        while (true){
-            if (smArray.get(i) == null){
+        for (int i = 0; i < smArray.size(); i++) {
+            if (smArray.get(i) == null) {
                 smArray.set(i, tobeAdded);
                 break;
             }
-            i++;
         }
     }
 
+
+    //Get Full Product List of Current Supermarket
     public Product[] findSMProductList(){
         int i = 0;
         while (i < smArray.size()){

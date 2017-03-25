@@ -3,10 +3,12 @@ package com.example.myfirstapp.mgr;
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
 
+import com.example.myfirstapp.classes.Profile;
 import com.example.myfirstapp.classes.Supermarket;
 import com.example.myfirstapp.GroceryUI;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 
@@ -17,19 +19,15 @@ import java.util.Date;
 public class GroceryManager {
 
     private int currentListID;
-
     private int latestListID;
     private GroceryUI linkedActivity;
     private ArrayList<GroceryList> gListArray;
-    //private GroceryList[] gListArray;
 
     public GroceryManager(GroceryUI linkedActivity){
         this.linkedActivity = linkedActivity;
     }
 
     public int getcurrentListID() {
-
-
         return this.currentListID;
     }
 
@@ -80,28 +78,75 @@ public class GroceryManager {
      * @param tobeAdded
      */
     public void addGroceryList(GroceryList tobeAdded) {
-      int i = 0;
-        while (true){
+        for (int i = 0; i < gListArray.size(); i++){
             if (gListArray.get(i) == null){
                 gListArray.set(i, tobeAdded);
                 break;
             }
-            i++;
         }
     }
 
-    public void addProduct(String productType, SupermarketManager smManager){
+    public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
+
+        double recValue;
+        int recProdID;
+        int userHealthEmp = 3;
+
+
+        //Get List of Products with Same Type/Name available in Current Supermarket
         Product[] availProd = smManager.findSMProductList();
-        ArrayList<Product> sameProductType = new ArrayList<Product>();
+        ArrayList<Product> sameProduct = new ArrayList<Product>();
 
         for (int i = 0; i < availProd.length; i++){
-            if (productType.equals(availProd[i].getProductType()))
-                sameProductType.add(availProd[i]);
+            if (productToAdd.equals(availProd[i].getSubCategory()) || availProd[i].getProductName().contains(productToAdd))
+                sameProduct.add(availProd[i]);
         }
-        //Out of those products, use algorithm?? to decide which one to add -> Need to Code
 
-        //Get Product ID & Qty and pass into addSpecificItem(int prod_ID, int QTY) -> Need to Code
-    }
+        //Get Value of User's Health Emphasis in his/her profile
+        for (int k = 0; k < profileManager.getProfileArray().size(); k++){
+            if (profileManager.getCurProfileID() == profileManager.getProfileArray().get(k).getProfileID()){
+                userHealthEmp = profileManager.getProfileArray().get(k).getHealthEmphasis();
+                break;
+            }
+        }
+        //Algorithm to decide which exact item to recommend/add
+        ArrayList<Double> recommendationValues = new ArrayList<Double>();
+        ArrayList<Integer> recommendationProdID = new ArrayList<Integer>();
+
+        for (int j = 0; j < sameProduct.size(); j++){
+            if(userHealthEmp == 1) {
+                recValue = 0.8 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 1.2;
+
+            }
+
+            else if(userHealthEmp == 2) {
+                recValue = 0.9 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 1.1;
+            }
+
+            else if(userHealthEmp == 3) {
+                recValue = 1.0 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 1.0;
+            }
+
+            else if(userHealthEmp == 4) {
+                recValue = 1.1 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 0.9;
+            }
+
+            else {
+                recValue = 1.2 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 0.8;
+            }
+
+            recommendationValues.add(recValue);
+            recProdID = sameProduct.get(j).getProductID();
+            recommendationProdID.add(recProdID);
+        }
+
+        double maxRecValue = Collections.max(recommendationValues);
+        int index = recommendationValues.indexOf(maxRecValue);
+        recProdID = recommendationProdID.get(index);
+
+        //Add Item to List
+        addSpecificItem(recProdID, 1);
+        }
 
     /**
      *
@@ -116,25 +161,6 @@ public class GroceryManager {
                 break;
             }
         }
-    }
-
-    /**
-     *
-     * @param prod_ID
-     * @param QTY
-     */
-    public void removeProduct(String prod_ID, int QTY) {
-        // TODO - implement GroceryManager.removeProduct
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param prod_ID
-     */
-    public int updateQTY(String prod_ID) {
-        // TODO - implement GroceryManager.updateQTY
-        throw new UnsupportedOperationException();
     }
 
 //    private String[] interpretGroceryLists(GroceryList[] groceryLists){

@@ -10,32 +10,37 @@ public class Product {
     private String category;
     private String brand;
     private String productName;
-    private String productType;
+    private String subCategory;
     private float unitPrice;
     private DietaryPreference nutriInfo;
     private int dpId;
+    private int weightOrVolume;
+    private double healthRating;
 
-    public Product(int ProductID, String Category, String Brand, String ProductName, String ProductType, float UnitPrice, DietaryPreference NutriInfo, int dpId) {
+    public Product(int ProductID, String Category, String Brand, String ProductName, String subCategory,
+                   float UnitPrice, DietaryPreference NutriInfo, int dpId, int weightOrVolume, double healthRating) {
         this.productID = ProductID;
         this.category = Category;
         this.brand = Brand;
         this.productName = ProductName;
-        this.productType = ProductType;
+        this.subCategory = subCategory;
         this.unitPrice = UnitPrice;
         this.nutriInfo = NutriInfo;
         this.dpId = dpId;
+        this.weightOrVolume = weightOrVolume;
+        this.healthRating = healthRating;
     }
 
-    public String getProductType() {
-        return this.productType;
+    public int getProductID() {
+        return this.productID;
     }
 
     /**
      *
-     * @param ProductType
+     * @param ProductID
      */
-    public void setProductType(String ProductType) {
-        this.productType = ProductType;
+    public void setProductID(int ProductID) {
+        this.productID = ProductID;
     }
 
     public String getCategory() {
@@ -59,11 +64,11 @@ public class Product {
      * @param Brand
      */
     public void setBrand(String Brand) {
-       this.brand = Brand;
+        this.brand = Brand;
     }
 
     public String getProductName() {
-       return this.productName;
+        return this.productName;
     }
 
     /**
@@ -72,6 +77,18 @@ public class Product {
      */
     public void setProductName(String ProductName) {
         this.productName = ProductName;
+    }
+
+    public String getSubCategory() {
+        return this.subCategory;
+    }
+
+    /**
+     *
+     * @param SubCategory
+     */
+    public void setSubCategory(String SubCategory) {
+        this.subCategory = SubCategory;
     }
 
     public float getUnitPrice() {
@@ -98,18 +115,6 @@ public class Product {
         this.nutriInfo = Nutritional_Info;
     }
 
-    public int getProductID() {
-        return this.productID;
-    }
-
-    /**
-     *
-     * @param ProductID
-     */
-    public void setProductID(int ProductID) {
-        this.productID = ProductID;
-    }
-
     public int getDpId() {
         return this.dpId;
     }
@@ -118,8 +123,31 @@ public class Product {
      *
      * @param dpId
      */
-    public void setDP_ID(int dpId) {
+    public void setDp_ID(int dpId) {
         this.dpId = dpId;
     }
 
+    public int getWeightOrVolume() {
+        return weightOrVolume;
+    }
+
+    /**
+     *
+     * @param weightOrVolume
+     */
+    public void setWeightOrVolume(int weightOrVolume) {
+        this.weightOrVolume = weightOrVolume;
+    }
+
+    public double getHealthRating() {
+        return healthRating;
+    }
+
+    /**
+     *
+     * @param healthRating
+     */
+    public void setHealthRating(double healthRating) {
+        this.healthRating = healthRating;
+    }
 }
