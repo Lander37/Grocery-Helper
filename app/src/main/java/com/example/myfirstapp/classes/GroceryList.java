@@ -15,8 +15,8 @@ public class GroceryList {
     private Calendar creationDate;
     private int[][] ArrayProduct; // Stores ProductID & Quantity
 
-    public GroceryList(String listName, int list_id) {
-        this.GL_ID = list_id;
+    public GroceryList(String listName, int GL_ID) {
+        this.GL_ID = GL_ID;
         this.Name = listName;
         this.TotalCost = 0;
         this.creationDate = Calendar.getInstance();

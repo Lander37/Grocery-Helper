@@ -47,7 +47,7 @@ public class GroceryManager {
     public void createNewList(String listName) {
         //Check if list with name == listName exists
         for(int i = 0; i < gListArray.size(); i++){
-            if(gListArray.get(i).getName() == listName){
+            if(listName.equals(gListArray.get(i).getName())){
                 //Invalid name, name already in use!
                 return;
             }
@@ -78,12 +78,7 @@ public class GroceryManager {
      * @param tobeAdded
      */
     public void addGroceryList(GroceryList tobeAdded) {
-        for (int i = 0; i < gListArray.size(); i++){
-            if (gListArray.get(i) == null){
-                gListArray.set(i, tobeAdded);
-                break;
-            }
-        }
+        gListArray.add(tobeAdded);
     }
 
     public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
@@ -159,6 +154,15 @@ public class GroceryManager {
             if (currentListID == gListArray.get(i).getGL_ID()){
                 gListArray.get(i).addProdToList(prod_ID , QTY);
                 break;
+            }
+        }
+    }
+
+    public void confirmList (int GL_ID) {
+        //Add List to ListHistory/Expenditure. Check who is doing and how to implement
+        for (int i = 0; i < gListArray.size(); i++){
+            if (GL_ID == gListArray.get(i).getGL_ID()){
+                gListArray.remove(i);
             }
         }
     }

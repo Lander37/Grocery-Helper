@@ -42,12 +42,7 @@ public class ProfileManager {
      * @param tobeAdded
      */
     public void addProfile(Profile tobeAdded) {
-        for (int i = 0; i < profileArray.size(); i++){
-            if (profileArray.get(i) == null){
-                profileArray.set(i, tobeAdded);
-                break;
-            }
-        }
+        profileArray.add(tobeAdded);
     }
 
 

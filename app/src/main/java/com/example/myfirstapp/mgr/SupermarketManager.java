@@ -43,12 +43,7 @@ public class SupermarketManager {
      * @param tobeAdded
      */
     public void addSupermarket(Supermarket tobeAdded) {
-        for (int i = 0; i < smArray.size(); i++) {
-            if (smArray.get(i) == null) {
-                smArray.set(i, tobeAdded);
-                break;
-            }
-        }
+        smArray.add(tobeAdded);
     }
 
 
