@@ -1,36 +1,44 @@
 package com.example.myfirstapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.mgr.HistoryManager;
+import com.example.myfirstapp.ui.HistorySpecListActivity;
 
 import java.util.ArrayList;
 
-public class HistoryUI extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity {
 
     private AppCompatSpinner spinner;
     private AdapterView.OnItemSelectedListener spinnerListener;
-    private HistoryManager manager = new HistoryManager(this);
+    private HistoryManager manager;
     private ArrayList<GroceryList> gListArray;
+    private NestedScrollView groceryLists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_ui);
+        this.manager = new HistoryManager(this);
         gListArray = this.manager.getgListArray();
         spinner = (AppCompatSpinner) findViewById(R.id.history_sorting_spinner);
+        groceryLists = (NestedScrollView) findViewById(R.id.history_main_scrollView);
         spinnerListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String sortingBy = adapterView.getItemAtPosition(i).toString();
+                //showHistory(sortingBy);
             }
 
             @Override
@@ -45,6 +53,8 @@ public class HistoryUI extends AppCompatActivity {
 
     }
 
+    /* --- For main history layout ---*/
+    //Return array of GroceryLists sorted by category
     private GroceryList[] sortedGroceryListArray(String sortingBy){
         GroceryList[] sortedArray = new GroceryList[gListArray.size()];
 
@@ -65,12 +75,29 @@ public class HistoryUI extends AppCompatActivity {
         return sortedArray;
     }
 
+    //Populate history_main_scrollview with grocery lists
     public void showHistory(String sortingBy){
         GroceryList[] sortedArray = sortedGroceryListArray(sortingBy);
 
         for(int i = 0; i < sortedArray.length; i++){
-
+            TextView list = new TextView(getBaseContext());
+            list.setHeight(20);
+            list.setText("List: " + sortedArray[i].getName());
+            list.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    TextView text = (TextView) view;
+                    gotoSpecList(text.getText().toString());
+                }
+            });
+            groceryLists.addView(list);
         }
+    }
+
+    public void gotoSpecList(String listName){
+        Intent intent = new Intent(this, HistorySpecListActivity.class);
+        intent.putExtra("Listname",listName);
+        startActivity(intent);
     }
 
 }

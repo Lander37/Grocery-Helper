@@ -1,7 +1,11 @@
 package com.example.myfirstapp.mgr;
 
-import com.example.myfirstapp.HistoryUI;
+import android.content.Intent;
+
+import com.example.myfirstapp.HistoryActivity;
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.ui.CreateProfileActivity;
+import com.example.myfirstapp.ui.HistorySpecListActivity;
 
 import java.util.ArrayList;
 
@@ -11,10 +15,10 @@ import java.util.ArrayList;
 
 public class HistoryManager {
 
-    private HistoryUI linkedActivity;
+    private HistoryActivity linkedActivity;
     private ArrayList<GroceryList> gListArray;
 
-    public HistoryManager(HistoryUI linkedActivity){
+    public HistoryManager(HistoryActivity linkedActivity){
         this.linkedActivity = linkedActivity;
     }
 
