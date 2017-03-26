@@ -27,6 +27,10 @@
         <activity
             android:name=".ui.SelectProductCategoryActivity"
             android:label="@string/title_activity_select_product_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SpecificListActivity"
+            android:label="@string/title_activity_specific_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

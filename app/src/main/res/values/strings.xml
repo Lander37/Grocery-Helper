@@ -14,6 +14,7 @@
     </string-array>
     <string name="title_activity_cart">CartActivity</string>
     <string name="title_activity_select_product_category">SelectProductCategoryActivity</string>
+    <string name="title_activity_specific_list">SpecificListActivity</string>
 
 
 </resources>
