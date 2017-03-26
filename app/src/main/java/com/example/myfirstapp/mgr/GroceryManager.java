@@ -76,7 +76,6 @@ public class GroceryManager {
      */
     public void addGroceryList(GroceryList tobeAdded) {
         gListArray.add(tobeAdded);
-        //Asadpasdasjdpaj
     }
 
     public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
@@ -108,24 +107,28 @@ public class GroceryManager {
 
         for (int j = 0; j < sameProduct.size(); j++){
             if(userHealthEmp == 1) {
-                recValue = 0.8 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 1.2;
-
+                recValue = 0.8 * sameProduct.get(j).getHealthRating() +
+                        1.2 * (sameProduct.get(j).getWeightOrVolume() / sameProduct.get(j).getUnitPrice() * 100);
             }
 
             else if(userHealthEmp == 2) {
-                recValue = 0.9 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 1.1;
+                recValue = 0.9 * sameProduct.get(j).getHealthRating() +
+                        1.1 * (sameProduct.get(j).getWeightOrVolume() / sameProduct.get(j).getUnitPrice() * 100);
             }
 
             else if(userHealthEmp == 3) {
-                recValue = 1.0 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 1.0;
+                recValue = 1.0 * sameProduct.get(j).getHealthRating() +
+                        1.0 * (sameProduct.get(j).getWeightOrVolume() / sameProduct.get(j).getUnitPrice() * 100);
             }
 
             else if(userHealthEmp == 4) {
-                recValue = 1.1 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 0.9;
+                recValue = 1.1 * sameProduct.get(j).getHealthRating() +
+                        0.9 * (sameProduct.get(j).getWeightOrVolume() / sameProduct.get(j).getUnitPrice() * 100);
             }
 
             else {
-                recValue = 1.2 * sameProduct.get(j).getHealthRating() + (1.0 / sameProduct.get(j).getUnitPrice()) * 0.8;
+                recValue = 1.2 * sameProduct.get(j).getHealthRating() +
+                        0.8 * (sameProduct.get(j).getWeightOrVolume() / sameProduct.get(j).getUnitPrice() * 100);
             }
 
             recommendationValues.add(recValue);
