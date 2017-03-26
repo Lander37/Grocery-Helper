@@ -76,6 +76,7 @@ public class GroceryManager {
      */
     public void addGroceryList(GroceryList tobeAdded) {
         gListArray.add(tobeAdded);
+        //Asadpasdasjdpaj
     }
 
     public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
