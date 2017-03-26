@@ -17,12 +17,16 @@
         </activity>
         <activity android:name=".DisplayMessageActivity" />
         <activity
-            android:name=".MainActivity$CreateProfile"
-            android:label="@string/title_activity_creating_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".CreateProfileActivity"
             android:label="@string/title_activity_create_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.CartActivity"
+            android:label="@string/title_activity_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SelectProductCategoryActivity"
+            android:label="@string/title_activity_select_product_category"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
