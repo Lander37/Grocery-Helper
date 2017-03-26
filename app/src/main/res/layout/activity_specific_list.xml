@@ -17,11 +17,40 @@
     <include layout="@layout/content_specific_list"
         android:id="@+id/include3" />
 
-    <Spinner
-        android:id="@+id/LocationListS"
-        android:layout_marginTop="5dp"
+
+    <GridLayout
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="300dp">
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/back"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="250dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/addItem"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Add Other Items" />
+
+    <Button
+        android:id="@+id/confirmList"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Confirm List" />
 
 
 </android.support.design.widget.CoordinatorLayout>

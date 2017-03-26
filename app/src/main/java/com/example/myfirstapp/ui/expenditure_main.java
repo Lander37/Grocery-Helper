@@ -1,9 +1,11 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.myfirstapp.R;
 
 public class expenditure_main extends AppCompatActivity {
 
@@ -13,7 +15,7 @@ public class expenditure_main extends AppCompatActivity {
         setContentView(R.layout.activity_expenditure_main);
     }
     public void goToBudgetCalculator (View view){
-        Intent intent = new Intent (this, budget_calculator);
+        Intent intent = new Intent (this, budget_calculator.class);
         startActivity(intent);
     }
 
@@ -24,13 +26,3 @@ public class expenditure_main extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-
-
-
-    thirdmonth = int getMonth();
-
-            Calendar.get(Calendar.MONTH)
-            float secondmonth = Calendar.get(Calendar.MONTH)
-            = date.add(Calendar.MONTH, 1);
-            float onemonth = Calendar.get(Calendar.MONTH)

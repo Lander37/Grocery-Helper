@@ -29,4 +29,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void launchActivity() {
+
+        Intent intent = new Intent(this, CreateProfileActivity.class);
+        startActivity(intent);
+    }
 }

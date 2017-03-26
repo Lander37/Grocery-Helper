@@ -1,9 +1,11 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.myfirstapp.R;
 
 public class budget_calculator extends AppCompatActivity {
 
@@ -13,7 +15,7 @@ public class budget_calculator extends AppCompatActivity {
         setContentView(R.layout.activity_budget_calculator);
     }
     public void buttonOnCalculatorConfirm (View view){
-        Intent intent = new Intent (this, expenditure_main);
+        Intent intent = new Intent (this, expenditure_main.class);
         startActivity(intent);
     }
 }
