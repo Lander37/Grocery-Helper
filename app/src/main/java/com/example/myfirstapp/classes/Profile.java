@@ -11,13 +11,15 @@ public class Profile {
     private String defaultLocation;
     private DietaryPreference healthPreference;
     private int healthEmphasis;
+    private int profileID;
 
-    public Profile(String username, String password, String defaultLocation, DietaryPreference healthPreference, int healthemphasis){
+    public Profile(String username, String password, String defaultLocation, DietaryPreference healthPreference, int healthEmphasis, int profileID){
         this.username = username;
         this.password = password;
         this.defaultLocation = defaultLocation;
         this.healthPreference = healthPreference;
-        this.healthEmphasis = healthemphasis;
+        this.healthEmphasis = healthEmphasis;
+        this.profileID = profileID;
     }
 
     public String getUsername() {
@@ -66,6 +68,28 @@ public class Profile {
      */
     public void setHealthPreference(DietaryPreference healthPreference) {
         this.healthPreference = healthPreference;
+    }
+
+    public int getHealthEmphasis() {
+        return healthEmphasis;
+    }
+    /**
+     *
+     * @param healthEmphasis
+     */
+    public void setHealthEmphasis(int healthEmphasis) {
+        this.healthEmphasis = healthEmphasis;
+    }
+
+    public int getProfileID() {
+        return profileID;
+    }
+    /**
+     *
+     * @param profileID
+     */
+    public void setProfileID(int profileID) {
+        this.profileID = profileID;
     }
 
 }

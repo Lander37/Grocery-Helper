@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.myfirstapp.ui.CreateProfileActivity"
-    tools:showIn="@layout/activity_create_profile">
+    tools:context="com.example.myfirstapp.ui.CartActivity"
+    tools:showIn="@layout/activity_cart">
 
 </android.support.constraint.ConstraintLayout>
