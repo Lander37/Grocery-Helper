@@ -19,7 +19,6 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        btLocation = (Button) findViewById(R.id.LocationC);
         btAddList = (Button) findViewById(R.id.addList);
 
 
