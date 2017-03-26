@@ -1,18 +1,54 @@
 package com.example.myfirstapp.ui;
 
+import android.os.Bundle;
+//import android.support.design.widget.FloatingActionButton;
+//import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.mgr.GroceryManager;
 
-/**
- * Created by Daniel on 3/21/2017.
- */
+public class GroceryUI extends AppCompatActivity {
 
-public class GroceryUI {
+    private GroceryManager manager = new GroceryManager(this);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_grocery_ui);
+        //this.manager.loadGroceryUI();
+
+/*        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
+
+/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+    }
 
     public void displayGroceryLists(GroceryList[] groceryLists){
+        TableLayout overview = (TableLayout) findViewById(R.id.overview);
+        for(int i = 0; i < groceryLists.length; i++){
+            TableRow newRow = new TableRow(getApplicationContext());
+            TextView textContent = new TextView(getApplicationContext());
+            String listName = groceryLists[i].getName();
+            String expenditure = groceryLists[i].getTotalCost() + "";
 
+            textContent.setText(listName + "  " + expenditure);
+            newRow.addView(textContent);
+            overview.addView(newRow);
+        }
     }
 
-    public void displaySingleList(GroceryList groceryList){
-
-    }
 }
