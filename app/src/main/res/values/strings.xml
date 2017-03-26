@@ -12,6 +12,8 @@
         <item> 345 Jurong East Street 31 #01-29, Singapore 600345 </item>
         <item> 498 Jurong West Street 41, Singapore 640498 </item>
     </string-array>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_select_product_category">SelectProductCategoryActivity</string>
 
 
 </resources>
