@@ -131,7 +131,6 @@
 
     <Spinner
         android:id="@+id/locationList"
-
         android:layout_marginLeft="130dp"
         android:layout_marginStart="130dp"
         android:layout_marginRight="25dp"
