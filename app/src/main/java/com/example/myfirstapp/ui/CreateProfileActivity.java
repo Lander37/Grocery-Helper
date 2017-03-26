@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,12 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
 
+import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.DietaryPreference;
 import com.example.myfirstapp.classes.Profile;
+import com.example.myfirstapp.ui.CartActivity;
+
+import java.util.Random;
 
 public class CreateProfileActivity extends AppCompatActivity {
 
@@ -63,6 +67,9 @@ public class CreateProfileActivity extends AppCompatActivity {
         boolean HA = false;
         boolean VG = false;
         boolean GF = false;
+        //make creating a profile id more consistent
+        Random rn = new Random();
+        int profileID = rn.nextInt();
         if(tbHealthierChoice.getText()=="On"){HC = true;}
         if(tbHalal.getText()=="On"){HA = true;}
         if(tbVegetarian.getText()=="On"){VG = true;}
@@ -70,11 +77,12 @@ public class CreateProfileActivity extends AppCompatActivity {
 
         //need changes to DietaryPreference
         DietaryPreference healthPreference = new DietaryPreference(0000,HC,HA,VG,GF);
-        Profile newProfile= new Profile(username, password, defaultLocation, healthPreference, healthEmphasis);
+
+        Profile newProfile= new Profile(username, password, defaultLocation, healthPreference, healthEmphasis,profileID);
     }
     private void launchActivity() {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }
 };

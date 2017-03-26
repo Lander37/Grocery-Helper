@@ -26,7 +26,7 @@
         app:layout_anchorGravity="top|right" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/LocationC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
@@ -34,72 +34,28 @@
         app:layout_anchor="@+id/include2"
         app:layout_anchorGravity="top|center_horizontal" />
 
-
-
-    <TabWidget
-        android:id="@android:id/tabs"
+    <GridView
+        android:id="@+id/GridC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp" />
 
-    <TabHost
+    <TextSwitcher
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="100dp">
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Overview"
+            android:textSize="25sp" />
 
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    </TextSwitcher>
 
-                <LinearLayout
-                    android:id="@+id/overview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-
-                        <TabWidget
-                            android:id="@android:id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <ListView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/List1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                        <TabWidget
-                            android:id="@android:id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/List2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                        <TabWidget
-                            android:id="@android:id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                </LinearLayout>
-            </FrameLayout>
-
-    </TabHost>
 
 </android.support.design.widget.CoordinatorLayout>

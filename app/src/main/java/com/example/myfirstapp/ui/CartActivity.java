@@ -1,20 +1,31 @@
 package com.example.myfirstapp.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.widget.Button;
+import android.support.v7.app.ActionBar;
+import android.widget.TabHost;
 
 import com.example.myfirstapp.R;
 
 public class CartActivity extends AppCompatActivity {
 
+    private Button btLocation;
+    private Button btAddList;
+    private TabHost tabHost;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        btLocation = (Button) findViewById(R.id.LocationC);
+        btAddList = (Button) findViewById(R.id.addList);
+
+
+
+
+
 
 
     }

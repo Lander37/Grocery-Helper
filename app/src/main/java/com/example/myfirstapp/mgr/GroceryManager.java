@@ -3,13 +3,10 @@ package com.example.myfirstapp.mgr;
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
 
-import com.example.myfirstapp.classes.Profile;
-import com.example.myfirstapp.classes.Supermarket;
-import com.example.myfirstapp.GroceryUI;
+import com.example.myfirstapp.ui.GroceryUI;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 
 /**
