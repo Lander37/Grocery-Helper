@@ -63,22 +63,33 @@ public class CreateProfileActivity extends AppCompatActivity {
         String password = etEditPassword.getText().toString();
         int healthEmphasis = sbHealthSeekBar.getProgress();
         String defaultLocation = spLocationList.getSelectedItem().toString();
-        boolean HC = false;
+
         boolean HA = false;
-        boolean VG = false;
+        boolean HC = false;
         boolean GF = false;
+        boolean VG = false;
+
+        if(tbHalal.getText()=="On"){HA = true;}
+        if(tbHealthierChoice.getText()=="On"){HC = true;}
+        if(tbGluten.getText()=="On"){GF = true;}
+        if(tbVegetarian.getText()=="On"){VG = true;}
+
+        int a=0;
+        int b=0;
+        int c=0;
+        int d=0;
+        if(HA == true){a=1;}
+        if(HC == true){b=1;}
+        if(GF == true){c=1;}
+        if(VG == true){d=1;}
+
+        int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b)+ String.valueOf(c)+ String.valueOf(d) );
+
         //make creating a profile id more consistent
         Random rn = new Random();
         int profileID = rn.nextInt();
-        if(tbHealthierChoice.getText()=="On"){HC = true;}
-        if(tbHalal.getText()=="On"){HA = true;}
-        if(tbVegetarian.getText()=="On"){VG = true;}
-        if(tbGluten.getText()=="On"){GF = true;}
 
-        //need changes to DietaryPreference
-        DietaryPreference healthPreference = new DietaryPreference(0000,HC,HA,VG,GF);
-
-        Profile newProfile= new Profile(username, password, defaultLocation, healthPreference, healthEmphasis,profileID);
+        Profile newProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
     }
     private void launchActivity() {
 
