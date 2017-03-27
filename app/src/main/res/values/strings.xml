@@ -11,6 +11,7 @@
         <item>399 Yung Sheng Road, #01-35, Taman Jurong Shopping Centre, N S Household Taman Jurong, Singapore 610399</item>
         <item> 345 Jurong East Street 31 #01-29, Singapore 600345 </item>
         <item> 498 Jurong West Street 41, Singapore 640498 </item>
+    </string-array>
 
     
     <string-array name="history_sortby_choice">
@@ -24,6 +25,11 @@
     <string name="title_activity_specific_list">SpecificListActivity</string>
     <string name="title_activity_test">test</string>
 
+
+    <string name="menu_grocery_list">Grocery List</string>
+    <string name="menu_expenditure">Expenditure</string>
+    <string name="menu_history">History</string>
+    <string name="menu_profile">Profile</string>
 
 
 </resources>
