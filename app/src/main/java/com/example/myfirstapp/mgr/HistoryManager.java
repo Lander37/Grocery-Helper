@@ -1,6 +1,6 @@
 package com.example.myfirstapp.mgr;
 
-import com.example.myfirstapp.HistoryUI;
+import com.example.myfirstapp.ui.HistoryUI;
 import com.example.myfirstapp.classes.GroceryList;
 
 import java.util.ArrayList;
