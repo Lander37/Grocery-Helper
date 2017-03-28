@@ -1,4 +1,4 @@
-package com.example.myfirstapp;
+package com.example.myfirstapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.mgr.HistoryManager;
 import com.example.myfirstapp.ui.HistorySpecListActivity;
@@ -30,7 +31,7 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_ui);
-        this.manager = new HistoryManager(this);
+        this.manager = new HistoryManager();
         gListArray = this.manager.getgListArray();
         spinner = (AppCompatSpinner) findViewById(R.id.history_sorting_spinner);
         groceryLists = (NestedScrollView) findViewById(R.id.history_main_scrollView);
@@ -75,7 +76,6 @@ public class HistoryActivity extends AppCompatActivity {
         return sortedArray;
     }
 
-    //Populate history_main_scrollview with grocery lists
     public void showHistory(String sortingBy){
         GroceryList[] sortedArray = sortedGroceryListArray(sortingBy);
 
@@ -94,9 +94,9 @@ public class HistoryActivity extends AppCompatActivity {
         }
     }
 
-    public void gotoSpecList(String listName){
+    public void gotoSpecList(String list_id){
         Intent intent = new Intent(this, HistorySpecListActivity.class);
-        intent.putExtra("Listname",listName);
+        intent.putExtra("list_id",list_id);
         startActivity(intent);
     }
 
