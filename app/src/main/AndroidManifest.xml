@@ -36,6 +36,8 @@
             android:name=".ui.NavigationActivity"
             android:label="NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+
     </application>
 
 </manifest>
