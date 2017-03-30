@@ -91,7 +91,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     }
     private void launchActivity() {
 
-        Intent intent = new Intent(this, CartActivity.class);
+        Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
 };
