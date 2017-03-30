@@ -1,10 +1,6 @@
 package com.example.myfirstapp.mgr;
 
-import android.content.Intent;
-
 import com.example.myfirstapp.classes.GroceryList;
-import com.example.myfirstapp.ui.CreateProfileActivity;
-import com.example.myfirstapp.ui.HistorySpecListActivity;
 
 import java.util.ArrayList;
 
@@ -17,6 +13,7 @@ public class HistoryManager {
     private ArrayList<GroceryList> gListArray;
 
     public HistoryManager(){
+        loadGroceryLists();
     }
 
     public void loadGroceryLists(){
