@@ -1,6 +1,5 @@
 package com.example.myfirstapp.mgr;
 
-import com.example.myfirstapp.ui.HistoryUI;
 import com.example.myfirstapp.classes.GroceryList;
 
 import java.util.ArrayList;
@@ -11,15 +10,24 @@ import java.util.ArrayList;
 
 public class HistoryManager {
 
-    private HistoryUI linkedActivity;
     private ArrayList<GroceryList> gListArray;
 
     public HistoryManager(){
 
+        loadGroceryLists();
     }
 
     public void loadGroceryLists(){
 
+    }
+
+    public GroceryList getGroceryList(int list_id){
+        for(int i = 0; i < gListArray.size(); i++){
+            if(gListArray.get(i).getGL_ID() == list_id){
+                return gListArray.get(i);
+            }
+        }
+        return null;
     }
 
     public ArrayList<GroceryList> getgListArray(){

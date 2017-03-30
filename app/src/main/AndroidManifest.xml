@@ -33,9 +33,14 @@
             android:label="@string/title_activity_specific_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.HistorySpecListActivity"
+            android:label="@string/title_activity_history_spec_list"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".ui.NavigationActivity"
             android:label="NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
 
 
     </application>
