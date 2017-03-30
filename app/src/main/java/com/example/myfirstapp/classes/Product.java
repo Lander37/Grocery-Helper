@@ -12,20 +12,18 @@ public class Product {
     private String productName;
     private String subCategory;
     private float unitPrice;
-    private DietaryPreference nutriInfo;
     private int dpId;
     private int weightOrVolume;
     private double healthRating;
 
     public Product(int ProductID, String Category, String Brand, String ProductName, String subCategory,
-                   float UnitPrice, DietaryPreference NutriInfo, int dpId, int weightOrVolume, double healthRating) {
+                   float UnitPrice, int dpId, int weightOrVolume, double healthRating) {
         this.productID = ProductID;
         this.category = Category;
         this.brand = Brand;
         this.productName = ProductName;
         this.subCategory = subCategory;
         this.unitPrice = UnitPrice;
-        this.nutriInfo = NutriInfo;
         this.dpId = dpId;
         this.weightOrVolume = weightOrVolume;
         this.healthRating = healthRating;
@@ -101,18 +99,6 @@ public class Product {
      */
     public void setUnitPrice(float UnitPrice) {
         this.unitPrice = UnitPrice;
-    }
-
-    public DietaryPreference getNutriInfo() {
-        return this.nutriInfo;
-    }
-
-    /**
-     *
-     * @param Nutritional_Info
-     */
-    public void setNutriInfo(DietaryPreference Nutritional_Info) {
-        this.nutriInfo = Nutritional_Info;
     }
 
     public int getDpId() {
