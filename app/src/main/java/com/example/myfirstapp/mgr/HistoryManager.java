@@ -13,6 +13,7 @@ public class HistoryManager {
     private ArrayList<GroceryList> gListArray;
 
     public HistoryManager(){
+
         loadGroceryLists();
     }
 
