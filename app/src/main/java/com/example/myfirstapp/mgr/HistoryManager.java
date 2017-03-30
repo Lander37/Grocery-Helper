@@ -14,8 +14,8 @@ public class HistoryManager {
     private HistoryUI linkedActivity;
     private ArrayList<GroceryList> gListArray;
 
-    public HistoryManager(HistoryUI linkedActivity){
-        this.linkedActivity = linkedActivity;
+    public HistoryManager(){
+
     }
 
     public void loadGroceryLists(){
