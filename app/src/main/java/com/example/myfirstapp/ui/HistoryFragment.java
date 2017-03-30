@@ -1,9 +1,11 @@
 package com.example.myfirstapp.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.myfirstapp.R;
@@ -12,7 +14,7 @@ import com.example.myfirstapp.mgr.HistoryManager;
 
 import java.util.ArrayList;
 
-public class HistoryUI extends AppCompatActivity {
+public class HistoryFragment extends Fragment {
 
     private AppCompatSpinner spinner;
     private AdapterView.OnItemSelectedListener spinnerListener;
@@ -20,27 +22,28 @@ public class HistoryUI extends AppCompatActivity {
     private ArrayList<GroceryList> gListArray;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_ui);
+
+    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_history_ui, container, false);
         gListArray = this.manager.getgListArray();
-        spinner = (AppCompatSpinner) findViewById(R.id.history_sorting_spinner);
+        spinner = (AppCompatSpinner) view.findViewById(R.id.history_sorting_spinner);
         spinnerListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         };
         spinner.setOnItemSelectedListener(spinnerListener);
         /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
-
-
+        return view;
     }
 
     private GroceryList[] sortedGroceryListArray(String sortingBy){
@@ -69,6 +72,10 @@ public class HistoryUI extends AppCompatActivity {
         for(int i = 0; i < sortedArray.length; i++){
 
         }
+    }
+    public static HistoryFragment newInstance() {
+        HistoryFragment fragment = new HistoryFragment();
+        return fragment;
     }
 
 }
