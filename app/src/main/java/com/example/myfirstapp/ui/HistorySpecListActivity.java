@@ -35,7 +35,7 @@ public class HistorySpecListActivity extends AppCompatActivity {
         int[][] arrayProduct = selectedList.getArrayProduct();
 
         listName.setText(selectedList.getName());
-        //listDate.setText(selectedList.getDate().getTime());
+        listDate.setText(selectedList.getDate().getTime().toString());
         String totalExp = "$" + String.format ("%.2f", selectedList.getTotalCost());
         totalExpenditure.setText(totalExp);
         for(int i = 0; i < arrayProduct.length; i++){
