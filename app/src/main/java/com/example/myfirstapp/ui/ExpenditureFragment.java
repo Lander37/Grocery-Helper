@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myfirstapp.R;
 
-public class ExpenditureFragment extends Fragment {
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+public class ExpenditureFragment extends Fragment {
+    TextView txt;
     private Button btInputBudget;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,19 +26,26 @@ public class ExpenditureFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_expenditure_main, container, false);
         btInputBudget = (Button) view.findViewById(R.id.inputBudget);
+
         btInputBudget.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                launchActivity();
+                ((NavigationActivity)getActivity()).replaceExpenditure();
             }
         });
+        txt = (TextView)view.findViewById(R.id.currentmonth);
+        String months [] = {
+                "January","February","March","April",
+                "May","June","July","August",
+                "September","October","November","December"};
+        GregorianCalendar gCalendar = new GregorianCalendar();
+        String Month = String.valueOf(months[gCalendar.get(Calendar.MONTH)]);
+
+        txt.setText(Month);
         return view;
     }
-    public void launchActivity() {
-        Intent intent = new Intent (getActivity(), budget_calculator.class);
-        startActivity(intent);
-    }
+
     public static ExpenditureFragment newInstance() {
         ExpenditureFragment fragment = new ExpenditureFragment();
         return fragment;
