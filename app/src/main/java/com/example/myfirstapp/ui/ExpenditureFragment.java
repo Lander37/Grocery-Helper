@@ -47,8 +47,7 @@ public class ExpenditureFragment extends Fragment {
     }
 
     public static ExpenditureFragment newInstance() {
-        ExpenditureFragment fragment = new ExpenditureFragment();
-        return fragment;
+        return new ExpenditureFragment();
     }
 
 

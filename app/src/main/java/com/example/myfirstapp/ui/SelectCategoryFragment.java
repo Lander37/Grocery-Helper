@@ -30,7 +30,6 @@ public class SelectCategoryFragment extends Fragment {
     }
 
     public static SelectCategoryFragment newInstance() {
-        SelectCategoryFragment fragment = new SelectCategoryFragment();
-        return fragment;
+        return new SelectCategoryFragment();
     }
 }

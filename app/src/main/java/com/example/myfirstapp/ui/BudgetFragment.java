@@ -33,8 +33,7 @@ public class BudgetFragment extends Fragment {
     }
 
     public static BudgetFragment newInstance() {
-        BudgetFragment fragment = new BudgetFragment();
-        return fragment;
+        return new BudgetFragment();
     }
 
 

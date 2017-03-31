@@ -25,7 +25,7 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceGrocery();
+                ((NavigationActivity)getActivity()).replaceCart();
             }
         });
         return view;
@@ -33,8 +33,7 @@ public class CartFragment extends Fragment {
 
 
     public static CartFragment newInstance() {
-        CartFragment fragment = new CartFragment();
-        return fragment;
+        return new CartFragment();
     }
 
 
