@@ -1,6 +1,7 @@
 package com.example.myfirstapp.ui;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
@@ -38,32 +39,32 @@ public class HistoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_history, container, false);
         this.manager = new HistoryManager();
         gListArray = this.manager.getgListArray();
+        gListDescriptions = new ArrayList<String>(0);
         spinner = (AppCompatSpinner) view.findViewById(R.id.history_sorting_spinner);
         groceryLists = (ListView) view.findViewById(R.id.history_main_list);
-        gListAdapter = new ArrayAdapter<>(getContext(),R.layout.content_history_activity,gListDescriptions);
-        //groceryLists.setAdapter(gListAdapter);
-        //spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-           // @Override
-           // public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-           //     String sortingBy = adapterView.getItemAtPosition(i).toString();
-            //    showHistory(sortingBy);
-           // }
+        gListAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,gListDescriptions);
+        groceryLists.setAdapter(gListAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String sortingBy = adapterView.getItemAtPosition(i).toString();
+                showHistory(sortingBy);
+            }
 
-            //@Override
-            //public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-           // }
-        //});
+            }
+        });
 
-        //groceryLists.setOnClickListener(new View.OnClickListener() {
+        groceryLists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        //   @Override
-         //   public void onClick(View view) {
-         //       ((NavigationActivity)getActivity()).replaceThis(HistorySpecListFragment.newInstance(),"History");
-         //   }
-        //});
+           @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ((NavigationActivity)getActivity()).replaceThis(HistorySpecListFragment.newInstance(gListArray.get(i).getGL_ID()),"History");
+            }
+        });
 
-        //showHistory("Date");
         return view;
     }
 
@@ -71,16 +72,25 @@ public class HistoryFragment extends Fragment {
     //Sorts gListArray by category: Date, quantity, total expenditure
     private void sortGroceryListArray(String sortingBy){
 
-        if(sortingBy == "Date"){
+        if(sortingBy == getString(R.string.sortby_Date_earliest)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
 
-                    return  gList1.getDate().compareTo(gList2.getDate());
+                    return  gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
                 }
             });
-        } else if (sortingBy == "Quantity"){
+        } else if(sortingBy == getString(R.string.sortby_Date_latest)){
+            Collections.sort(gListArray, new Comparator<GroceryList>() {
+                @Override
+                public int compare(GroceryList gList1, GroceryList gList2)
+                {
+
+                    return  -gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                }
+            });
+        } else if (sortingBy == getString(R.string.sortby_Quantity)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)
@@ -106,7 +116,7 @@ public class HistoryFragment extends Fragment {
                 }
             });
 
-        } else if (sortingBy == "Price"){
+        } else if (sortingBy == getString(R.string.sortby_Price)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)
@@ -125,10 +135,13 @@ public class HistoryFragment extends Fragment {
 
     public void showHistory(String sortingBy){
         sortGroceryListArray(sortingBy);
+        gListDescriptions.clear();
 
         for(int i = 0; i < gListArray.size(); i++){
-            gListDescriptions.set(i,"List: " + gListArray.get(i).getName() + "\n Total spent: "  + gListArray.get(i).getTotalCost());
+            gListDescriptions.add(i,"List: " + gListArray.get(i).getName() + "\n Total spent: "  + gListArray.get(i).getTotalCost());
         }
+
+        gListAdapter.notifyDataSetChanged();
     }
 
 

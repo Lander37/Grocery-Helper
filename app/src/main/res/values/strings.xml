@@ -14,10 +14,16 @@
     </string-array>
 
     <string-array name="history_sortby_choice">
-        <item>Date</item>
-        <item>Price</item>
-        <item>Quantity</item>
+        <item>@string/sortby_Date_earliest</item>
+        <item>@string/sortby_Date_latest</item>
+        <item>@string/sortby_Price</item>
+        <item>@string/sortby_Quantity</item>
     </string-array>
+    <string name="sortby_Date_earliest">Date(earliest)</string>
+    <string name="sortby_Date_latest">Date(latest)</string>
+    <string name="sortby_Price">Price</string>
+    <string name="sortby_Quantity">Quantity</string>
+
     <string name="title_activity_cart">CartActivity</string>
     <string name="title_activity_select_product_category">SelectProductCategoryActivity</string>
     <string name="title_activity_specific_list">SpecificListActivity</string>
