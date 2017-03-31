@@ -25,7 +25,7 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceCart();
+                ((NavigationActivity)getActivity()).replaceThis(SelectCategoryFragment.newInstance(), "Cart");
             }
         });
         return view;

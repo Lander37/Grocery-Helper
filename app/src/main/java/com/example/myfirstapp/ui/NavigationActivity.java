@@ -76,31 +76,11 @@ public class NavigationActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void replaceCart(){
-        selectedFragment = SelectCategoryFragment.newInstance();
-        currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+    public void replaceThis(Fragment fragment, String tag){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_layout, selectedFragment, "Cart");
-        transaction.replace(R.id.frame_layout, selectedFragment);
+        transaction.add(R.id.frame_layout, fragment, tag);
+        transaction.replace(R.id.frame_layout, fragment);
         transaction.commit();
     }
 
-    public void replaceExpenditure(){
-        selectedFragment = BudgetFragment.newInstance();
-        currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_layout, selectedFragment, "Expenditure");
-        transaction.replace(R.id.frame_layout, selectedFragment);
-        transaction.commit();
-    }
-
-    public void replaceBudget(){
-        selectedFragment = ExpenditureFragment.newInstance();
-        currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.add(R.id.frame_layout, selectedFragment, "Expenditure");
-        transaction.replace(R.id.frame_layout, selectedFragment);
-        transaction.commit();
-    }
 }

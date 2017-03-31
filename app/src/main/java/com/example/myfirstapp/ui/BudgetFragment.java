@@ -26,7 +26,7 @@ public class BudgetFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceBudget();
+                ((NavigationActivity)getActivity()).replaceThis(ExpenditureFragment.newInstance(),"Expenditure");
             }
         });
         return view;

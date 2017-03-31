@@ -31,7 +31,7 @@ public class ExpenditureFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceExpenditure();
+                ((NavigationActivity)getActivity()).replaceThis(BudgetFragment.newInstance(),"Expenditure");
             }
         });
         txt = (TextView)view.findViewById(R.id.currentmonth);
