@@ -11,9 +11,7 @@ import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import com.example.myfirstapp.R;
-import com.example.myfirstapp.classes.DietaryPreference;
 import com.example.myfirstapp.classes.Profile;
-import com.example.myfirstapp.ui.CartActivity;
 
 import java.util.Random;
 
@@ -40,7 +38,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         etEditPassword = (EditText) findViewById(R.id.editPassword);
 
         spLocationList = (Spinner) findViewById(R.id.locationList);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.location_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.location_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLocationList.setAdapter(adapter);
 
@@ -93,7 +91,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     }
     private void launchActivity() {
 
-        Intent intent = new Intent(this, CartActivity.class);
+        Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
 };
