@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -26,14 +27,7 @@
             android:name=".ui.CreateProfileActivity"
             android:label="@string/title_activity_create_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.CartActivity"
-            android:label="@string/title_activity_cart"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.SelectProductCategoryActivity"
-            android:label="@string/title_activity_select_product_category"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ui.SpecificListActivity"
             android:label="@string/title_activity_specific_list"
@@ -42,13 +36,12 @@
             android:name=".ui.NavigationActivity"
             android:label="NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>
