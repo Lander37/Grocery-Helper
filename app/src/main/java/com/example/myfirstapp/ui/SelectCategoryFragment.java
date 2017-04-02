@@ -12,9 +12,10 @@ import com.example.myfirstapp.R;
 
 public class SelectCategoryFragment extends Fragment {
 
-    private Button btLocation;
-    private Button btFilter;
+    Button btLocation;
+    Button btFilter;
     private SearchView prodSearch;
+    Button btBack;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,8 @@ public class SelectCategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_select_product_category, container, false);
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
+        btBack = (Button) view.findViewById(R.id.back);
+
 
         btLocation.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -37,6 +40,13 @@ public class SelectCategoryFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((NavigationActivity)getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
+            }
+        });
+
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).replaceThis(CartFragment.newInstance(),"Cart");
             }
         });
 
