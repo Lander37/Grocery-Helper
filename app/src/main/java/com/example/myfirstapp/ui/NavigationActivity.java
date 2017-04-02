@@ -105,7 +105,7 @@ public class NavigationActivity extends AppCompatActivity {
         if(prev != null){
             transaction.remove(prev);
         }
-        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void setBtLogOut() {

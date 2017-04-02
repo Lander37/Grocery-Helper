@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/product_add_dialog_2">
+    tools:showIn="@layout/dialog_product_add_2">
 
     <TextView
         android:id="@+id/product_add_dialog_2_prompt"

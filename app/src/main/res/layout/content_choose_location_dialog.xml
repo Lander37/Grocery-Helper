@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/choose_location_dialog">
+    tools:showIn="@layout/dialog_choose_location">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/choose_location_dialog_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.079" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/choose_location_spinner"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

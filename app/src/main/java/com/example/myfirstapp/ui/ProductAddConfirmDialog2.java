@@ -23,7 +23,7 @@ public class ProductAddConfirmDialog2 extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.product_add_dialog_1, container, false);
+        View v = inflater.inflate(R.layout.dialog_product_add_1, container, false);
         Button productOkButton = (Button) v.findViewById(R.id.product_add_dialog_2_ok);
 
         productOkButton.setOnClickListener(new View.OnClickListener() {
