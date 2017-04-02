@@ -10,7 +10,8 @@ import com.example.myfirstapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btCreateProfile;
+    Button btCreateProfile;
+    Button btLogin;
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btCreateProfile = (Button) findViewById(R.id.createProfile);
-
         btCreateProfile.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -26,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
                 launchActivity();
             }
         });
+
+        btLogin = (Button) findViewById(R.id.login);
+        btLogin.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                launchLogin();
+            }
+        });
+
     }
 
     private void launchActivity() {
@@ -33,5 +43,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateProfileActivity.class);
         startActivity(intent);
     }
+    private void launchLogin() {
 
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
