@@ -1,7 +1,5 @@
 package com.example.myfirstapp.ui;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.ToggleButton;
-import android.content.Intent;
 
 import com.example.myfirstapp.R;
 
@@ -25,10 +22,10 @@ public class ProfileFragment extends Fragment {
     private EditText etEditPassword;
     private Spinner spLocationList;
     private SeekBar sbHealthSeekBar;
-    private ToggleButton tbHealthierChoice;
-    private ToggleButton tbHalal;
-    private ToggleButton tbVegetarian;
-    private ToggleButton tbGluten;
+    private CheckBox tbHealthierChoice;
+    private CheckBox tbHalal;
+    private CheckBox tbVegetarian;
+    private CheckBox tbGluten;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,10 +54,10 @@ public class ProfileFragment extends Fragment {
         spLocationList.setAdapter(adapter);
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
-        tbHealthierChoice = (ToggleButton) view.findViewById(R.id.healthierChoiceButton);
-        tbHalal = (ToggleButton) view.findViewById(R.id.halalButton);
-        tbVegetarian = (ToggleButton) view.findViewById(R.id.vegetarianButton);
-        tbGluten = (ToggleButton) view.findViewById(R.id.glutenButton);
+        tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
+        tbHalal = (CheckBox) view.findViewById(R.id.halalButton);
+        tbVegetarian = (CheckBox) view.findViewById(R.id.vegetarianButton);
+        tbGluten = (CheckBox) view.findViewById(R.id.glutenButton);
 
 
         return view;

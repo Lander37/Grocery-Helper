@@ -35,9 +35,9 @@
 
     <ScrollView
         android:layout_width="110dp"
-        android:layout_height="match_parent"
+        android:layout_height="380dp"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         >
@@ -110,11 +110,19 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="30dp"
+        android:layout_height="380dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginLeft="140dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="70dp">
     </ListView>
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="460dp"
+        android:text="back" />
 
 </android.support.design.widget.CoordinatorLayout>

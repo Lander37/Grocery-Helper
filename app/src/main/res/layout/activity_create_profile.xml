@@ -64,10 +64,6 @@
         android:textSize="25sp"
         android:inputType="textVisiblePassword" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_create_profile" />
-
     <TextView
         android:id="@+id/health"
         android:layout_marginLeft="25dp"
@@ -140,86 +136,56 @@
         android:textSize="25sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <ToggleButton
-        android:id="@+id/glutenButton"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="510dp"
-        android:layout_width="50sp"
-        android:layout_height="40sp"
-        android:text="ToggleButton" />
-    <TextView
-        android:id="@+id/glutenFree"
-        android:layout_marginLeft="78dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="520sp"
-        android:layout_width="150sp"
-        android:layout_height="30dp"
-        android:text="Gluten-free"
-        android:textSize="17sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    <ToggleButton
+
+
+    <CheckBox
         android:id="@+id/healthierChoiceButton"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginTop="390dp"
-        android:layout_width="50sp"
-        android:layout_height="40sp"
-        android:text="ToggleButton" />
-    <TextView
-        android:id="@+id/healthierChoice"
-        android:layout_marginLeft="78dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="400sp"
-        android:layout_width="150sp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Healthier Choice"
-        android:textSize="17sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    <ToggleButton
+        android:textSize="20sp"/>
+
+    <CheckBox
         android:id="@+id/halalButton"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginTop="430dp"
-        android:layout_width="50sp"
-        android:layout_height="40sp"
-        android:text="ToggleButton" />
-    <TextView
-        android:id="@+id/halal"
-        android:layout_marginLeft="78dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="440sp"
-        android:layout_width="150sp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Halal"
-        android:textSize="17sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    <ToggleButton
+        android:textSize="20sp"/>
+
+    <CheckBox
         android:id="@+id/vegetarianButton"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginTop="470dp"
-        android:layout_width="50sp"
-        android:layout_height="40sp"
-        android:text="ToggleButton" />
-    <TextView
-        android:id="@+id/vegetarian"
-        android:layout_marginLeft="78dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="480sp"
-        android:layout_width="150sp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Vegetarian"
-        android:textSize="17sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textSize="20sp"/>
+
+    <CheckBox
+        android:id="@+id/glutenButton"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="510dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gluten-Free"
+        android:textSize="20sp"/>
+
     <Button
         android:id="@+id/Done"
         android:layout_marginLeft="250dp"
@@ -233,6 +199,9 @@
         android:text="Done!"
         app:layout_anchor="@+id/include" />
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_create_profile" />
 
 
 </android.support.design.widget.CoordinatorLayout>
