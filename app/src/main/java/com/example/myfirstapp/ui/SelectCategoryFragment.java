@@ -26,6 +26,19 @@ public class SelectCategoryFragment extends Fragment {
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
         //prodSearch = (SearchView) view.findViewById(R.id.SearchP);
+        btLocation.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).showDialog(ChooseLocationDialog.newInstance());
+            }
+        });
+
+        btFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
+            }
+        });
         return view;
     }
 
