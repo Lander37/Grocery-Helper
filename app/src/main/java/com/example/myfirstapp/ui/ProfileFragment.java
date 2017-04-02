@@ -59,7 +59,6 @@ public class ProfileFragment extends Fragment {
         tbVegetarian = (CheckBox) view.findViewById(R.id.vegetarianButton);
         tbGluten = (CheckBox) view.findViewById(R.id.glutenButton);
 
-
         return view;
     }
 
