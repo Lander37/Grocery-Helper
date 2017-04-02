@@ -1,16 +1,22 @@
 package com.example.myfirstapp.ui;
 
 import android.content.Intent;
+import android.support.annotation.IdRes;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.myfirstapp.R;
+
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -28,6 +34,7 @@ public class NavigationActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             currentFragment = getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {
                 case R.id.menu_grocery_list:
                     selectedFragment = getSupportFragmentManager().findFragmentByTag("Cart");
@@ -35,36 +42,38 @@ public class NavigationActivity extends AppCompatActivity {
                     break;
 
                 case R.id.menu_expenditure:
-                    if(firstExpenditure){
+                    if (firstExpenditure) {
                         selectedFragment = ExpenditureFragment.newInstance();
-                        firstExpenditure = false;}
-                    else {
+                        firstExpenditure = false;
+                    } else {
                         selectedFragment = getSupportFragmentManager().findFragmentByTag("Expenditure");
                     }
                     tag = "Expenditure";
                     break;
 
                 case R.id.menu_history:
-                    if(firstHistory){
+                    if (firstHistory) {
                         selectedFragment = HistoryFragment.newInstance();
-                        firstHistory = false;}
-                    else {
+                        firstHistory = false;
+                    } else {
                         selectedFragment = getSupportFragmentManager().findFragmentByTag("History");
+
                     }
                     tag = "History";
                     break;
 
                 case R.id.menu_profile:
-                    if(firstProfile){
+                    if (firstProfile) {
                         selectedFragment = ProfileFragment.newInstance();
-                        firstProfile = false;}
-                    else {
+                        firstProfile = false;
+                    } else {
                         selectedFragment = getSupportFragmentManager().findFragmentByTag("Profile");
+
                     }
                     tag = "Profile";
                     break;
             }
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
             transaction.replace(R.id.frame_layout, selectedFragment, tag);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -82,27 +91,25 @@ public class NavigationActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         transaction.replace(R.id.frame_layout, Cart, "Cart");
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    public void replaceThis(Fragment fragment, String tag){
+    public void replaceThis(Fragment fragment, String tag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_layout, fragment, tag);
         transaction.replace(R.id.frame_layout, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    public void showDialog(DialogFragment fragment){
+    public void showDialog(DialogFragment fragment) {
         closeDialogs();
-        fragment.show(getSupportFragmentManager().beginTransaction(),"dialog");
+        fragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
     }
 
-    public void closeDialogs(){
+    public void closeDialogs() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
-        if(prev != null){
+        if (prev != null) {
             transaction.remove(prev);
         }
         transaction.commit();
@@ -114,4 +121,14 @@ public class NavigationActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+
+    }
 }
