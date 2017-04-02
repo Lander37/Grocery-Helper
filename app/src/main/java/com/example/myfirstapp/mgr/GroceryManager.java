@@ -2,9 +2,6 @@ package com.example.myfirstapp.mgr;
 
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
-
-import com.example.myfirstapp.ui.GroceryUI;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
