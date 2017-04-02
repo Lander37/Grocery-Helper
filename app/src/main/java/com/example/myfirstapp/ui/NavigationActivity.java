@@ -1,5 +1,6 @@
 package com.example.myfirstapp.ui;
 
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -105,6 +106,12 @@ public class NavigationActivity extends AppCompatActivity {
             transaction.remove(prev);
         }
         transaction.addToBackStack(null);
+    }
+
+    public void setBtLogOut() {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

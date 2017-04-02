@@ -13,9 +13,9 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
+import android.content.Intent;
 
 import com.example.myfirstapp.R;
-import com.example.myfirstapp.classes.Profile;
 
 public class ProfileFragment extends Fragment {
 
@@ -29,11 +29,6 @@ public class ProfileFragment extends Fragment {
     private ToggleButton tbHalal;
     private ToggleButton tbVegetarian;
     private ToggleButton tbGluten;
-    Profile newProfile;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,8 +38,16 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_profile, container, false);
-        btLogOut = (Button) view.findViewById(R.id.Done);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        btLogOut = (Button) view.findViewById(R.id.logOut);
+        btLogOut.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).setBtLogOut();
+            }
+        });
+
         etEditUsername = (EditText) view.findViewById(R.id.editUserName);
         etEditPassword = (EditText) view.findViewById(R.id.editPassword);
 
@@ -58,12 +61,17 @@ public class ProfileFragment extends Fragment {
         tbHalal = (ToggleButton) view.findViewById(R.id.halalButton);
         tbVegetarian = (ToggleButton) view.findViewById(R.id.vegetarianButton);
         tbGluten = (ToggleButton) view.findViewById(R.id.glutenButton);
+
+
         return view;
     }
-
 
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
+
+
+
+
 }

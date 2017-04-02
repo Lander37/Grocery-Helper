@@ -26,7 +26,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private ToggleButton tbHalal;
     private ToggleButton tbVegetarian;
     private ToggleButton tbGluten;
-    private static Profile newProfile;
+    private static Profile thisProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         Random rn = new Random();
         int profileID = rn.nextInt();
 
-        newProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
+        thisProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
     }
     private void launchActivity() {
 

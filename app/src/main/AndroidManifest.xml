@@ -29,7 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.SpecificListActivity"
+            android:name=".ui.SpecificListFragment"
             android:label="@string/title_activity_specific_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
