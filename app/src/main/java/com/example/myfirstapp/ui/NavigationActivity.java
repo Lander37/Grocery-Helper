@@ -1,5 +1,6 @@
 package com.example.myfirstapp.ui;
 
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ public class NavigationActivity extends AppCompatActivity {
     Fragment Cart = CartFragment.newInstance();
     boolean firstExpenditure = true;
     boolean firstHistory = true;
+    boolean firstProfile = true;
     String tag;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -53,7 +55,13 @@ public class NavigationActivity extends AppCompatActivity {
                     break;
 
                 case R.id.menu_profile:
-
+                    if(firstProfile){
+                        selectedFragment = ProfileFragment.newInstance();
+                        firstProfile = false;}
+                    else {
+                        selectedFragment = getSupportFragmentManager().findFragmentByTag("Profile");
+                    }
+                    tag = "Profile";
                     break;
             }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -98,6 +106,12 @@ public class NavigationActivity extends AppCompatActivity {
             transaction.remove(prev);
         }
         transaction.commit();
+    }
+
+    public void setBtLogOut() {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }
