@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -27,6 +28,7 @@ public class NavigationActivity extends AppCompatActivity {
     boolean firstHistory = true;
     boolean firstProfile = true;
     String tag;
+    DatabaseAccess databaseAccess;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -86,6 +88,8 @@ public class NavigationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+        this.databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

@@ -117,4 +117,16 @@ public class DatabaseAccess {
         database.execSQL(query);
     }
 
+    public boolean listNameValidity(String listName){
+        String query = "SELECT Name FROM GLists WHERE Name = \"" + listName + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.getCount() <= 0){
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
+
 }
