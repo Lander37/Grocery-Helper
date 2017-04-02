@@ -25,7 +25,7 @@ public class SelectCategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_select_product_category, container, false);
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
-        //prodSearch = (SearchView) view.findViewById(R.id.SearchP);
+
         btLocation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -39,6 +39,7 @@ public class SelectCategoryFragment extends Fragment {
                 ((NavigationActivity)getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
             }
         });
+
         return view;
     }
 
