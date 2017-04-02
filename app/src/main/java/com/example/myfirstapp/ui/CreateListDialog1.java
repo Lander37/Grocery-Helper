@@ -31,8 +31,12 @@ public class CreateListDialog1 extends DialogFragment {
         listConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceThis(SelectCategoryFragment.newInstance(), "Cart");
-                ((NavigationActivity)getActivity()).showDialog(CreateListDialog2.newInstance());
+                if(true) {
+                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(), "Cart");
+                    ((NavigationActivity)getActivity()).closeDialogs();
+                } else {
+                    ((NavigationActivity) getActivity()).showDialog(CreateListDialog2.newInstance());
+                }
             }
         });
 

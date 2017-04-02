@@ -29,7 +29,7 @@ public class FilterDietaryPrefDialog extends DialogFragment {
         CheckBox halal = (CheckBox) v.findViewById(R.id.select_dietP_halal_checkBox);
         CheckBox vegetarian = (CheckBox) v.findViewById(R.id.select_dietP_vegeterian_checkBox);
         CheckBox glutenFree = (CheckBox) v.findViewById(R.id.select_dietP_glutenFree_checkBox);
-        Button okButton = (Button) v.findViewById(R.id.select_dietP_ok_Btn);
+        Button okButton = (Button) v.findViewById(R.id.select_dietP_ok_btn);
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +42,8 @@ public class FilterDietaryPrefDialog extends DialogFragment {
     }
 
     public static FilterDietaryPrefDialog newInstance() {
-        FilterDietaryPrefDialog createListDialog = new FilterDietaryPrefDialog();
-        return createListDialog;
+        FilterDietaryPrefDialog filterDPDialog = new FilterDietaryPrefDialog();
+        return filterDPDialog;
     }
 }
 
