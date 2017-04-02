@@ -14,12 +14,11 @@ public class GroceryManager {
 
     private int currentListID;
     private int latestListID;
-    //private GroceryUI linkedActivity;
     private ArrayList<GroceryList> gListArray;
 
-    //public GroceryManager(GroceryUI linkedActivity){
-       // this.linkedActivity = linkedActivity;
-    //}
+    public GroceryManager(){
+
+    }
 
     public int getcurrentListID() {
         return this.currentListID;
@@ -171,15 +170,6 @@ public class GroceryManager {
 //
 //        }
 //        return strings;
-//    }
-
-    public void loadGroceryUI(){
-        //this.getGroceryLists(new Date(), new Date());
-        //linkedActivity.displayGroceryLists(gListArray.toArray(new GroceryList[gListArray.size()]));
-    }
-
-//    public void updateGroceryUI(){
-//
 //    }
 
 }

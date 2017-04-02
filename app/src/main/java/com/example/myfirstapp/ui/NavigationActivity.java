@@ -1,5 +1,6 @@
 package com.example.myfirstapp.ui;
 
+import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -90,6 +91,20 @@ public class NavigationActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_layout, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public void showDialog(DialogFragment fragment){
+        closeDialogs();
+        fragment.show(getSupportFragmentManager().beginTransaction(),"dialog");
+    }
+
+    public void closeDialogs(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if(prev != null){
+            transaction.remove(prev);
+        }
+        transaction.addToBackStack(null);
     }
 
 }
