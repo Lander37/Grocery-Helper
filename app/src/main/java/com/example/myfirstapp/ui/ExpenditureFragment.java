@@ -58,8 +58,39 @@ public class ExpenditureFragment extends Fragment {
         txt.setText(lastMonth);
 
 
+        txt = (TextView)view.findViewById(R.id.currentyear);
+        String currentYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+        txt.setText(currentYear);
 
+        txt = (TextView)view.findViewById(R.id.threemonthsyear);
+        if (gCalendar.get(Calendar.MONTH) >= 2){
+            String threeMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+            txt.setText(threeMonthsYear);
+        }
+        else {
+            String threeMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+            txt.setText(threeMonthsYear);
+        }
 
+        txt = (TextView)view.findViewById(R.id.twomonthsyear);
+        if (gCalendar.get(Calendar.MONTH) >= 1){
+            String twoMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+            txt.setText(twoMonthsYear);
+        }
+        else {
+            String twoMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+            txt.setText(twoMonthsYear);
+        }
+
+        txt = (TextView)view.findViewById(R.id.lastmonthyear);
+        if (gCalendar.get(Calendar.MONTH) >= 0){
+            String lastMonthYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+            txt.setText(lastMonthYear);
+        }
+        else {
+            String lastMonthYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
+            txt.setText(lastMonthYear);
+        }
 
         return view;
     }
