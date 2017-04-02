@@ -73,6 +73,7 @@ public class NavigationActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         transaction.replace(R.id.frame_layout, Cart, "Cart");
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -80,6 +81,7 @@ public class NavigationActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frame_layout, fragment, tag);
         transaction.replace(R.id.frame_layout, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
