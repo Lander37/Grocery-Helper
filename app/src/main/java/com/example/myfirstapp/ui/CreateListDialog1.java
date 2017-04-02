@@ -32,7 +32,8 @@ public class CreateListDialog1 extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if(true) {
-                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(), "Cart");
+
+                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(0), "Cart");
                     ((NavigationActivity)getActivity()).closeDialogs();
                 } else {
                     ((NavigationActivity) getActivity()).showDialog(CreateListDialog2.newInstance());

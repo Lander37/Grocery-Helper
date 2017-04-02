@@ -53,6 +53,24 @@ public class GroceryManager {
         this.currentListID = newId;
     }
 
+    public GroceryList getCurrentList(){
+        for(int i = 0; i < gListArray.size(); i++){
+            if(currentListID == gListArray.get(i).getGL_ID()){
+                return gListArray.get(i);
+            }
+        }
+        return null;
+    }
+
+    public GroceryList getListById(int gl_id){
+        for(int i = 0; i < gListArray.size(); i++){
+            if(gl_id == gListArray.get(i).getGL_ID()){
+                return gListArray.get(i);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<GroceryList> getgListArray () {
         return this.gListArray;
     }
@@ -151,6 +169,24 @@ public class GroceryManager {
             if (currentListID == gListArray.get(i).getGL_ID()){
                 gListArray.get(i).addProdToList(prod_ID , QTY);
                 break;
+            }
+        }
+    }
+
+    public void updateItemQty(int prod_ID, int QTY){
+        for (int i = 0; i < gListArray.size(); i++){
+            if (currentListID == gListArray.get(i).getGL_ID()){
+                gListArray.get(i).setQty(prod_ID , QTY);
+                break;
+            }
+        }
+    }
+
+    public void confirmList () {
+        //Add List to ListHistory/Expenditure. Check who is doing and how to implement
+        for (int i = 0; i < gListArray.size(); i++){
+            if (currentListID == gListArray.get(i).getGL_ID()){
+                gListArray.remove(i);
             }
         }
     }

@@ -11,13 +11,16 @@ import android.widget.Button;
 import com.example.myfirstapp.R;
 
 public class SelectCategoryFragment extends Fragment {
-
+    private int gl_id;
     private Button btLocation;
     private Button btFilter;
     private SearchView prodSearch;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        gl_id = args.getInt("gl_id");
 
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +45,11 @@ public class SelectCategoryFragment extends Fragment {
         return view;
     }
 
-    public static SelectCategoryFragment newInstance() {
-        return new SelectCategoryFragment();
+    public static SelectCategoryFragment newInstance(int gl_id) {
+        SelectCategoryFragment fragment = new SelectCategoryFragment();
+        Bundle args = new Bundle();
+        args.putInt("gl_id",gl_id);
+        fragment.setArguments(args);
+        return fragment;
     }
 }
