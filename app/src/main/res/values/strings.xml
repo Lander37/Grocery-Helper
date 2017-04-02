@@ -14,10 +14,16 @@
     </string-array>
 
     <string-array name="history_sortby_choice">
-        <item>Date</item>
-        <item>Price</item>
-        <item>Quantity</item>
+        <item>@string/sortby_Date_earliest</item>
+        <item>@string/sortby_Date_latest</item>
+        <item>@string/sortby_Price</item>
+        <item>@string/sortby_Quantity</item>
     </string-array>
+    <string name="sortby_Date_earliest">Date(earliest)</string>
+    <string name="sortby_Date_latest">Date(latest)</string>
+    <string name="sortby_Price">Price</string>
+    <string name="sortby_Quantity">Quantity</string>
+
     <string name="title_activity_cart">CartActivity</string>
     <string name="title_activity_select_product_category">SelectProductCategoryActivity</string>
     <string name="title_activity_specific_list">SpecificListActivity</string>
@@ -29,6 +35,26 @@
     <string name="menu_expenditure">Expenditure</string>
     <string name="menu_history">History</string>
     <string name="menu_profile">Profile</string>
+
+    <string name="create_list_dialog_1_prompt">Enter name of new list</string>
+    <string name="create_list_dialog_2_prompt">List has been confirmed!</string>
+    <string name="create_list_dialog_list_name_placeholder">List name</string>
+    <string name="product_add_dialog_1_prompt_placeholder">Do you want to add Product to the list?</string>
+    <string name="product_add_dialog_1_prompt_pt1">Do you want to add </string>
+    <string name="product_add_dialog_1_prompt_pt2"> to the list?</string>
+    <string name="product_add_dialog_2_prompt">Product has been added!</string>
+    <string name="select_dietary_preference_dialog_prompt">Dietary preferences:</string>
+    <string name="choose_location_dialog_prompt">Choose location</string>
+    <string name="budget_update_dialog_prompt">Budget has been updated!</string>
+    <string name="logout_dialog_prompt">Are you sure you want to log out?</string>
+    <string name="ok_button">Ok</string>
+    <string name="confirm_button">Confirm</string>
+
+    <string name="healthier_choice_option">Healthier choice</string>
+    <string name="halal_option">Halal</string>
+    <string name="vegetarian_option">Vegetarian</string>
+    <string name="gluten_free_option">Gluten-free</string>
+
 
 
 </resources>

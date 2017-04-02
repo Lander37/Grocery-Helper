@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.example.myfirstapp.mgr.HistoryManager;
 
 public class HistorySpecListFragment extends Fragment {
     private HistoryManager manager;
+    private Button backButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,19 @@ public class HistorySpecListFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_cart, container, false);
+        View view = inflater.inflate(R.layout.activity_history_spec_list, container, false);
         this.manager = new HistoryManager();
-        populateList(savedInstanceState.getInt("list_id"), this.getView());
+        backButton = (Button) view.findViewById(R.id.history_back_to_main);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).replaceThis(HistoryFragment.newInstance(),"History");
+            }
+        });
+
+        Bundle bundle = getArguments();
+        populateList(bundle.getInt("list_id"), view);
         return view;
     }
 
@@ -73,8 +85,12 @@ public class HistorySpecListFragment extends Fragment {
         }
     }
 
-    public static HistorySpecListFragment newInstance() {
-        return new HistorySpecListFragment();
+    public static HistorySpecListFragment newInstance(int list_id) {
+        HistorySpecListFragment historySpecListFragment = new HistorySpecListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("list_id",list_id);
+        historySpecListFragment.setArguments(bundle);
+        return historySpecListFragment;
     }
 
 
