@@ -10,6 +10,7 @@ import java.util.Collections;
  * Created by XY on 8/3/2017.
  */
 
+
 public class GroceryManager {
 
     private int currentListID;
@@ -17,7 +18,6 @@ public class GroceryManager {
     private ArrayList<GroceryList> gListArray;
 
     public GroceryManager(){
-
     }
 
     public int getcurrentListID() {
@@ -25,7 +25,6 @@ public class GroceryManager {
     }
 
     /**
-     *
      * @param list_ID
      */
     public void setcurrentListID(int list_ID) {
@@ -34,7 +33,6 @@ public class GroceryManager {
     }
   
       /**
-     *
      * @param listName - name of new list
      */
     public void createNewList(String listName) {
@@ -58,7 +56,6 @@ public class GroceryManager {
     }
 
     /**
-     *
      * @param gListArray
      */
     public void setgListArray(ArrayList<GroceryList> gListArray) {
@@ -67,7 +64,6 @@ public class GroceryManager {
     }
 
     /**
-     *
      * @param tobeAdded
      */
     public void addGroceryList(GroceryList tobeAdded) {
@@ -141,7 +137,6 @@ public class GroceryManager {
         }
 
     /**
-     *
      * @param prod_ID
      * @param QTY
      */
