@@ -61,9 +61,10 @@ public class DatabaseAccess {
     }
 
 
+
     public List<String> getProductList(String category) {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT productName FROM ProductList1 WHERE category = ? ", new String[] {category + ""});
+        Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 WHERE category = ? ORDER BY " + "subCategory", new String[] {category + ""});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
