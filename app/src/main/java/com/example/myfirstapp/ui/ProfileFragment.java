@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
         spLocationList.setAdapter(adapter);
 
         databaseAccess.open();
-        healthPref = databaseAccess.getdpID(thisUsername);
+        healthPref = databaseAccess.getDpId(thisUsername);
         databaseAccess.close();
 
         if ((healthPref % 2)==0){
