@@ -71,7 +71,6 @@ public class ProductAddConfirmDialog extends DialogFragment {
     public static ProductAddConfirmDialog newInstance(int prod_id, String prodName, int gl_id) {
         ProductAddConfirmDialog productAddConfirmDialog = new ProductAddConfirmDialog();
 
-        // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putInt("prod_id", prod_id);
         args.putString("prod_name", prodName);

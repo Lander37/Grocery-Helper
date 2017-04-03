@@ -31,3 +31,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:10.2.0'
     testCompile 'junit:junit:4.12'
 }
+
+dependencies {
+    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+}
