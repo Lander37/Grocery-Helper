@@ -3,6 +3,7 @@ import java.util.Calendar;
 
 /**
  *Expenditure.java - a class that contains the monthly expenditure and budget of user
+ * @author calvin
  */
 
 public class Expenditure {
