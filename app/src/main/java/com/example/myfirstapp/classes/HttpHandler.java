@@ -1,7 +1,7 @@
 package com.example.myfirstapp.classes;
 
 /**
- * Created by tosy on 2/4/2017.
+ * @author tosy
  */
 
 import android.util.Log;

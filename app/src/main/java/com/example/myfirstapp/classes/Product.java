@@ -41,15 +41,15 @@ public class Product {
     }
 
     /**
-     * retrieve product ID that was keyed in
-     * @return product ID
+     * Retrieve product ID of this product from database.
+     * @return ID of this product.
      */
     public int getProductID() {
         return this.productID;
     }
 
     /**
-     *assign product ID to the product
+     * Assigns product ID to the product.
      * @param ProductID
      */
     public void setProductID(int ProductID) {
@@ -57,7 +57,7 @@ public class Product {
     }
 
     /**
-     * retrieve category that was keyed in
+     * Retrieves category of this product from database.
      * @return category
      */
     public String getCategory() {
@@ -65,7 +65,7 @@ public class Product {
     }
 
     /**
-     *assign category to the product
+     * Assigns category to this product.
      * @param Category
      */
     public void setCategory(String Category) {
@@ -73,7 +73,7 @@ public class Product {
     }
 
     /**
-     * retrieve brand that was keyed in
+     * Retrieves brand of this product from database.
      * @return brand
      */
     public String getBrand() {
@@ -81,7 +81,7 @@ public class Product {
     }
 
     /**
-     *assign brand to that product
+     * Assigns brand to this product.
      * @param Brand
      */
     public void setBrand(String Brand) {
@@ -89,15 +89,15 @@ public class Product {
     }
 
     /**
-     * get product name that was keyed in
-     * @return product name
+     * Gets product name from database
+     * @return name of this product
      */
     public String getProductName() {
         return this.productName;
     }
 
     /**
-     *assign product name to the product
+     * Assigns product name to this product
      * @param ProductName
      */
     public void setProductName(String ProductName) {
@@ -105,7 +105,7 @@ public class Product {
     }
 
     /**
-     * get sub category that was keyed in
+     * Gets sub category from database
      * @return SubCategory
      */
     public String getSubCategory() {
@@ -113,13 +113,17 @@ public class Product {
     }
 
     /**
-     *assign sub category to the product
+     * Assigns sub category to this product
      * @param SubCategory
      */
     public void setSubCategory(String SubCategory) {
         this.subCategory = SubCategory;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getUnitPrice() {
         return this.unitPrice;
     }
@@ -131,6 +135,10 @@ public class Product {
         this.unitPrice = UnitPrice;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDpId() {
         return this.dpId;
     }
@@ -142,6 +150,10 @@ public class Product {
         this.dpId = dpId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getWeightOrVolume() {
         return weightOrVolume;
     }
@@ -153,6 +165,10 @@ public class Product {
         this.weightOrVolume = weightOrVolume;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getHealthRating() {
         return healthRating;
     }

@@ -14,12 +14,12 @@ public class Profile {
     private int profileID;
 
     /**
-     * @param username
-     * @param password
-     * @param defaultLocation
-     * @param dpId
-     * @param healthEmphasis
-     * @param profileID
+     * @param username name of person who is using this account.
+     * @param password access key unique to this user to get access to this account.
+     * @param defaultLocation location of the user's preferred area.
+     * @param dpId refers to the dietary preferences of this user.
+     * @param healthEmphasis scale of how healthy this user preferred his choices to be.
+     * @param profileID refers to the profile of this user.
      */
     public Profile(String username, String password, String defaultLocation, int dpId, int healthEmphasis, int profileID){
         this.username = username;

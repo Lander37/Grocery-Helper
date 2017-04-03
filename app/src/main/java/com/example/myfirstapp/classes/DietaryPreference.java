@@ -1,7 +1,7 @@
 package com.example.myfirstapp.classes;
 
 /**DietaryPreference.java - a class that helps indicates on whether an item is
- * halal, vegetarian, healthier choice or gluten free
+ * halal, vegetarian, healthier choice or gluten free.
  * @author Xing Yue
  */
 
@@ -14,8 +14,8 @@ public class DietaryPreference {
     private boolean glutenFree;
 
     /**
-     * Registers a true or false value
-     * @param dpId display dietary preference
+     * Registers a true or false value.
+     * @param dpId display dietary preference (1/0).
      */
     public DietaryPreference(int dpId){
         this.dpId = dpId;
@@ -44,8 +44,8 @@ public class DietaryPreference {
     }
 
     /**
-     * set to 1 if product is halal
-     * set to 0 if product is not halal
+     * Set to 1 if product is halal,
+     * set to 0 if product is not halal.
      * @param halal - is product halal?
      */
     public void setHalal(boolean halal) {
@@ -57,8 +57,8 @@ public class DietaryPreference {
     }
 
     /**
-     * set to 1 if product is vegetarian
-     * set to 0 if product is not vegetarian
+     * Set to 1 if product is vegetarian,
+     * set to 0 if product is not vegetarian.
      * @param vegetarian - is product vegetarian?
      */
     public void setVegetarian(boolean vegetarian) {
@@ -70,8 +70,8 @@ public class DietaryPreference {
     }
 
     /**
-     * set to 1 if product has healthier choice label
-     * set to 0 if product does not have
+     * Set to 1 if product has healthier choice label,
+     * set to 0 if product does not have.
      * @param healthierChoice
      * - does product have the healthier choice label?
      */
@@ -84,8 +84,8 @@ public class DietaryPreference {
     }
 
     /**
-     * set to 1 if product is gluten free
-     * set to 0 if product is not
+     * Set to 1 if product is gluten free,
+     * set to 0 if product is not.
      * @param glutenFree - is product gluten free?
      */
     public void setGlutenFree(boolean glutenFree) {
@@ -97,7 +97,8 @@ public class DietaryPreference {
     }
 
     /**
-     * @param dpId - (Integer) id of the dietary preference setting
+     * Assigns either a true of false value to the 4 listed preferences.
+     * @param dpId - display dietary preference (1/0).
      */
     public void setDP_ID(int dpId) {
         this.dpId = dpId;
