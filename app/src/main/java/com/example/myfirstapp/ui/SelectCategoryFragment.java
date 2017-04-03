@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.AdapterView;
+
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
@@ -17,7 +19,7 @@ import java.util.List;
 
 import static android.R.attr.category;
 
-public class SelectCategoryFragment extends Fragment {
+public class SelectCategoryFragment extends Fragment{
 
     private int gl_id;
     private String subCategory;
@@ -81,7 +83,14 @@ public class SelectCategoryFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, productList);
         this.lvProductList.setAdapter(adapter);
 
+        lvProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
 
+               String selectedProduct = (String)adapter.getItemAtPosition(position);
+               // databaseAccess.addProduct(selectedProduct,);
+            }
+        });
         btLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
