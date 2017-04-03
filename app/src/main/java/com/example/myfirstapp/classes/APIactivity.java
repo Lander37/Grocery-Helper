@@ -7,6 +7,7 @@ package com.example.myfirstapp.classes;
  * @see HttpHandler
  **/
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
+import com.example.myfirstapp.ui.CreateProfileActivity;
+import com.example.myfirstapp.ui.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,18 +31,23 @@ import java.util.HashMap;
 
 public class APIactivity extends AppCompatActivity {
 
+    private APIactivity thisActivity;
     private String TAG = APIactivity.class.getSimpleName();
+    private String nextActivity;
     private ListView lv;
 
-    ArrayList<HashMap<String, String>> productList;
+    private ArrayList<String> productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        nextActivity = getIntent().getStringExtra("postExecActivity");
+        System.out.println(nextActivity);
+        thisActivity = this;
         setContentView(R.layout.activity_main);
 
-        productList = new ArrayList<>();
-       // lv = (ListView) findViewById(R.id.list);
+        productList = new ArrayList<String>(0);
+        // lv = (ListView) findViewById(R.id.list);
 
         new GetProducts().execute();
     }
@@ -76,29 +85,29 @@ public class APIactivity extends AppCompatActivity {
                      */
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject c = products.getJSONObject(i);
-                        String _id = c.optString("id");
-                        String main_food_group = c.optString("main_food_group");
-                        String company_name = c.optString("company_name");
+                        //String _id = c.optString("id");
+                        //String main_food_group = c.optString("main_food_group");
+                        //String company_name = c.optString("company_name");
                         String product_name = c.optString("product_name");
-                        String brand_name = c.optString("brand_name");
-                        String product_weight = c.optString("product_weight");
+                        //String brand_name = c.optString("brand_name");
+                        //String product_weight = c.optString("product_weight");
 
                         // tmp hash map for single contact
-                        HashMap<String, String> product = new HashMap<>();
+                        //HashMap<String, String> product = new HashMap<>();
 
                         // adding each child node to HashMap key => value
-                        product.put("id", _id);
-                        product.put("main_food_group", main_food_group);
-                        product.put("company_name", company_name);
-                        product.put("product_name", product_name);
-                        product.put("brand name", brand_name);
-                        product.put("product weight", product_weight);
-                        productList.add(product);
+                        // product.put("id", _id);
+                        //product.put("main_food_group", main_food_group);
+                        //product.put("company_name", company_name);
+                        productList.add(product_name);
+                        // product.put("brand name", brand_name);
+                        // product.put("product weight", product_weight);
+                        //productList.add(product);
 
                         /**Adds products into this product list.
                          * @param product item that can be found in this list.
                          */
-                        productList.add(product);
+                        //productList.add(product);
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -129,9 +138,24 @@ public class APIactivity extends AppCompatActivity {
         }
         @Override
         protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            ListAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, productList);
-            lv.setAdapter(adapter);
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
+            databaseAccess.open();
+            databaseAccess.updateProductHealthierChoice(productList);
+            databaseAccess.close();
+
+            if(nextActivity.equals("createProfile")) {
+                Intent intent = new Intent(thisActivity, CreateProfileActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(thisActivity, LoginActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        public ArrayList<String> getProductList(){
+            return productList;
         }
     }
+
+
 }

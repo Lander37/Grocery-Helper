@@ -118,11 +118,7 @@ public class GroceryManager {
         int recProdID;
         int userHealthEmp = 3;
 
-/**
- * This method retrieves the list of products that
- * are available in the current supermarket
- * with the same type/name.
- */
+
         //Get List of Products with Same Type/Name available in Current Supermarket
         Product[] availProd = smManager.findSMProductList();
         ArrayList<Product> sameProduct = new ArrayList<Product>();

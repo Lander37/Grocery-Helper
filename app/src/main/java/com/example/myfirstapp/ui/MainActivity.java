@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.classes.APIactivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,12 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchActivity() {
 
-        Intent intent = new Intent(this, CreateProfileActivity.class);
+        Intent intent = new Intent(this, APIactivity.class);
+        intent.putExtra("postExecActivity","createProfile");
         startActivity(intent);
+
     }
     private void launchLogin() {
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, APIactivity.class);
+        intent.putExtra("postExecActivity","login");
         startActivity(intent);
     }
 }
