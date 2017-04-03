@@ -99,7 +99,7 @@ public class NavigationActivity extends AppCompatActivity {
 
     public void replaceThis(Fragment fragment, String tag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, fragment);
+        transaction.replace(R.id.frame_layout, fragment, tag);
         transaction.addToBackStack(null);
         transaction.commit();
     }
