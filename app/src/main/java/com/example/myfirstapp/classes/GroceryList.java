@@ -156,6 +156,7 @@ public class GroceryList {
      * Once a match is found, increase quantity of this product.
      * @param prod_ID product ID of this product.
      */
+
     public void increaseQty(int prod_ID) {
         for (int i = 0; i < ArrayProduct.length; i++) {
             if (ArrayProduct[i][0] == prod_ID) {

@@ -29,7 +29,7 @@ public class ProductAddConfirmDialog extends DialogFragment {
         product_ID = bundle.getInt("prod_id");
         productName = bundle.getString("prod_name");
         groceryList_ID = bundle.getInt("gl_id");
-        groceryManager = new GroceryManager();
+        groceryManager = new GroceryManager(getContext());
 
     }
 
@@ -55,15 +55,6 @@ public class ProductAddConfirmDialog extends DialogFragment {
                 ((NavigationActivity)getActivity()).closeDialogs();
             }
         });
-
-        // Watch for button clicks.
-        /*Button button = (Button)v.findViewById(R.id.show);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // When button is clicked, call up to owning activity.
-                //((FragmentDialog)getActivity()).showDialog();
-            }
-        });*/
 
         return v;
     }
