@@ -12,9 +12,10 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.R;
 
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisProfile;
+import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
 
 public class ProfileFragment extends Fragment {
 
@@ -32,18 +33,22 @@ public class ProfileFragment extends Fragment {
     private boolean isCheckedHA = true;
     private boolean isCheckedVG = true;
     private boolean isCheckedGF = true;
-    private int healthPref = thisProfile.getdpId();
+    private DatabaseAccess databaseAccess;
+    private int healthPref;
 
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.databaseAccess= DatabaseAccess.getInstance(getContext());
+
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btLogOut = (Button) view.findViewById(R.id.logOut);
         btLogOut.setOnClickListener(new View.OnClickListener() {
@@ -62,16 +67,20 @@ public class ProfileFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLocationList.setAdapter(adapter);
 
-        if ((healthPref % 10)==0){
-            isCheckedVG = false;
-        }
-        if (((healthPref/10) % 10)==0){
+        databaseAccess.open();
+        healthPref = databaseAccess.getdpID(thisUsername);
+        databaseAccess.close();
+
+        if ((healthPref % 2)==0){
             isCheckedGF = false;
         }
-        if (((healthPref/100) % 10)==0){
+        if (((healthPref/2) % 2)==0){
             isCheckedHC = false;
         }
-        if (((healthPref/1000) % 10)==0){
+        if (((healthPref/4) % 2)==0){
+            isCheckedVG = false;
+        }
+        if (((healthPref/8) % 2)==0){
             isCheckedHA = false;
         }
 
