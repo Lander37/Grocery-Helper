@@ -1,7 +1,8 @@
 package com.example.myfirstapp.mgr;
 
 /**
- * Created by Lander on 15-Mar-17.
+ * ExpenditureManager.class
+ * @author Lander
  */
 
 public class ExpenditureManager {

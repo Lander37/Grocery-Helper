@@ -38,7 +38,7 @@ public class DatabaseAccess {
      * Return a singleton instance of DatabaseAccess.
      *
      * @param context the Context
-     * @return the instance of DabaseAccess
+     * @return the instance of Database Access
      */
     public static DatabaseAccess getInstance(Context context) {
         if (instance == null) {

@@ -11,7 +11,7 @@ import java.util.Collections;
 
 
 /**
- * Created by XY on 8/3/2017.
+ * GroceryManager.java -
  */
 
 
@@ -55,6 +55,9 @@ public class GroceryManager {
         return false;
     }
 
+    /**
+     * Accesses Database.
+     */
     public void loadGListsFromDB(){
        // databaseAccess.
     }
@@ -96,7 +99,11 @@ public class GroceryManager {
         int recProdID;
         int userHealthEmp = 3;
 
-
+/**
+ * This method retrieves the list of products that
+ * are available in the current supermarket
+ * with the same type/name.
+ */
         //Get List of Products with Same Type/Name available in Current Supermarket
         Product[] availProd = smManager.findSMProductList();
         ArrayList<Product> sameProduct = new ArrayList<Product>();
@@ -105,7 +112,10 @@ public class GroceryManager {
             if (productToAdd.equals(availProd[i].getSubCategory()) || availProd[i].getProductName().contains(productToAdd))
                 sameProduct.add(availProd[i]);
         }
-
+/**
+ * Gets the value of user's health
+ * emphasis from the user's profile.
+ */
         //Get Value of User's Health Emphasis in his/her profile
         for (int k = 0; k < profileManager.getProfileArray().size(); k++){
             if (profileManager.getCurProfileID() == profileManager.getProfileArray().get(k).getProfileID()){
@@ -113,6 +123,9 @@ public class GroceryManager {
                 break;
             }
         }
+/**
+ * Decides which exact item to recommend to user.
+ */
         //Algorithm to decide which exact item to recommend/add
         ArrayList<Double> recommendationValues = new ArrayList<Double>();
         ArrayList<Integer> recommendationProdID = new ArrayList<Integer>();
@@ -151,7 +164,9 @@ public class GroceryManager {
         double maxRecValue = Collections.max(recommendationValues);
         int index = recommendationValues.indexOf(maxRecValue);
         recProdID = recommendationProdID.get(index);
-
+/**
+ * Adds item into Grocery List.
+ */
         //Add Item to List
         addSpecificItem(recProdID, 1);
         }
@@ -170,6 +185,11 @@ public class GroceryManager {
         }
     }
 
+    /**
+     *
+     * @param prod_ID
+     * @param QTY
+     */
     public void updateItemQty(int prod_ID, int QTY){
         for (int i = 0; i < gListArray.size(); i++){
             if (currentListID == gListArray.get(i).getGL_ID()){
@@ -179,6 +199,9 @@ public class GroceryManager {
         }
     }
 
+    /**
+     *
+     */
     public void confirmList () {
         //Add List to ListHistory/Expenditure. Check who is doing and how to implement
         for (int i = 0; i < gListArray.size(); i++){
