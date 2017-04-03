@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myfirstapp.ui.CreateProfileActivity">
+    tools:context="com.example.myfirstapp.ui.ProfileFragment">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -13,34 +13,36 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <EditText
-        android:id="@+id/editUserName"
-        android:layout_marginLeft="145dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="17dp"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:textSize="25sp"
-        android:inputType="textPersonName" />
+
 
     <TextView
-        android:id="@+id/username"
-        android:layout_marginTop="30dp"
+        android:id="@+id/hello"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username:"
+        android:text="Hello"
         android:textSize="25sp"
 
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/usernameP"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginStart="100dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Placeholder"
+        android:textSize="25sp"/>
+
+
+    <TextView
         android:id="@+id/password"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
 
@@ -58,17 +60,21 @@
         android:layout_marginStart="145dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="97dp"
+        android:layout_marginTop="57dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:textSize="25sp"
         android:inputType="textVisiblePassword" />
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_create_profile" />
+
     <TextView
         android:id="@+id/health"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="190sp"
+        android:layout_marginTop="130dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Health Emphasis:"
@@ -82,7 +88,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="235dp"
+        android:layout_marginTop="165dp"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:max="4"
@@ -94,7 +100,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="250sp"
+        android:layout_marginTop="185sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="   1             2             3             4             5"
@@ -105,7 +111,7 @@
         android:id="@+id/location"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="288sp"
+        android:layout_marginTop="233sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location:"
@@ -118,7 +124,7 @@
         android:layout_marginStart="130dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="240dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -127,7 +133,7 @@
         android:id="@+id/dietaryPreferences"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="350sp"
+        android:layout_marginTop="280sp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
         android:layout_width="match_parent"
@@ -136,15 +142,13 @@
         android:textSize="25sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-
-
     <CheckBox
         android:id="@+id/healthierChoiceButton"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="320dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Healthier Choice"
@@ -156,7 +160,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="360dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Halal"
@@ -168,7 +172,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="400dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vegetarian"
@@ -180,28 +184,40 @@
         android:layout_marginStart="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="440dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gluten-Free"
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/Done"
-        android:layout_marginLeft="250dp"
-        android:layout_marginStart="250dp"
+        android:id="@+id/closeApp"
+        android:layout_marginLeft="230dp"
+        android:layout_marginStart="230dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="380dp"
         android:layout_marginBottom="30dp"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Done!"
+        android:text="Close App"
         app:layout_anchor="@+id/include" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_create_profile" />
+    <Button
+        android:id="@+id/logOut"
+        android:layout_marginLeft="230dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        app:layout_anchor="@+id/include" />
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>
+

@@ -11,11 +11,23 @@ import android.widget.Button;
 import com.example.myfirstapp.R;
 
 public class SelectCategoryFragment extends Fragment {
+
     private int gl_id;
     private Button btLocation;
     private Button btFilter;
+    Button btBeverages;
+    Button btCereal;
+    Button btDiary;
+    Button btFats;
+    Button btFruits;
+    Button btIceCream;
+    Button btMeat;
+    Button btSauces;
+    Button btSeafood;
+    Button btGluten;
     private SearchView prodSearch;
 
+    Button btBack;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +40,18 @@ public class SelectCategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_select_product_category, container, false);
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
-        //prodSearch = (SearchView) view.findViewById(R.id.SearchP);
+        btBack = (Button) view.findViewById(R.id.back);
+        btBeverages = (Button) view.findViewById(R.id.beverages);
+        btCereal = (Button) view.findViewById(R.id.cereal);
+        btDiary = (Button) view.findViewById(R.id.diary);
+        btFats = (Button) view.findViewById(R.id.fats);
+        btFruits = (Button) view.findViewById(R.id.fruits);
+        btIceCream = (Button) view.findViewById(R.id.iceCream);
+        btMeat = (Button) view.findViewById(R.id.meat);
+        btSauces = (Button) view.findViewById(R.id.sauces);
+        btSeafood = (Button) view.findViewById(R.id.seafood);
+        btGluten = (Button) view.findViewById(R.id.glutenFree);
+
         btLocation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -42,6 +65,14 @@ public class SelectCategoryFragment extends Fragment {
                 ((NavigationActivity)getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
             }
         });
+
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).replaceThis(CartFragment.newInstance(),"Cart");
+            }
+        });
+
         return view;
     }
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myfirstapp.ui.SelectProductCategoryActivity">
+    tools:context="com.example.myfirstapp.ui.SelectCategoryFragment">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,12 +14,14 @@
     </android.support.design.widget.AppBarLayout>
 
     <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/SearchP"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="510dp"/>
 
     <Button
         android:id="@+id/FilterP"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="270dp"
@@ -32,30 +34,95 @@
         android:text="Location" />
 
     <ScrollView
-        android:layout_width="70dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="70dp"
-        android:layout_marginLeft="20dp">
-
+        android:layout_width="110dp"
+        android:layout_height="380dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        >
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+            <Button
+                android:id="@+id/beverages"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Beverages" />
+
+            <Button
+                android:id="@+id/cereal"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Cereal" />
+
+            <Button
+                android:id="@+id/diary"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Diary" />
+
+            <Button
+                android:id="@+id/fats"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Fats &amp; Oils" />
+
+            <Button
+                android:id="@+id/fruits"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Fruits &amp; vegetables" />
+
+            <Button
+                android:id="@+id/iceCream"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Ice Cream" />
+
+            <Button
+                android:id="@+id/meat"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Meat &amp; Poultry" />
+
+            <Button
+                android:id="@+id/sauces"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Sauces" />
+
+            <Button
+                android:id="@+id/seafood"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Seafood" />
+
+            <Button
+                android:id="@+id/glutenFree"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:text="Gluten Free" />
+        </LinearLayout>
+
     </ScrollView>
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"
-        android:layout_marginLeft="90dp"
+        android:layout_height="380dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="140dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="70dp">
+    </ListView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="460dp"
+        android:text="back" />
 
 </android.support.design.widget.CoordinatorLayout>

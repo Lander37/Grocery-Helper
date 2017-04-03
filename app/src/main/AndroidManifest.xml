@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -26,11 +27,17 @@
             android:name=".ui.CreateProfileActivity"
             android:label="@string/title_activity_create_profile"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ui.NavigationActivity"
             android:label="NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
+        <activity
+            android:name=".ui.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
     </application>

@@ -27,7 +27,7 @@ public class SpecificListFragment extends Fragment {
         Bundle args = getArguments();
 
         gl_id = args.getInt("gl_id");
-        groceryManager = new GroceryManager();
+        groceryManager = new GroceryManager(getActivity().getApplicationContext());
         groceryManager.setcurrentListID(gl_id);
         currentList = groceryManager.getCurrentList();
     }
@@ -113,7 +113,7 @@ public class SpecificListFragment extends Fragment {
     }
 
     public static SpecificListFragment newInstance(int gl_id) {
-        
+
         Bundle args = new Bundle();
         args.putInt("gl_id",gl_id);
         SpecificListFragment fragment = new SpecificListFragment();

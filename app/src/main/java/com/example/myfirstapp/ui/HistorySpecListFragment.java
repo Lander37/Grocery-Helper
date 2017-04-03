@@ -21,12 +21,12 @@ public class HistorySpecListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.manager = new HistoryManager(getActivity().getApplicationContext());
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_history_spec_list, container, false);
-        this.manager = new HistoryManager();
         backButton = (Button) view.findViewById(R.id.history_back_to_main);
 
         backButton.setOnClickListener(new View.OnClickListener() {

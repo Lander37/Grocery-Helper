@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.ToggleButton;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.Profile;
@@ -22,11 +22,11 @@ public class CreateProfileActivity extends AppCompatActivity {
     private EditText etEditPassword;
     private Spinner spLocationList;
     private SeekBar sbHealthSeekBar;
-    private ToggleButton tbHealthierChoice;
-    private ToggleButton tbHalal;
-    private ToggleButton tbVegetarian;
-    private ToggleButton tbGluten;
-    Profile newProfile;
+    private CheckBox tbHealthierChoice;
+    private CheckBox tbHalal;
+    private CheckBox tbVegetarian;
+    private CheckBox tbGluten;
+    private static Profile thisProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +43,10 @@ public class CreateProfileActivity extends AppCompatActivity {
         spLocationList.setAdapter(adapter);
 
         sbHealthSeekBar = (SeekBar) findViewById(R.id.healthSeekBar);
-        tbHealthierChoice = (ToggleButton) findViewById(R.id.healthierChoiceButton);
-        tbHalal = (ToggleButton) findViewById(R.id.halalButton);
-        tbVegetarian = (ToggleButton) findViewById(R.id.vegetarianButton);
-        tbGluten = (ToggleButton) findViewById(R.id.glutenButton);
+        tbHealthierChoice = (CheckBox) findViewById(R.id.healthierChoiceButton);
+        tbHalal = (CheckBox) findViewById(R.id.halalButton);
+        tbVegetarian = (CheckBox) findViewById(R.id.vegetarianButton);
+        tbGluten = (CheckBox) findViewById(R.id.glutenButton);
         btDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,27 +67,27 @@ public class CreateProfileActivity extends AppCompatActivity {
         boolean GF = false;
         boolean VG = false;
 
-        if(tbHalal.getText()=="On"){HA = true;}
-        if(tbHealthierChoice.getText()=="On"){HC = true;}
-        if(tbGluten.getText()=="On"){GF = true;}
-        if(tbVegetarian.getText()=="On"){VG = true;}
+        if(tbHalal.isChecked()){HA = true;}
+        if(tbHealthierChoice.isChecked()){HC = true;}
+        if(tbGluten.isChecked()){GF = true;}
+        if(tbVegetarian.isChecked()){VG = true;}
 
         int a=0;
         int b=0;
         int c=0;
         int d=0;
-        if(HA == true){a=1;}
-        if(HC == true){b=1;}
-        if(GF == true){c=1;}
-        if(VG == true){d=1;}
+        if(HA){a=1;}
+        if(HC){b=1;}
+        if(GF){c=1;}
+        if(VG){d=1;}
 
         int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b)+ String.valueOf(c)+ String.valueOf(d) );
 
-        //make creating a profile id more consistent
+        //just a random number generator for now
         Random rn = new Random();
         int profileID = rn.nextInt();
 
-        Profile newProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
+        thisProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
     }
     private void launchActivity() {
 

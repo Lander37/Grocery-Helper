@@ -19,7 +19,7 @@ public class BudgetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_budget_calculator, container, false);
-        Button btCalculate = (Button) view.findViewById(R.id.calculate_budget);
+        Button btCalculate = (Button) view.findViewById(R.id.budgetconfirm);
         Button btBack = (Button) view.findViewById(R.id.back);
 
         btCalculate.setOnClickListener(new View.OnClickListener() {
