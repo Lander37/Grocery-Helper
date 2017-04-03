@@ -46,7 +46,7 @@ public class CartFragment extends Fragment {
             while (cursor.moveToNext()) {
                 // Read columns data
                 String listName = cursor.getString(cursor.getColumnIndex("Name"));
-                String totalCost = cursor.getString(cursor.getColumnIndex("TotalCost"));
+                double totalCost = cursor.getDouble(cursor.getColumnIndex("TotalCost"));
 
                 // data rows
                 TableRow row = new TableRow(view.getContext());
