@@ -45,7 +45,7 @@ public class SpecificListFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id),"Cart");
+                ((NavigationActivity)getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Beverages"),"Cart");
             }
         });
 
