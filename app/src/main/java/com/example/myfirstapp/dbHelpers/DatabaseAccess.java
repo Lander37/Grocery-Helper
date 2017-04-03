@@ -141,6 +141,12 @@ public class DatabaseAccess {
         return cursor;
     }
 
+    public Cursor pullGLists(){
+        String query = "SELECT * FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
     public void createProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
         ContentValues values = new ContentValues();
         values.put("username", username);
