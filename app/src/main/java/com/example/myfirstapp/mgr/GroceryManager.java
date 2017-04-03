@@ -25,7 +25,7 @@ public class GroceryManager {
         this.databaseAccess = DatabaseAccess.getInstance(context);
     }
 
-    public int getcurrentListID() {
+    public int getCurrentListID() {
         return this.currentListID;
     }
 
@@ -33,7 +33,7 @@ public class GroceryManager {
      *
      * @param list_ID
      */
-    public void setcurrentListID(int list_ID) {
+    public void setCurrentListID(int list_ID) {
 
         this.currentListID = list_ID;
     }
@@ -43,8 +43,9 @@ public class GroceryManager {
      * @param listName - name of new list
      */
     public boolean createNewList(String listName) {
+        databaseAccess.open();
         if(databaseAccess.listNameValidity(listName)){
-            databaseAccess.open();
+
             databaseAccess.createGList(listName);
             databaseAccess.close();
 
@@ -54,7 +55,7 @@ public class GroceryManager {
     }
 
     public void loadGListsFromDB(){
-        //databaseAccess.
+       // databaseAccess.
     }
 
     public GroceryList getCurrentList(){

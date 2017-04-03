@@ -51,7 +51,6 @@ public class CreateListDialog1 extends DialogFragment {
                     ((NavigationActivity) getActivity()).showDialog(CreateListDialog2.newInstance());
                 }
 
-                databaseAccess.close();
             }
         });
 
