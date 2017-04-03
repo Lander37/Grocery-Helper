@@ -109,6 +109,7 @@
     </ScrollView>
 
     <ListView
+        android:id="@+id/productList"
         android:layout_width="match_parent"
         android:layout_height="380dp"
         android:layout_marginBottom="60dp"

@@ -95,6 +95,7 @@ public class NavigationActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         transaction.replace(R.id.frame_layout, Cart, "Cart");
         transaction.commit();
+
     }
 
     public void replaceThis(Fragment fragment, String tag) {
