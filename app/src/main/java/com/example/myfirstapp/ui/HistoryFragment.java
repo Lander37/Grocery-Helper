@@ -37,7 +37,7 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_history, container, false);
-        this.manager = new HistoryManager();
+        this.manager = new HistoryManager(getContext());
         gListArray = this.manager.getgListArray();
         gListDescriptions = new ArrayList<String>(0);
         spinner = (AppCompatSpinner) view.findViewById(R.id.history_sorting_spinner);

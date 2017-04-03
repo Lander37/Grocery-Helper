@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TableLayout;
@@ -28,7 +27,7 @@ public class SpecificListFragment extends Fragment {
 
         gl_id = args.getInt("gl_id");
         groceryManager = new GroceryManager(getActivity().getApplicationContext());
-        groceryManager.setcurrentListID(gl_id);
+        groceryManager.setCurrentListID(gl_id);
         currentList = groceryManager.getCurrentList();
     }
 
