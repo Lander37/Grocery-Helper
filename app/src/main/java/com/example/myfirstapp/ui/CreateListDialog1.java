@@ -43,7 +43,7 @@ public class CreateListDialog1 extends DialogFragment {
                 String listName = getListName();
                 Random rn = new Random();
                 if(groceryManager.createNewList(listName)) {
-                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(groceryManager.getCurrentListID()), "Cart");
+                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(groceryManager.getCurrentListID(),"Beverages"), "Cart");
 
                     ((NavigationActivity)getActivity()).closeDialogs();
                 }
