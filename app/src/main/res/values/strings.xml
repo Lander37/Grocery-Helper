@@ -71,6 +71,7 @@
     </string>
     <string name="login_dialog1_prompt">Your selected username and password cannot be empty!</string>
     <string name="login_dialog2_prompt">Your selected password is too short!</string>
+    <string name="edit_profile_cfm_dialog">Your Profile has been updated!</string>
 
 
 </resources>

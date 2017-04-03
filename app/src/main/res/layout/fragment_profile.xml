@@ -191,6 +191,19 @@
         android:textSize="20sp"/>
 
     <Button
+        android:id="@+id/saveChanges"
+        android:layout_marginLeft="230dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        app:layout_anchor="@+id/include" />
+
+    <Button
         android:id="@+id/closeApp"
         android:layout_marginLeft="230dp"
         android:layout_marginStart="230dp"

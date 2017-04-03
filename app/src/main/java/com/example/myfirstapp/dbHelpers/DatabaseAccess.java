@@ -11,14 +11,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.myfirstapp.ui.CreateProfileActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
@@ -64,11 +61,9 @@ public class DatabaseAccess {
     }
 
 
-
-    public List<String> getSubCategoryList(String category) {
+    public List<String> getProductList() {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 " +
-                "WHERE category = ? ORDER BY " + "subCategory", new String[] {category + ""});
+        Cursor cursor = database.rawQuery("SELECT productName FROM ProductList1", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -93,18 +88,13 @@ public class DatabaseAccess {
         }
     }
 
-    public void addProduct(String subcategory) {
-
-        //Get List of Products in same SubCategory in the Supermarket
-
-        //Get Value of User's healthEmphasis
-
-        /*ContentValues values = new ContentValues();
+    public void addProduct(String productName, double unitPrice) {
+        ContentValues values = new ContentValues();
         values.put("productName", productName);
         values.put("unitPrice", unitPrice);
         values.put("quantity", 1);
 
-        database.insert("List1", null, values);*/
+        database.insert("List1", null, values);
     }
 
     public int createGList(String listName) {
@@ -119,7 +109,6 @@ public class DatabaseAccess {
         values.put("TotalCost", 0);
         values.put("isHistory", 0);
         values.put("isCurrent", 1);
-        values.put("listUser", thisUsername);
         values.put("creationDate", dateNow);
 
 
@@ -153,9 +142,8 @@ public class DatabaseAccess {
     }
 
     public Cursor pullGLists(){
-        //String query = "SELECT * FROM GLists; ";
-        //Cursor cursor = database.rawQuery(query, null);
-        Cursor cursor = database.rawQuery("SELECT * FROM GLists WHERE listUser = ? ", new String[] {thisUsername + ""});
+        String query = "SELECT * FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
         return cursor;
     }
 
@@ -169,34 +157,15 @@ public class DatabaseAccess {
 
         database.insert("Profiles", null, values);
     }
+    public void editProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
+        ContentValues values = new ContentValues();
+        values.put("password", password);
+        values.put("dpId", dpId);
+        values.put("healthEmphasis", healthEmp);
+        values.put("defaultLocation", defaultLocation);
+        database.update("Profiles", values,"username" +" = ?", new String[] {username + ""});
 
-
-    public void updateHCValues(String productName){
-        Cursor cursor = database.rawQuery("SELECT  FROM Contact", null);
     }
-
-    public void updateProductHealthierChoice(ArrayList<String> healthierChoiceList){
-        Cursor cursor = database.rawQuery("SELECT * FROM ProductList1",null);
-        System.out.println("test");
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()){
-                String productName = cursor.getString(cursor.getColumnIndex("productName"));
-                if(healthierChoiceList.contains(productName)){
-                    //Add method to set healthier choice of rowIndex i to 1
-                    ContentValues values = new ContentValues();
-                    values.put("healthierChoice", 1);
-                    database.update("ProductList1", values, "productName = ?", new String[]{productName});
-                }   else {
-                    //Add method to set healthier choice of rowIndex i to 0
-                    ContentValues values = new ContentValues();
-                    values.put("healthierChoice", 0);
-                    database.update("ProductList1", values, "productName = ?", new String[]{productName});
-                }
-            }
-        }
-    }
-
-
     public int getDpId(String username){
         String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
@@ -206,5 +175,22 @@ public class DatabaseAccess {
         cursor.close();
         return dpId;
     }
-
+    public int gethealthEmphasis(String username){
+        String query = "SELECT healthEmphasis FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst())
+            cursor.moveToFirst();
+        int healthEmphasis = cursor.getInt(0);
+        cursor.close();
+        return healthEmphasis;
+    }
+    public String getdefaultLocation(String username){
+        String query = "SELECT defaultLocation FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst())
+            cursor.moveToFirst();
+        String defaultLocation = cursor.getString(0);
+        cursor.close();
+        return defaultLocation;
+    }
 }
