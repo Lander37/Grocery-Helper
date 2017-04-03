@@ -144,15 +144,15 @@
 
     <CheckBox
         android:id="@+id/healthierChoiceButton"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="320dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="320dp"
         android:text="Healthier Choice"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <CheckBox
         android:id="@+id/halalButton"

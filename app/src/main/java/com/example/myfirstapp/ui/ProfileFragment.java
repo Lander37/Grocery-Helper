@@ -14,6 +14,8 @@ import android.widget.Spinner;
 
 import com.example.myfirstapp.R;
 
+import static com.example.myfirstapp.ui.CreateProfileActivity.thisProfile;
+
 public class ProfileFragment extends Fragment {
 
     private Button btLogOut;
@@ -26,10 +28,12 @@ public class ProfileFragment extends Fragment {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    private boolean isCheckedHC = false;
-    private boolean isCheckedHA = false;
-    private boolean isCheckedVG = false;
-    private boolean isCheckedGF = false;
+    private boolean isCheckedHC = true;
+    private boolean isCheckedHA = true;
+    private boolean isCheckedVG = true;
+    private boolean isCheckedGF = true;
+    private int healthPref = thisProfile.getdpId();
+
 
 
     @Override
@@ -57,6 +61,19 @@ public class ProfileFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.location_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLocationList.setAdapter(adapter);
+
+        if ((healthPref % 10)==0){
+            isCheckedVG = false;
+        }
+        if (((healthPref/10) % 10)==0){
+            isCheckedGF = false;
+        }
+        if (((healthPref/100) % 10)==0){
+            isCheckedHC = false;
+        }
+        if (((healthPref/1000) % 10)==0){
+            isCheckedHA = false;
+        }
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
