@@ -1,4 +1,8 @@
 package com.example.myfirstapp.ui;
+/**
+ * HistorySpecListFragment.java
+ * @author
+ */
 
 import java.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -19,6 +23,10 @@ public class HistorySpecListFragment extends Fragment {
     private HistoryManager manager;
     private Button backButton;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,11 @@ public class HistorySpecListFragment extends Fragment {
 
     /* --- For individual list layout ---*/
 
+    /**
+     *
+     * @param list_id
+     * @param view
+     */
     //Populates the table history_list_details with
     public void populateList(int list_id, View view){
         TableLayout listTable = (TableLayout)view.findViewById(R.id.history_list_details);
@@ -87,6 +100,11 @@ public class HistorySpecListFragment extends Fragment {
         }
     }
 
+    /**
+     *
+     * @param list_id
+     * @return
+     */
     public static HistorySpecListFragment newInstance(int list_id) {
         HistorySpecListFragment historySpecListFragment = new HistorySpecListFragment();
         Bundle bundle = new Bundle();

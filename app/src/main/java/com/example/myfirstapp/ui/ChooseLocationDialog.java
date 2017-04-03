@@ -11,17 +11,28 @@ import android.widget.Spinner;
 import com.example.myfirstapp.R;
 
 /**
- * Created by Daniel on 3/30/2017.
+ * ChooseLocationDialog.java
+ * @author Daniel
  */
 
 public class ChooseLocationDialog extends DialogFragment {
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_choose_location, container, false);
@@ -38,6 +49,10 @@ public class ChooseLocationDialog extends DialogFragment {
         return v;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ChooseLocationDialog newInstance() {
         ChooseLocationDialog chooseLocaDialog = new ChooseLocationDialog();
         return chooseLocaDialog;
