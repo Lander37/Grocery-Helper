@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.R;
 
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
+//import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
 
 public class ProfileFragment extends Fragment {
 
@@ -58,8 +58,8 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
         btSaveChanges.setOnClickListener(new View.OnClickListener() {
-            if(editProfile()){
-            }
+/*            if(editProfile()){
+            }*/
             @Override
             public void onClick(View view) {
                 showDialog(EditProfileConfirmationDialog.newInstance());
@@ -78,9 +78,12 @@ public class ProfileFragment extends Fragment {
         etEditPassword = (EditText) view.findViewById(R.id.editPassword);
 
         databaseAccess.open();
-        healthPref = databaseAccess.getDpId(thisUsername);
+  /*      healthPref = databaseAccess.getDpId(thisUsername);
         healthEmphasis = databaseAccess.gethealthEmphasis(thisUsername);
-        defaultLocation = databaseAccess.getdefaultLocation(thisUsername);
+        defaultLocation = databaseAccess.getdefaultLocation(thisUsername);*/
+        healthPref = 1;
+        healthEmphasis = 1;
+        defaultLocation = "";
         databaseAccess.close();
 
         spLocationList = (Spinner) view.findViewById(R.id.locationList);
@@ -143,7 +146,7 @@ public class ProfileFragment extends Fragment {
         }
         else {
             String username = etEditUsername.getText().toString();
-            thisUsername =  username;
+            //thisUsername =  username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
             String defaultLocation = spLocationList.getSelectedItem().toString();
