@@ -157,4 +157,12 @@ public class DatabaseAccess {
 
         database.insert("Profiles", null, values);
     }
+    public int getdpID(String username){
+        String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        int dpId = cursor.getInt(cursor.getColumnIndex("dpId"));
+
+        cursor.close();
+        return dpId;
+    }
 }
