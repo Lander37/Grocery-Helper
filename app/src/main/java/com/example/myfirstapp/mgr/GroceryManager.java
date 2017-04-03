@@ -1,6 +1,7 @@
 package com.example.myfirstapp.mgr;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
@@ -14,6 +15,7 @@ import java.util.Collections;
  * Created by XY on 8/3/2017.
  */
 
+
 public class GroceryManager {
 
     private DatabaseAccess databaseAccess;
@@ -21,30 +23,31 @@ public class GroceryManager {
     private int latestListID;
     private ArrayList<GroceryList> gListArray;
 
+
     public GroceryManager(Context context){
         this.databaseAccess = DatabaseAccess.getInstance(context);
+
     }
 
-    public int getcurrentListID() {
+    public int getCurrentListID() {
         return this.currentListID;
     }
 
     /**
-     *
      * @param list_ID
      */
-    public void setcurrentListID(int list_ID) {
+    public void setCurrentListID(int list_ID) {
 
         this.currentListID = list_ID;
     }
   
       /**
-     *
      * @param listName - name of new list
      */
     public boolean createNewList(String listName) {
+        databaseAccess.open();
         if(databaseAccess.listNameValidity(listName)){
-            databaseAccess.open();
+
             databaseAccess.createGList(listName);
             databaseAccess.close();
 
@@ -54,7 +57,23 @@ public class GroceryManager {
     }
 
     public void loadGListsFromDB(){
-        //databaseAccess.
+        Cursor cursor = databaseAccess.populateGListTable();
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                cursor = databaseAccess.populateGListTable();
+                GroceryList gList;
+
+                // Read columns data
+                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                String listName = cursor.getString(cursor.getColumnIndex("Name"));
+                float totalCost = (float)cursor.getDouble(cursor.getColumnIndex("TotalCost"));
+
+                // Make Grocery List
+                gList = new GroceryList(listName,id);
+                gList.setTotalCost(totalCost);
+                gListArray.add(gList);
+            }
+        }
     }
 
     public GroceryList getCurrentList(){
@@ -80,13 +99,13 @@ public class GroceryManager {
     }
 
     /**
-     *
      * @param gListArray
      */
     public void setgListArray(ArrayList<GroceryList> gListArray) {
         this.gListArray = gListArray;
 
     }
+
 
     public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
 
@@ -155,7 +174,6 @@ public class GroceryManager {
         }
 
     /**
-     *
      * @param prod_ID
      * @param QTY
      */

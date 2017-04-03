@@ -1,7 +1,9 @@
 package com.example.myfirstapp.dbHelpers;
 
 /**
- * Created by Lander on 02-Apr-17.
+ * DatabaseAccess.java- to read and write the supermarket database into this application
+ * so that it would constantly be up to date.
+ * @author Lander
  */
 
 import android.content.ContentValues;
@@ -9,6 +11,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +26,7 @@ public class DatabaseAccess {
     private static DatabaseAccess instance;
 
     /**
-     * Private constructor to aboid object creation from outside classes.
+     * Private constructor to avoid object creation from outside classes.
      *
      * @param context
      */
@@ -57,6 +62,7 @@ public class DatabaseAccess {
             this.database.close();
         }
     }
+
 
     public List<String> getProductList() {
         List<String> list = new ArrayList<>();
@@ -117,11 +123,11 @@ public class DatabaseAccess {
         database.execSQL(query);
     }
 
-    public boolean listNameValidity(String listName){
+    public boolean listNameValidity(String listName) {
         String query = "SELECT Name FROM GLists WHERE Name = \"" + listName + "\";";
         Cursor cursor = database.rawQuery(query, null);
 
-        if (cursor.getCount() <= 0){
+        if (cursor.getCount() <= 0) {
             cursor.close();
             return true;
         }
@@ -129,4 +135,9 @@ public class DatabaseAccess {
         return false;
     }
 
+    public Cursor populateGListTable() {
+        String query = "SELECT Name, TotalCost FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
 }

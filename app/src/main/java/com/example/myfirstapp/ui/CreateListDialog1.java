@@ -41,13 +41,16 @@ public class CreateListDialog1 extends DialogFragment {
             public void onClick(View view) {
 
                 String listName = getListName();
+
                 if(groceryManager.createNewList(listName)) {
                     ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(0), "Cart");
+
                     ((NavigationActivity)getActivity()).closeDialogs();
                 }
                 else {
                     ((NavigationActivity) getActivity()).showDialog(CreateListDialog2.newInstance());
                 }
+
             }
         });
 
@@ -55,8 +58,7 @@ public class CreateListDialog1 extends DialogFragment {
     }
 
     public static CreateListDialog1 newInstance() {
-        CreateListDialog1 createListDialog = new CreateListDialog1();
-        return createListDialog;
+        return new CreateListDialog1();
     }
 
     private String getListName(){
