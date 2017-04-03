@@ -12,18 +12,18 @@ android:padding="10dp">
     android:layout_centerVertical="true"
     android:text="Back" />
 
-<Button
-    android:id="@+id/button4"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/editText"
-    android:layout_marginLeft="11dp"
-    android:layout_marginStart="11dp"
-    android:layout_marginTop="23dp"
-    android:onClick="buttonOnCalculatorConfirm"
-    android:text="Confirm " />
+    <Button
+        android:id="@+id/budgetconfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="23dp"
+        android:onClick="buttonOnCalculatorConfirm"
+        android:text="Confirm " />
 
 <EditText
     android:id="@+id/editText"
