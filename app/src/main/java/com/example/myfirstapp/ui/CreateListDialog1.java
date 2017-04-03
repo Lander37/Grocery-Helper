@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
+import java.util.Random;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.mgr.GroceryManager;
@@ -53,9 +53,9 @@ public class CreateListDialog1 extends DialogFragment {
             public void onClick(View view) {
 
                 String listName = getListName();
-
+                Random rn = new Random();
                 if(groceryManager.createNewList(listName)) {
-                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(0), "Cart");
+                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(groceryManager.getCurrentListID(),"Beverages"), "Cart");
 
                     ((NavigationActivity)getActivity()).closeDialogs();
                 }
@@ -86,4 +86,5 @@ public class CreateListDialog1 extends DialogFragment {
 
     }
 }
+
 

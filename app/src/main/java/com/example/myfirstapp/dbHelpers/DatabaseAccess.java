@@ -61,9 +61,10 @@ public class DatabaseAccess {
     }
 
 
-    public List<String> getProductList() {
+
+    public List<String> getProductList(String category) {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT productName FROM ProductList1", null);
+        Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 WHERE category = ? ORDER BY " + "subCategory", new String[] {category + ""});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -157,4 +158,42 @@ public class DatabaseAccess {
 
         database.insert("Profiles", null, values);
     }
+
+
+    public void updateHCValues(String productName){
+        Cursor cursor = database.rawQuery("SELECT  FROM Contact", null);
+    }
+
+    public void updateProductHealthierChoice(ArrayList<String> healthierChoiceList){
+        Cursor cursor = database.rawQuery("SELECT * FROM ProductList1",null);
+        System.out.println("test");
+        if(cursor.getCount() > 0){
+            while(cursor.moveToNext()){
+                String productName = cursor.getString(cursor.getColumnIndex("productName"));
+                if(healthierChoiceList.contains(productName)){
+                    //Add method to set healthier choice of rowIndex i to 1
+                    ContentValues values = new ContentValues();
+                    values.put("healthierChoice", 1);
+                    database.update("ProductList1", values, "productName = ?", new String[]{productName});
+                }   else {
+                    //Add method to set healthier choice of rowIndex i to 0
+                    ContentValues values = new ContentValues();
+                    values.put("healthierChoice", 0);
+                    database.update("ProductList1", values, "productName = ?", new String[]{productName});
+                }
+            }
+        }
+    }
+
+
+    public int getDpId(String username){
+        String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst())
+            cursor.moveToFirst();
+        int dpId = cursor.getInt(0);
+        cursor.close();
+        return dpId;
+    }
+
 }
