@@ -11,9 +11,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -101,8 +98,7 @@ public class DatabaseAccess {
     }
 
     public int createGList(String listName) {
-
-        database.execSQL("UPDATE GLists SET isCurrent = 0");
+          database.execSQL("UPDATE GLists SET isCurrent = 0");
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -143,5 +139,16 @@ public class DatabaseAccess {
         String query = "SELECT Name, TotalCost FROM GLists; ";
         Cursor cursor = database.rawQuery(query, null);
         return cursor;
+    }
+
+    public void createProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("password", password);
+        values.put("dpId", dpId);
+        values.put("healthEmphasis", healthEmp);
+        values.put("defaultLocation", defaultLocation);
+
+        database.insert("Profiles", null, values);
     }
 }

@@ -18,6 +18,7 @@ import android.app.AlertDialog;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.Profile;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 import java.util.Random;
 
@@ -35,12 +36,16 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbGluten;
     private static Profile thisProfile;
     private static final int MinPassLen = 6;
+    private DatabaseAccess databaseAccess;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
+
+        this.databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
 
         btDone = (Button) findViewById(R.id.Done);
         etEditUsername = (EditText) findViewById(R.id.editUserName);
@@ -80,7 +85,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         else {
             String username = etEditUsername.getText().toString();
             String password = etEditPassword.getText().toString();
-            int healthEmphasis = sbHealthSeekBar.getProgress();
+            int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
             String defaultLocation = spLocationList.getSelectedItem().toString();
 
             boolean HA = false;
@@ -88,7 +93,7 @@ public class CreateProfileActivity extends AppCompatActivity {
             boolean GF = false;
             boolean VG = false;
 
-            if (tbHalal.getText() == "On") {
+           /* if (tbHalal.getText() == "On") {
                 HA = true;
             }
             if (tbHealthierChoice.getText() == "On") {
@@ -99,34 +104,42 @@ public class CreateProfileActivity extends AppCompatActivity {
             }
             if (tbVegetarian.getText() == "On") {
                 VG = true;
-            }
+            } */
 
             int a = 0;
             int b = 0;
             int c = 0;
             int d = 0;
-            if (HA) {
+
+            if(tbHalal.isChecked()){
                 a = 1;
             }
-            if (HC) {
+            if(tbVegetarian.isChecked()){
                 b = 1;
             }
-            if (GF) {
+            if(tbHealthierChoice.isChecked()){
                 c = 1;
             }
-            if (VG) {
+            if(tbGluten.isChecked()){
                 d = 1;
             }
 
-            int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b) + String.valueOf(c) + String.valueOf(d));
+            int dpId = 8*a + 4*b + 2*c + d;
+
+            databaseAccess.open();
+            databaseAccess.createProfile(username, password, healthEmphasis, defaultLocation, dpId);
+            databaseAccess.close();
+
+            /*int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b) + String.valueOf(c) + String.valueOf(d));
 
             //make creating a profile id more consistent
             Random rn = new Random();
             int profileID = rn.nextInt();
 
             thisProfile = new Profile(username, password, defaultLocation, dpId, healthEmphasis, profileID);
-            return true;
+            return true;*/
         }
+        return true;
     }
     private boolean areFieldsEmpty(EditText... fields) {
         for(int i = 0; i < fields.length; i++) {
