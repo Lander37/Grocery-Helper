@@ -1,7 +1,5 @@
 package com.example.myfirstapp.ui;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -14,27 +12,28 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.myfirstapp.R;
-import com.example.myfirstapp.dbHelpers.DatabaseAccess;
+import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.mgr.GroceryManager;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CartFragment extends Fragment {
     private Button btAddList;
     private GroceryManager groceryManager;
-    private DatabaseAccess databaseAccess;
+    private ArrayList<GroceryList> gListArray;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        groceryManager = new GroceryManager(getActivity().getApplicationContext());
+        gListArray = groceryManager.getgListArray();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        this.databaseAccess = DatabaseAccess.getInstance(getActivity().getApplicationContext());
-        databaseAccess.open();
 
         View view = inflater.inflate(R.layout.activity_cart, container, false);
         btAddList = (Button) view.findViewById(R.id.addList);
@@ -45,14 +44,15 @@ public class CartFragment extends Fragment {
         rowHeader.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
 
-        Cursor cursor = databaseAccess.populateGListTable();
-        if (cursor.getCount() > 0) {
+        /*Cursor cursor = databaseAccess.populateGListTable();
+        if (cursor.getCount() > 0) {*/
 
 
-            while (cursor.moveToNext()) {
+            for (int i = 0; i < gListArray.size(); i++) {
                 // Read columns data
-                String listName = cursor.getString(cursor.getColumnIndex("Name"));
-                String totalCost = cursor.getString(cursor.getColumnIndex("TotalCost"));
+                String listName = gListArray.get(i).getName();
+                String totalCost = gListArray.get(i).getTotalCost() + "";
+                final int gl_id = gListArray.get(i).getGL_ID();
 
                 // data rows
                 TableRow row = new TableRow(view.getContext());
@@ -62,7 +62,7 @@ public class CartFragment extends Fragment {
 
                     @Override
                     public void onClick(View view) {
-                        ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(100),"Cart");
+                        ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
                     }
                 });
 
@@ -87,10 +87,7 @@ public class CartFragment extends Fragment {
                 tableLayout.addView(row);
 
             }
-        }
-
-
-        databaseAccess.close();
+        //}
 
         btAddList.setOnClickListener(new View.OnClickListener() {
 

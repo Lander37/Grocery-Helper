@@ -26,7 +26,8 @@ public class GroceryManager {
 
     public GroceryManager(Context context){
         this.databaseAccess = DatabaseAccess.getInstance(context);
-
+        gListArray = new ArrayList<GroceryList>(0);
+        loadGListsFromDB();
     }
 
     public int getCurrentListID() {
@@ -48,7 +49,7 @@ public class GroceryManager {
         databaseAccess.open();
         if(databaseAccess.listNameValidity(listName)){
 
-            databaseAccess.createGList(listName);
+            currentListID = databaseAccess.createGList(listName);
             databaseAccess.close();
 
             return true;
@@ -57,14 +58,14 @@ public class GroceryManager {
     }
 
     public void loadGListsFromDB(){
-        Cursor cursor = databaseAccess.populateGListTable();
+        databaseAccess.open();
+        Cursor cursor = databaseAccess.pullGLists();
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
-                cursor = databaseAccess.populateGListTable();
                 GroceryList gList;
 
                 // Read columns data
-                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                int id = (int)cursor.getLong(cursor.getColumnIndex("_id"));
                 String listName = cursor.getString(cursor.getColumnIndex("Name"));
                 float totalCost = (float)cursor.getDouble(cursor.getColumnIndex("TotalCost"));
 
@@ -74,6 +75,7 @@ public class GroceryManager {
                 gListArray.add(gList);
             }
         }
+        databaseAccess.close();
     }
 
     public GroceryList getCurrentList(){

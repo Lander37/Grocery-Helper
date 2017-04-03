@@ -144,4 +144,10 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery(query, null);
         return cursor;
     }
+
+    public Cursor pullGLists(){
+        String query = "SELECT * FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
 }
