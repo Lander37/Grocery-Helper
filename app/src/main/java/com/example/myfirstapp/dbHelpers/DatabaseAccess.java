@@ -157,6 +157,15 @@ public class DatabaseAccess {
 
         database.insert("Profiles", null, values);
     }
+    public void editProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
+        ContentValues values = new ContentValues();
+        values.put("password", password);
+        values.put("dpId", dpId);
+        values.put("healthEmphasis", healthEmp);
+        values.put("defaultLocation", defaultLocation);
+        database.update("Profiles", values,"username" +" = ?", new String[] {username + ""});
+
+    }
     public int getDpId(String username){
         String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
@@ -165,5 +174,23 @@ public class DatabaseAccess {
         int dpId = cursor.getInt(0);
         cursor.close();
         return dpId;
+    }
+    public int gethealthEmphasis(String username){
+        String query = "SELECT healthEmphasis FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst())
+            cursor.moveToFirst();
+        int healthEmphasis = cursor.getInt(0);
+        cursor.close();
+        return healthEmphasis;
+    }
+    public String getdefaultLocation(String username){
+        String query = "SELECT defaultLocation FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst())
+            cursor.moveToFirst();
+        String defaultLocation = cursor.getString(0);
+        cursor.close();
+        return defaultLocation;
     }
 }

@@ -34,7 +34,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    public static String thisUsername;
+    public static Profile thisProfile;
     private static final int MinPassLen = 6;
     private DatabaseAccess databaseAccess;
 
@@ -84,7 +84,6 @@ public class CreateProfileActivity extends AppCompatActivity {
         }
         else {
             String username = etEditUsername.getText().toString();
-            thisUsername =  username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
             String defaultLocation = spLocationList.getSelectedItem().toString();
