@@ -29,6 +29,10 @@ public class HistoryFragment extends Fragment {
     private ArrayAdapter<String> gListAdapter;
     private ListView groceryLists;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

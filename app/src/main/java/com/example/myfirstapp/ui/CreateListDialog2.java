@@ -10,17 +10,28 @@ import android.widget.Button;
 import com.example.myfirstapp.R;
 
 /**
- * Created by Daniel on 3/30/2017.
+ * CreateListDialog2.java
+ * @author Daniel
  */
 
 public class CreateListDialog2 extends DialogFragment {
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_create_list_2, container, false);
@@ -36,6 +47,10 @@ public class CreateListDialog2 extends DialogFragment {
         return v;
     }
 
+    /**
+     *
+     * @return
+     */
     public static CreateListDialog2 newInstance() {
         CreateListDialog2 createListDialog = new CreateListDialog2();
         return createListDialog;

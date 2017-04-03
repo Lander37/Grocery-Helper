@@ -13,7 +13,8 @@ import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.mgr.GroceryManager;
 
 /**
- * Created by Daniel on 3/30/2017.
+ * CreateListDialog1.java
+ * @author Daniel
  */
 
 public class CreateListDialog1 extends DialogFragment {
@@ -21,6 +22,10 @@ public class CreateListDialog1 extends DialogFragment {
     private GroceryManager groceryManager;
     private EditText listNameInput;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,13 @@ public class CreateListDialog1 extends DialogFragment {
 
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -57,10 +69,18 @@ public class CreateListDialog1 extends DialogFragment {
         return v;
     }
 
+    /**
+     *
+     * @return
+     */
     public static CreateListDialog1 newInstance() {
         return new CreateListDialog1();
     }
 
+    /**
+     *
+     * @return
+     */
     private String getListName(){
         return listNameInput.getText().toString();
 
