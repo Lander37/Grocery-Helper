@@ -1,8 +1,97 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.myfirstapp.ui.SelectBrandFragment">
 
+    <Button
+        android:id="@+id/FilterP"
 
-</FrameLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:text="Filter" />
+    <Button
+        android:id="@+id/LocationP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:text="Location" />
+
+    <TextView
+        android:id="@+id/productCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="70dp"
+        android:textAlignment="center"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/backB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="500dp"
+        android:text="Back"
+        android:textSize="20sp"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/GridC"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp">
+
+        <TableLayout
+            android:id="@+id/overviewTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TableRow
+                android:id="@+id/overviewRow"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/brandName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Brand"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/productName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="Product Name"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/nettWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Nett Weight"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/brandPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:text="Price"
+                    android:textSize="15sp"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
