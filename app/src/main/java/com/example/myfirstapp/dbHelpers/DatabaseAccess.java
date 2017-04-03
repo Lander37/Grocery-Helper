@@ -11,9 +11,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class DatabaseAccess {
      * Return a singleton instance of DatabaseAccess.
      *
      * @param context the Context
-     * @return the instance of DabaseAccess
+     * @return the instance of Database Access
      */
     public static DatabaseAccess getInstance(Context context) {
         if (instance == null) {
@@ -100,9 +97,8 @@ public class DatabaseAccess {
         database.insert("List1", null, values);
     }
 
-    public void createGList(String listName) {
-
-        database.execSQL("UPDATE GLists SET isCurrent = 0");
+    public int createGList(String listName) {
+          database.execSQL("UPDATE GLists SET isCurrent = 0");
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -116,11 +112,15 @@ public class DatabaseAccess {
         values.put("creationDate", dateNow);
 
 
-        database.insert("GLists", null, values);
+        long idLong = database.insert("GLists", null, values);
+        int id = (int)idLong;
+
 
         String query = "CREATE TABLE " + listName + "(productName TEXT NOT NULL PRIMARY KEY, " +
                 "quantity INTEGER NOT NULL, unitPrice REAL NOT NULL);";
         database.execSQL(query);
+
+        return id;
     }
 
     public boolean listNameValidity(String listName) {
@@ -139,5 +139,22 @@ public class DatabaseAccess {
         String query = "SELECT Name, TotalCost FROM GLists; ";
         Cursor cursor = database.rawQuery(query, null);
         return cursor;
+    }
+
+    public Cursor pullGLists(){
+        String query = "SELECT * FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
+    public void createProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("password", password);
+        values.put("dpId", dpId);
+        values.put("healthEmphasis", healthEmp);
+        values.put("defaultLocation", defaultLocation);
+
+        database.insert("Profiles", null, values);
     }
 }
