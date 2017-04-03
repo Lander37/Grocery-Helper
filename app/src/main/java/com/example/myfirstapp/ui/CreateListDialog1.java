@@ -29,7 +29,6 @@ public class CreateListDialog1 extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         this.databaseAccess = DatabaseAccess.getInstance(getActivity().getApplicationContext());
-
         View v = inflater.inflate(R.layout.dialog_create_list_1, container, false);
         listNameInput = (EditText) v.findViewById(R.id.create_list_dialog_1_editText);
         Button listConfirmButton = (Button) v.findViewById(R.id.create_list_dialog_1_confirm_btn);
@@ -59,8 +58,7 @@ public class CreateListDialog1 extends DialogFragment {
     }
 
     public static CreateListDialog1 newInstance() {
-        CreateListDialog1 createListDialog = new CreateListDialog1();
-        return createListDialog;
+        return new CreateListDialog1();
     }
 
     private String getListName(){
