@@ -104,7 +104,7 @@ public class CreateProfileActivity extends AppCompatActivity {
             }
             if (tbVegetarian.isChecked()) {
                 VG = true;
-            } */
+            }
 
             int a = 0;
             int b = 0;
