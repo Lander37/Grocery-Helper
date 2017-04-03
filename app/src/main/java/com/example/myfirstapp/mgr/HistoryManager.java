@@ -1,29 +1,52 @@
 package com.example.myfirstapp.mgr;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-
 /**
  * Created by Daniel on 3/26/2017.
  */
 
 public class HistoryManager {
 
+    private DatabaseAccess databaseAccess;
     private ArrayList<GroceryList> gListArray;
-    private GroceryManager groceryManager;
 
     public HistoryManager(Context context){
-        groceryManager = new GroceryManager(context);
+        this.databaseAccess = DatabaseAccess.getInstance(context);
+        gListArray = new ArrayList<GroceryList>(0);
         loadGroceryLists();
     }
 
     public void loadGroceryLists(){
-        //gListArray = new ArrayList<GroceryList>(0);
-        gListArray = groceryManager.getgListArray();
+        databaseAccess.open();
+        Cursor cursor = databaseAccess.pullGLists();
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                int addToHistory = cursor.getInt(cursor.getColumnIndex("isHistory"));
+
+                if(addToHistory == 1) {
+                    GroceryList gList;
+
+                    // Read columns data
+                    int id = (int) cursor.getLong(cursor.getColumnIndex("_id"));
+                    String listName = cursor.getString(cursor.getColumnIndex("Name"));
+                    float totalCost = (float) cursor.getDouble(cursor.getColumnIndex("TotalCost"));
+
+                    // Make Grocery List
+                    gList = new GroceryList(listName, id);
+                    gList.setTotalCost(totalCost);
+                    gListArray.add(gList);
+                }
+            }
+        }
+        databaseAccess.close();
+
+        //For testing purposes, remove when ready to test actual
         GroceryList gList1 = new GroceryList("testList",1);
         GroceryList gList2 = new GroceryList("testList2",2);
         gListArray.add(gList1);
