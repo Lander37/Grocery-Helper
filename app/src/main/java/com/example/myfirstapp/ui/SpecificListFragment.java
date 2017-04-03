@@ -112,10 +112,9 @@ public class SpecificListFragment extends Fragment {
     }
 
     public static SpecificListFragment newInstance(int gl_id) {
-
+        SpecificListFragment fragment = new SpecificListFragment();
         Bundle args = new Bundle();
         args.putInt("gl_id",gl_id);
-        SpecificListFragment fragment = new SpecificListFragment();
         fragment.setArguments(args);
         return fragment;
     }
