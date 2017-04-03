@@ -32,12 +32,12 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.manager = new HistoryManager(getActivity().getApplicationContext());
 
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_history, container, false);
-        this.manager = new HistoryManager(getContext());
         gListArray = this.manager.getgListArray();
         gListDescriptions = new ArrayList<String>(0);
         spinner = (AppCompatSpinner) view.findViewById(R.id.history_sorting_spinner);
@@ -78,7 +78,7 @@ public class HistoryFragment extends Fragment {
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
 
-                    return  gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                    return  gList1.getDate().compareTo(gList2.getDate());
                 }
             });
         } else if(sortingBy == getString(R.string.sortby_Date_latest)){
@@ -87,7 +87,7 @@ public class HistoryFragment extends Fragment {
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
 
-                    return  -gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                    return  -gList1.getDate().compareTo(gList2.getDate());
                 }
             });
         } else if (sortingBy == getString(R.string.sortby_Quantity)){

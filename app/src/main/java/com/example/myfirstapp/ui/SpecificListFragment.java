@@ -35,6 +35,7 @@ public class SpecificListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_specific_list, container, false);
+        TextView listName = (TextView) view.findViewById(R.id.specific_list_name);
         Button addItem = (Button) view.findViewById(R.id.addItem);
         Button confirmList = (Button) view.findViewById(R.id.confirmList);
         Button backBtn = (Button) view.findViewById(R.id.back);
@@ -65,6 +66,7 @@ public class SpecificListFragment extends Fragment {
             }
         });
 
+        listName.setText(currentList.getName());
         updateTable(view,listTable);
 
         return view;

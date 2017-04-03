@@ -35,8 +35,9 @@ public class SelectCategoryFragment extends Fragment {
     private ListView lvProductList;
     private SearchView prodSearch;
     private DatabaseAccess databaseAccess;
-
+    Button btDone;
     Button btBack;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class SelectCategoryFragment extends Fragment {
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
         btBack = (Button) view.findViewById(R.id.back);
+        btDone = (Button) view.findViewById(R.id.done);
         btBeverages = (Button) view.findViewById(R.id.beverages);
         btCereal = (Button) view.findViewById(R.id.cereal);
         btDiary = (Button) view.findViewById(R.id.diary);
@@ -94,6 +96,13 @@ public class SelectCategoryFragment extends Fragment {
             }
         });
 
+        btDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
+            }
+        });
+
         btCereal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +114,7 @@ public class SelectCategoryFragment extends Fragment {
     }
 
     public static SelectCategoryFragment newInstance(int gl_id, String passed) {
-        SelectCategoryFragment fragment = new SelectCategoryFragment();
+            SelectCategoryFragment fragment = new SelectCategoryFragment();
         Bundle args = new Bundle();
         args.putInt("gl_id",gl_id);
         fragment.setArguments(args);

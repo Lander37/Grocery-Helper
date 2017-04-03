@@ -2,7 +2,8 @@ package com.example.myfirstapp.classes;
 import com.example.myfirstapp.mgr.SupermarketManager;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
+
 /**
  * GroceryList.java - a simple class that manages
  * the creation of a new list and editing of the list.
@@ -15,7 +16,7 @@ public class GroceryList {
     private int GL_ID;
     private String Name;
     private float TotalCost;
-    private Calendar creationDate;
+    private Date creationDate;
     /**
      * Stores the productID and quantity of products in a list.
      */
@@ -33,7 +34,7 @@ public class GroceryList {
         this.GL_ID = GL_ID;
         this.Name = listName;
         this.TotalCost = 0;
-        this.creationDate = Calendar.getInstance();
+        this.creationDate = new Date();
         this.ArrayProduct = new int[50][2];
     }
 
@@ -60,6 +61,11 @@ public class GroceryList {
     public float getTotalCost() {
         return this.TotalCost;
 
+    }
+
+    public void setTotalCost(float totalCost){
+        //Overload for instant set totalCost
+        this.TotalCost = totalCost;
     }
 
     /**
@@ -98,7 +104,7 @@ public class GroceryList {
         }
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return this.creationDate;
     }
 
@@ -107,7 +113,7 @@ public class GroceryList {
      * and assign it to the grocery list.
      * @param creationDate date this grocery list is created.
      */
-    public void setDate(Calendar creationDate) {
+    public void setDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 

@@ -34,7 +34,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    private static Profile thisProfile;
+    public static String thisUsername;
     private static final int MinPassLen = 6;
     private DatabaseAccess databaseAccess;
 
@@ -84,6 +84,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         }
         else {
             String username = etEditUsername.getText().toString();
+            thisUsername =  username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
             String defaultLocation = spLocationList.getSelectedItem().toString();
@@ -93,18 +94,18 @@ public class CreateProfileActivity extends AppCompatActivity {
             boolean GF = false;
             boolean VG = false;
 
-           /* if (tbHalal.getText() == "On") {
+            if (tbHalal.isChecked()) {
                 HA = true;
             }
-            if (tbHealthierChoice.getText() == "On") {
+            if (tbHealthierChoice.isChecked()) {
                 HC = true;
             }
-            if (tbGluten.getText() == "On") {
+            if (tbGluten.isChecked()) {
                 GF = true;
             }
-            if (tbVegetarian.getText() == "On") {
+            if (tbVegetarian.isChecked()) {
                 VG = true;
-            } */
+            }
 
             int a = 0;
             int b = 0;

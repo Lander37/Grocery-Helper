@@ -1,6 +1,7 @@
 package com.example.myfirstapp.mgr;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
@@ -25,7 +26,8 @@ public class GroceryManager {
 
     public GroceryManager(Context context){
         this.databaseAccess = DatabaseAccess.getInstance(context);
-
+        gListArray = new ArrayList<GroceryList>(0);
+        loadGListsFromDB();
     }
 
     public int getCurrentListID() {
@@ -47,7 +49,7 @@ public class GroceryManager {
         databaseAccess.open();
         if(databaseAccess.listNameValidity(listName)){
 
-            databaseAccess.createGList(listName);
+            currentListID = databaseAccess.createGList(listName);
             databaseAccess.close();
 
             return true;
@@ -59,7 +61,24 @@ public class GroceryManager {
      * Accesses Database.
      */
     public void loadGListsFromDB(){
-       // databaseAccess.
+        databaseAccess.open();
+        Cursor cursor = databaseAccess.pullGLists();
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                GroceryList gList;
+
+                // Read columns data
+                int id = (int)cursor.getLong(cursor.getColumnIndex("_id"));
+                String listName = cursor.getString(cursor.getColumnIndex("Name"));
+                float totalCost = (float)cursor.getDouble(cursor.getColumnIndex("TotalCost"));
+
+                // Make Grocery List
+                gList = new GroceryList(listName,id);
+                gList.setTotalCost(totalCost);
+                gListArray.add(gList);
+            }
+        }
+        databaseAccess.close();
     }
 
     public GroceryList getCurrentList(){

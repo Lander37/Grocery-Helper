@@ -141,6 +141,12 @@ public class DatabaseAccess {
         return cursor;
     }
 
+    public Cursor pullGLists(){
+        String query = "SELECT * FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
     public void createProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
         ContentValues values = new ContentValues();
         values.put("username", username);
@@ -177,4 +183,13 @@ public class DatabaseAccess {
         }
     }
 
+    public int getDpId(String username){
+        String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst())
+            cursor.moveToFirst();
+        int dpId = cursor.getInt(0);
+        cursor.close();
+        return dpId;
+    }
 }

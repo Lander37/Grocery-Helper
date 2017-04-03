@@ -5,8 +5,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myfirstapp.R;
@@ -24,7 +22,7 @@ public class LoginDialog2 extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.dialog_login_2, container, false);
+        View v = inflater.inflate(R.layout.content_login_dialog2, container, false);
         TextView LoginPrompt = (TextView) v.findViewById(R.id.login_dialog2_prompt);
         return v;
     }
