@@ -29,7 +29,7 @@ public class ProductAddConfirmDialog extends DialogFragment {
         product_ID = bundle.getInt("prod_id");
         productName = bundle.getString("prod_name");
         groceryList_ID = bundle.getInt("gl_id");
-        groceryManager = new GroceryManager();
+        groceryManager = new GroceryManager(getActivity().getApplicationContext());
 
     }
 
