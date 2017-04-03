@@ -45,6 +45,7 @@ public class SelectCategoryFragment extends Fragment {
         gl_id = args.getInt("gl_id");
 
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -75,38 +76,38 @@ public class SelectCategoryFragment extends Fragment {
         this.lvProductList.setAdapter(adapter);
 
 
-        btLocation.setOnClickListener(new View.OnClickListener(){
+        btLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).showDialog(ChooseLocationDialog.newInstance());
+                ((NavigationActivity) getActivity()).showDialog(ChooseLocationDialog.newInstance());
             }
         });
 
         btFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
+                ((NavigationActivity) getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
             }
         });
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceThis(CartFragment.newInstance(),"Cart");
+                ((NavigationActivity) getActivity()).replaceThis(CartFragment.newInstance(), "Cart");
             }
         });
+
 
         btDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
-            }
-        });
-
+=========
         btCereal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+>>>>>>>>> Temporary merge branch 2
             }
         });
 
@@ -114,7 +115,7 @@ public class SelectCategoryFragment extends Fragment {
     }
 
     public static SelectCategoryFragment newInstance(int gl_id, String passed) {
-            SelectCategoryFragment fragment = new SelectCategoryFragment();
+        SelectCategoryFragment fragment = new SelectCategoryFragment();
         Bundle args = new Bundle();
         args.putInt("gl_id",gl_id);
         fragment.setArguments(args);

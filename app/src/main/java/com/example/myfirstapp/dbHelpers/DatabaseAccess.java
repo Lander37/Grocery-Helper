@@ -158,6 +158,7 @@ public class DatabaseAccess {
         database.insert("Profiles", null, values);
     }
 
+
     public void updateHCValues(String productName){
         Cursor cursor = database.rawQuery("SELECT  FROM Contact", null);
     }
@@ -183,6 +184,7 @@ public class DatabaseAccess {
         }
     }
 
+
     public int getDpId(String username){
         String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
@@ -192,4 +194,5 @@ public class DatabaseAccess {
         cursor.close();
         return dpId;
     }
+
 }
