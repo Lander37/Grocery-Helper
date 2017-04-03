@@ -34,7 +34,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    private static Profile thisProfile;
+    public static Profile thisProfile;
     private static final int MinPassLen = 6;
     private DatabaseAccess databaseAccess;
 
@@ -93,16 +93,16 @@ public class CreateProfileActivity extends AppCompatActivity {
             boolean GF = false;
             boolean VG = false;
 
-           /* if (tbHalal.getText() == "On") {
+            if (tbHalal.isChecked()) {
                 HA = true;
             }
-            if (tbHealthierChoice.getText() == "On") {
+            if (tbHealthierChoice.isChecked()) {
                 HC = true;
             }
-            if (tbGluten.getText() == "On") {
+            if (tbGluten.isChecked()) {
                 GF = true;
             }
-            if (tbVegetarian.getText() == "On") {
+            if (tbVegetarian.isChecked()) {
                 VG = true;
             } */
 
