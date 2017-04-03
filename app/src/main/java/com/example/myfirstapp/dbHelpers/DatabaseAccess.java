@@ -97,7 +97,7 @@ public class DatabaseAccess {
 
         //Get List of Products in same SubCategory in the Supermarket
 
-        thisUsername = "";
+        //Get Value of User's healthEmphasis
 
         /*ContentValues values = new ContentValues();
         values.put("productName", productName);
