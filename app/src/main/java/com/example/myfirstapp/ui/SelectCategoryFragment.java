@@ -41,6 +41,7 @@ public class SelectCategoryFragment extends Fragment {
 
     Button btDone;
     Button btBack;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class SelectCategoryFragment extends Fragment {
         gl_id = args.getInt("gl_id");
 
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -78,24 +80,24 @@ public class SelectCategoryFragment extends Fragment {
         this.lvProductList.setAdapter(adapter);
 
 
-        btLocation.setOnClickListener(new View.OnClickListener(){
+        btLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).showDialog(ChooseLocationDialog.newInstance());
+                ((NavigationActivity) getActivity()).showDialog(ChooseLocationDialog.newInstance());
             }
         });
 
         btFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
+                ((NavigationActivity) getActivity()).showDialog(FilterDietaryPrefDialog.newInstance());
             }
         });
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceThis(CartFragment.newInstance(),"Cart");
+                ((NavigationActivity) getActivity()).replaceThis(CartFragment.newInstance(), "Cart");
             }
         });
 
@@ -105,10 +107,13 @@ public class SelectCategoryFragment extends Fragment {
             public void onClick(View view) {
 
 
-        btDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
+                btDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ((NavigationActivity) getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id), "Cart");
+
+                    }
+                });
 
             }
         });
@@ -116,7 +121,7 @@ public class SelectCategoryFragment extends Fragment {
         return view;
     }
 
-    public static SelectCategoryFragment newInstance(int gl_id, String passed) {
+    public static SelectCategoryFragment newInstance(int gl_id) {
         SelectCategoryFragment fragment = new SelectCategoryFragment();
         Bundle args = new Bundle();
         args.putInt("gl_id",gl_id);
