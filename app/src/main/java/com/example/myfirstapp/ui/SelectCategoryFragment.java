@@ -12,8 +12,9 @@ import com.example.myfirstapp.R;
 
 public class SelectCategoryFragment extends Fragment {
 
-    Button btLocation;
-    Button btFilter;
+    private int gl_id;
+    private Button btLocation;
+    private Button btFilter;
     Button btBeverages;
     Button btCereal;
     Button btDiary;
@@ -25,10 +26,13 @@ public class SelectCategoryFragment extends Fragment {
     Button btSeafood;
     Button btGluten;
     private SearchView prodSearch;
+
     Button btBack;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        gl_id = args.getInt("gl_id");
 
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +76,11 @@ public class SelectCategoryFragment extends Fragment {
         return view;
     }
 
-    public static SelectCategoryFragment newInstance() {
-        return new SelectCategoryFragment();
+    public static SelectCategoryFragment newInstance(int gl_id) {
+        SelectCategoryFragment fragment = new SelectCategoryFragment();
+        Bundle args = new Bundle();
+        args.putInt("gl_id",gl_id);
+        fragment.setArguments(args);
+        return fragment;
     }
 }

@@ -56,15 +56,6 @@ public class ProductAddConfirmDialog extends DialogFragment {
             }
         });
 
-        // Watch for button clicks.
-        /*Button button = (Button)v.findViewById(R.id.show);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // When button is clicked, call up to owning activity.
-                //((FragmentDialog)getActivity()).showDialog();
-            }
-        });*/
-
         return v;
     }
 

@@ -1,5 +1,7 @@
 package com.example.myfirstapp.mgr;
 
+import android.content.Context;
+
 import com.example.myfirstapp.classes.GroceryList;
 
 import java.util.ArrayList;
@@ -12,9 +14,10 @@ import java.util.Calendar;
 public class HistoryManager {
 
     private ArrayList<GroceryList> gListArray;
+    private GroceryManager groceryManager;
 
-    public HistoryManager(){
-
+    public HistoryManager(Context context){
+        groceryManager = new GroceryManager(context);
         loadGroceryLists();
     }
 

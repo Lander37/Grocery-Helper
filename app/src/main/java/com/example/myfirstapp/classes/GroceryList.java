@@ -108,6 +108,15 @@ public class GroceryList {
         }
     }
 
+    public void setQty(int prod_ID , int QTY){
+        for (int i = 0; i < ArrayProduct.length; i++) {
+            if (ArrayProduct[i][0] == prod_ID) {
+                ArrayProduct[i][1] = QTY;
+                break;
+            }
+        }
+    }
+
     public void increaseQty(int prod_ID) {
         for (int i = 0; i < ArrayProduct.length; i++) {
             if (ArrayProduct[i][0] == prod_ID) {

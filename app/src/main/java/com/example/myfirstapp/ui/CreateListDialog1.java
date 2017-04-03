@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
+import com.example.myfirstapp.mgr.GroceryManager;
 
 /**
  * Created by Daniel on 3/30/2017.
@@ -17,18 +18,20 @@ import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 public class CreateListDialog1 extends DialogFragment {
 
-    private DatabaseAccess databaseAccess;
+    private GroceryManager groceryManager;
     private EditText listNameInput;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        groceryManager = new GroceryManager(getActivity().getApplicationContext());
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        this.databaseAccess = DatabaseAccess.getInstance(getActivity().getApplicationContext());
         View v = inflater.inflate(R.layout.dialog_create_list_1, container, false);
         listNameInput = (EditText) v.findViewById(R.id.create_list_dialog_1_editText);
         Button listConfirmButton = (Button) v.findViewById(R.id.create_list_dialog_1_confirm_btn);
@@ -38,12 +41,10 @@ public class CreateListDialog1 extends DialogFragment {
             public void onClick(View view) {
 
                 String listName = getListName();
-                databaseAccess.open();
-                if(databaseAccess.listNameValidity(listName)) {
 
-                    databaseAccess.createGList(listName);
+                if(groceryManager.createNewList(listName)) {
+                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(0), "Cart");
 
-                    ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(), "Cart");
                     ((NavigationActivity)getActivity()).closeDialogs();
                 }
                 else {

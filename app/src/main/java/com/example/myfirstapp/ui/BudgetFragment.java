@@ -10,7 +10,6 @@ import com.example.myfirstapp.R;
 
 public class BudgetFragment extends Fragment {
 
-    private Button btBack;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +19,24 @@ public class BudgetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_budget_calculator, container, false);
-        btBack = (Button) view.findViewById(R.id.back);
+        Button btCalculate = (Button) view.findViewById(R.id.budgetconfirm);
+        Button btBack = (Button) view.findViewById(R.id.back);
+
+        btCalculate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).showDialog(BudgetUpdatedDialog.newInstance());
+                ((NavigationActivity)getActivity()).replaceThis(ExpenditureFragment.newInstance(),"Expenditure");
+            }
+        });
 
         btBack.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 ((NavigationActivity)getActivity()).replaceThis(ExpenditureFragment.newInstance(),"Expenditure");
+
             }
         });
         return view;

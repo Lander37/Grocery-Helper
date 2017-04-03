@@ -1,7 +1,11 @@
 package com.example.myfirstapp.mgr;
 
+import android.content.Context;
+
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,12 +16,13 @@ import java.util.Collections;
 
 public class GroceryManager {
 
+    private DatabaseAccess databaseAccess;
     private int currentListID;
     private int latestListID;
     private ArrayList<GroceryList> gListArray;
 
-    public GroceryManager(){
-
+    public GroceryManager(Context context){
+        this.databaseAccess = DatabaseAccess.getInstance(context);
     }
 
     public int getcurrentListID() {
@@ -37,20 +42,37 @@ public class GroceryManager {
      *
      * @param listName - name of new list
      */
-    public void createNewList(String listName) {
-        //Check if list with name == listName exists
+    public boolean createNewList(String listName) {
+        if(databaseAccess.listNameValidity(listName)){
+            databaseAccess.open();
+            databaseAccess.createGList(listName);
+            databaseAccess.close();
+
+            return true;
+        }
+        return false;
+    }
+
+    public void loadGListsFromDB(){
+        //databaseAccess.
+    }
+
+    public GroceryList getCurrentList(){
         for(int i = 0; i < gListArray.size(); i++){
-            if(listName.equals(gListArray.get(i).getName())){
-                //Invalid name, name already in use!
-                return;
+            if(currentListID == gListArray.get(i).getGL_ID()){
+                return gListArray.get(i);
             }
         }
+        return null;
+    }
 
-        int newId = latestListID + 1;
-        GroceryList newGroceryList = new GroceryList(listName, newId);
-        this.addGroceryList(newGroceryList);
-        this.gListArray.add(newGroceryList);
-        this.currentListID = newId;
+    public GroceryList getListById(int gl_id){
+        for(int i = 0; i < gListArray.size(); i++){
+            if(gl_id == gListArray.get(i).getGL_ID()){
+                return gListArray.get(i);
+            }
+        }
+        return null;
     }
 
     public ArrayList<GroceryList> getgListArray () {
@@ -64,14 +86,6 @@ public class GroceryManager {
     public void setgListArray(ArrayList<GroceryList> gListArray) {
         this.gListArray = gListArray;
 
-    }
-
-    /**
-     *
-     * @param tobeAdded
-     */
-    public void addGroceryList(GroceryList tobeAdded) {
-        gListArray.add(tobeAdded);
     }
 
     public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
@@ -151,6 +165,24 @@ public class GroceryManager {
             if (currentListID == gListArray.get(i).getGL_ID()){
                 gListArray.get(i).addProdToList(prod_ID , QTY);
                 break;
+            }
+        }
+    }
+
+    public void updateItemQty(int prod_ID, int QTY){
+        for (int i = 0; i < gListArray.size(); i++){
+            if (currentListID == gListArray.get(i).getGL_ID()){
+                gListArray.get(i).setQty(prod_ID , QTY);
+                break;
+            }
+        }
+    }
+
+    public void confirmList () {
+        //Add List to ListHistory/Expenditure. Check who is doing and how to implement
+        for (int i = 0; i < gListArray.size(); i++){
+            if (currentListID == gListArray.get(i).getGL_ID()){
+                gListArray.remove(i);
             }
         }
     }
