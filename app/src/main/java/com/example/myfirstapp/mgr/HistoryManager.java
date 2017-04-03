@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * Created by Daniel on 3/26/2017.
+ * HistoryManager.java
+ * @author Daniel
  */
 
 public class HistoryManager {
@@ -16,10 +17,15 @@ public class HistoryManager {
     private ArrayList<GroceryList> gListArray;
     private GroceryManager groceryManager;
 
+    /**
+     *
+     * @param context
+     */
     public HistoryManager(Context context){
         groceryManager = new GroceryManager(context);
         loadGroceryLists();
     }
+
 
     public void loadGroceryLists(){
         gListArray = new ArrayList<GroceryList>(0);
