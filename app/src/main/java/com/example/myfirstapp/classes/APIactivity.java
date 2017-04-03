@@ -62,11 +62,17 @@ public class APIactivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
             /**
              * Making a request to the url and getting a reply.
+             * Includes code for retrieving JSON Array.
+             * Loops through the data API
+             * and add all products into an ArrayList
              * @param url - an absolute URL where we got our data API from.
+             * @param records
+             * @param i
              */
+            HttpHandler sh = new HttpHandler();
+
             String url = "https://data.gov.sg/api/action/datastore_search?resource_id=6bf1e41f-cdf8-47ca-ac72-c5c076f59416";
             String jsonStr = sh.makeServiceCall(url);
 
@@ -75,14 +81,9 @@ public class APIactivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
-                    /**Code for retrieving JSON Array.
-                     * @param records the location of the data.
-                     */
                     JSONArray products = jsonObj.getJSONObject("result").getJSONArray("records");
 
-                    /**Loops through all the products.
-                     * @param i the total number of products in this list.
-                     */
+
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject c = products.getJSONObject(i);
                         //String _id = c.optString("id");
@@ -104,9 +105,7 @@ public class APIactivity extends AppCompatActivity {
                         // product.put("product weight", product_weight);
                         //productList.add(product);
 
-                        /**Adds products into this product list.
-                         * @param product item that can be found in this list.
-                         */
+
                         //productList.add(product);
                     }
                 } catch (final JSONException e) {
