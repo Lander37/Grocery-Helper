@@ -1,7 +1,9 @@
 package com.example.myfirstapp.dbHelpers;
 
 /**
- * Created by Lander on 02-Apr-17.
+ * DatabaseAccess.java- to read and write the supermarket database into this application
+ * so that it would constantly be up to date.
+ * @author Lander
  */
 
 import android.content.ContentValues;
@@ -21,7 +23,7 @@ public class DatabaseAccess {
     private static DatabaseAccess instance;
 
     /**
-     * Private constructor to aboid object creation from outside classes.
+     * Private constructor to avoid object creation from outside classes.
      *
      * @param context
      */
@@ -57,6 +59,7 @@ public class DatabaseAccess {
             this.database.close();
         }
     }
+
 
     public List<String> getProductList() {
         List<String> list = new ArrayList<>();

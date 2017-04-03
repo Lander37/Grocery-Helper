@@ -2,7 +2,8 @@ package com.example.myfirstapp.classes;
 import java.util.Calendar;
 
 /**
- * Created by XY on 8/3/2017.
+ *Expenditure.java - a class that contains the monthly expenditure and budget of user.
+ * @author calvin
  */
 
 public class Expenditure {
@@ -12,16 +13,33 @@ public class Expenditure {
     private int month;
     private float monthlyIncome;
 
+    /**
+     *
+     * @param thisMonthBudget
+     * @param thisMonthExp
+     * @param monthlyIncome
+     */
     public Expenditure(float thisMonthBudget, float thisMonthExp, float monthlyIncome){
         Calendar c = Calendar.getInstance();
         this.month = c.get(Calendar.MONTH);
     }
 
+    /**
+     *
+     * @param thisMonthBudget
+     * @param thisMonthExp
+     * @param month
+     * @param monthlyIncome
+     */
     public Expenditure(float thisMonthBudget, float thisMonthExp, int month, float monthlyIncome){
         this(thisMonthBudget, thisMonthExp, monthlyIncome);
         this.month = month;
     }
 
+    /**
+     *
+     * @return budget for that particular month
+     */
     public float getThisMonthBudget() {
         return this.thisMonthBudget;
     }
@@ -63,7 +81,6 @@ public class Expenditure {
     }
 
     /**
-     *
      * @param monthlyIncome - user's monthly income
      */
     public void setMonthlyIncome(float monthlyIncome) {
@@ -71,8 +88,8 @@ public class Expenditure {
     }
 
     /**
-     *
      * @param monthlyIncome - user's monthly income
+     * @return Budget of user according to user's input
      */
     public float calculateBudget(float monthlyIncome) {
         float factor = (float)0.4;

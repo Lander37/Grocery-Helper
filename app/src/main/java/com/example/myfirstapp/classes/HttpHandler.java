@@ -1,7 +1,7 @@
 package com.example.myfirstapp.classes;
 
 /**
- * Created by tosy on 2/4/2017.
+ * @author tosy
  */
 
 import android.util.Log;
@@ -23,6 +23,10 @@ public class HttpHandler {
     public HttpHandler() {
     }
 
+    /**
+     * @param reqUrl
+     * @return
+     */
     public String makeServiceCall(String reqUrl) {
         String response = null;
         try {
@@ -44,6 +48,10 @@ public class HttpHandler {
         return response;
     }
 
+    /**
+     * @param is
+     * @return
+     */
     private String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();

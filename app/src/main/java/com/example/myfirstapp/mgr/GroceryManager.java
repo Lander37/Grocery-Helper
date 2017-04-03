@@ -14,6 +14,7 @@ import java.util.Collections;
  * Created by XY on 8/3/2017.
  */
 
+
 public class GroceryManager {
 
     private DatabaseAccess databaseAccess;
@@ -21,8 +22,10 @@ public class GroceryManager {
     private int latestListID;
     private ArrayList<GroceryList> gListArray;
 
+
     public GroceryManager(Context context){
         this.databaseAccess = DatabaseAccess.getInstance(context);
+
     }
 
     public int getCurrentListID() {
@@ -30,7 +33,6 @@ public class GroceryManager {
     }
 
     /**
-     *
      * @param list_ID
      */
     public void setCurrentListID(int list_ID) {
@@ -39,7 +41,6 @@ public class GroceryManager {
     }
   
       /**
-     *
      * @param listName - name of new list
      */
     public boolean createNewList(String listName) {
@@ -81,13 +82,13 @@ public class GroceryManager {
     }
 
     /**
-     *
      * @param gListArray
      */
     public void setgListArray(ArrayList<GroceryList> gListArray) {
         this.gListArray = gListArray;
 
     }
+
 
     public void addProduct(String productToAdd, SupermarketManager smManager, ProfileManager profileManager){
 
@@ -156,7 +157,6 @@ public class GroceryManager {
         }
 
     /**
-     *
      * @param prod_ID
      * @param QTY
      */
