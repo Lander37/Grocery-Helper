@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class CreateProfileActivity extends AppCompatActivity {
 
-    private Button btDone;
+    Button btDone;
     private EditText etEditUsername;
     private EditText etEditPassword;
     private Spinner spLocationList;
@@ -34,6 +34,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
     private static Profile thisProfile;
+    private static final int MinPassLen = 6;
 
 
     @Override
@@ -104,16 +105,16 @@ public class CreateProfileActivity extends AppCompatActivity {
             int b = 0;
             int c = 0;
             int d = 0;
-            if (HA == true) {
+            if (HA) {
                 a = 1;
             }
-            if (HC == true) {
+            if (HC) {
                 b = 1;
             }
-            if (GF == true) {
+            if (GF) {
                 c = 1;
             }
-            if (VG == true) {
+            if (VG) {
                 d = 1;
             }
 
@@ -123,7 +124,7 @@ public class CreateProfileActivity extends AppCompatActivity {
             Random rn = new Random();
             int profileID = rn.nextInt();
 
-            newProfile = new Profile(username, password, defaultLocation, dpId, healthEmphasis, profileID);
+            thisProfile = new Profile(username, password, defaultLocation, dpId, healthEmphasis, profileID);
             return true;
         }
     }
