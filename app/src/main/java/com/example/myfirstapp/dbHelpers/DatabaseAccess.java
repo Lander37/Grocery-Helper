@@ -11,11 +11,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.example.myfirstapp.ui.CreateProfileActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
@@ -62,9 +65,10 @@ public class DatabaseAccess {
 
 
 
-    public List<String> getProductList(String category) {
+    public List<String> getSubCategoryList(String category) {
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 WHERE category = ? ORDER BY " + "subCategory", new String[] {category + ""});
+        Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 " +
+                "WHERE category = ? ORDER BY " + "subCategory", new String[] {category + ""});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -89,13 +93,18 @@ public class DatabaseAccess {
         }
     }
 
-    public void addProduct(String productName, double unitPrice) {
-        ContentValues values = new ContentValues();
+    public void addProduct(String subcategory) {
+
+        //Get List of Products in same SubCategory in the Supermarket
+
+        thisUsername = "";
+
+        /*ContentValues values = new ContentValues();
         values.put("productName", productName);
         values.put("unitPrice", unitPrice);
         values.put("quantity", 1);
 
-        database.insert("List1", null, values);
+        database.insert("List1", null, values);*/
     }
 
     public int createGList(String listName) {
@@ -110,6 +119,7 @@ public class DatabaseAccess {
         values.put("TotalCost", 0);
         values.put("isHistory", 0);
         values.put("isCurrent", 1);
+        values.put("listUser", thisUsername);
         values.put("creationDate", dateNow);
 
 
@@ -143,8 +153,9 @@ public class DatabaseAccess {
     }
 
     public Cursor pullGLists(){
-        String query = "SELECT * FROM GLists; ";
-        Cursor cursor = database.rawQuery(query, null);
+        //String query = "SELECT * FROM GLists; ";
+        //Cursor cursor = database.rawQuery(query, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM GLists WHERE listUser = ? ", new String[] {thisUsername + ""});
         return cursor;
     }
 
