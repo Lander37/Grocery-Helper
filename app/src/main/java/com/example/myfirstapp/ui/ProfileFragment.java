@@ -26,6 +26,11 @@ public class ProfileFragment extends Fragment {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
+    private boolean isCheckedHC = false;
+    private boolean isCheckedHA = false;
+    private boolean isCheckedVG = false;
+    private boolean isCheckedGF = false;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,13 @@ public class ProfileFragment extends Fragment {
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
+        tbHealthierChoice.setChecked(isCheckedHC);
         tbHalal = (CheckBox) view.findViewById(R.id.halalButton);
+        tbHalal.setChecked(isCheckedHA);
         tbVegetarian = (CheckBox) view.findViewById(R.id.vegetarianButton);
+        tbVegetarian.setChecked(isCheckedVG);
         tbGluten = (CheckBox) view.findViewById(R.id.glutenButton);
+        tbGluten.setChecked(isCheckedGF);
 
         return view;
     }
