@@ -15,17 +15,18 @@ public class SelectCategoryFragment extends Fragment {
     private int gl_id;
     private Button btLocation;
     private Button btFilter;
-    Button btBeverages;
-    Button btCereal;
-    Button btDiary;
-    Button btFats;
-    Button btFruits;
-    Button btIceCream;
-    Button btMeat;
-    Button btSauces;
-    Button btSeafood;
-    Button btGluten;
     private SearchView prodSearch;
+
+    private Button btBeverages;
+    private Button btCereal;
+    private Button btDiary;
+    private Button btFats;
+    private Button btFruits;
+    private Button btIceCream;
+    private Button btMeat;
+    private Button btSauces;
+    private Button btSeafood;
+    private Button btGluten;
 
     Button btBack;
     @Override

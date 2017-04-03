@@ -22,7 +22,8 @@ public class HistoryManager {
     }
 
     public void loadGroceryLists(){
-        gListArray = new ArrayList<GroceryList>(0);
+        //gListArray = new ArrayList<GroceryList>(0);
+        gListArray = groceryManager.getgListArray();
         GroceryList gList1 = new GroceryList("testList",1);
         GroceryList gList2 = new GroceryList("testList2",2);
         gListArray.add(gList1);

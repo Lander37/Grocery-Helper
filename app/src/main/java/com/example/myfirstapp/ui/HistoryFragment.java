@@ -78,7 +78,7 @@ public class HistoryFragment extends Fragment {
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
 
-                    return  gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                    return  gList1.getDate().compareTo(gList2.getDate());
                 }
             });
         } else if(sortingBy == getString(R.string.sortby_Date_latest)){
@@ -87,7 +87,7 @@ public class HistoryFragment extends Fragment {
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
 
-                    return  -gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                    return  -gList1.getDate().compareTo(gList2.getDate());
                 }
             });
         } else if (sortingBy == getString(R.string.sortby_Quantity)){
