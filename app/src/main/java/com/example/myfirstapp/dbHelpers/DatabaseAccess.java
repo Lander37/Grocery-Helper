@@ -100,7 +100,7 @@ public class DatabaseAccess {
         database.insert("List1", null, values);
     }
 
-    public void createGList(String listName) {
+    public int createGList(String listName) {
 
         database.execSQL("UPDATE GLists SET isCurrent = 0");
 
@@ -116,11 +116,15 @@ public class DatabaseAccess {
         values.put("creationDate", dateNow);
 
 
-        database.insert("GLists", null, values);
+        long idLong = database.insert("GLists", null, values);
+        int id = (int)idLong;
+
 
         String query = "CREATE TABLE " + listName + "(productName TEXT NOT NULL PRIMARY KEY, " +
                 "quantity INTEGER NOT NULL, unitPrice REAL NOT NULL);";
         database.execSQL(query);
+
+        return id;
     }
 
     public boolean listNameValidity(String listName) {
