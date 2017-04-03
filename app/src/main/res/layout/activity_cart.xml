@@ -26,29 +26,55 @@
         app:layout_anchor="@+id/include2"
         app:layout_anchorGravity="top|right" />
 
-    <GridView
-        android:id="@+id/GridC"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="100dp" />
 
-    <TextSwitcher
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <TextView
+    <TextView
             android:id="@+id/textView3"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
             android:text="Overview"
             android:textSize="25sp" />
 
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/GridC"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp">
 
-    </TextSwitcher>
+        <TableLayout
+            android:id="@+id/overviewTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TableRow
+                android:id="@+id/overviewRow"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/overviewListName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="2"
+                    android:text="List name" />
+
+                <TextView
+                    android:id="@+id/overviewCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Total Cost" />
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
 
 
 </android.support.design.widget.CoordinatorLayout>

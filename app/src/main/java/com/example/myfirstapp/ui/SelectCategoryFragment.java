@@ -14,6 +14,16 @@ public class SelectCategoryFragment extends Fragment {
 
     Button btLocation;
     Button btFilter;
+    Button btBeverages;
+    Button btCereal;
+    Button btDiary;
+    Button btFats;
+    Button btFruits;
+    Button btIceCream;
+    Button btMeat;
+    Button btSauces;
+    Button btSeafood;
+    Button btGluten;
     private SearchView prodSearch;
     Button btBack;
     @Override
@@ -27,7 +37,16 @@ public class SelectCategoryFragment extends Fragment {
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
         btBack = (Button) view.findViewById(R.id.back);
-
+        btBeverages = (Button) view.findViewById(R.id.beverages);
+        btCereal = (Button) view.findViewById(R.id.cereal);
+        btDiary = (Button) view.findViewById(R.id.diary);
+        btFats = (Button) view.findViewById(R.id.fats);
+        btFruits = (Button) view.findViewById(R.id.fruits);
+        btIceCream = (Button) view.findViewById(R.id.iceCream);
+        btMeat = (Button) view.findViewById(R.id.meat);
+        btSauces = (Button) view.findViewById(R.id.sauces);
+        btSeafood = (Button) view.findViewById(R.id.seafood);
+        btGluten = (Button) view.findViewById(R.id.glutenFree);
 
         btLocation.setOnClickListener(new View.OnClickListener(){
             @Override
