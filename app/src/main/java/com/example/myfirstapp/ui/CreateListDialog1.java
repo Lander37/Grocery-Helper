@@ -39,9 +39,10 @@ public class CreateListDialog1 extends DialogFragment {
             public void onClick(View view) {
 
                 String listName = getListName();
+                databaseAccess.open();
                 if(databaseAccess.listNameValidity(listName)) {
 
-                    createGList(listName);
+                    databaseAccess.createGList(listName);
 
                     ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(), "Cart");
                     ((NavigationActivity)getActivity()).closeDialogs();
@@ -49,6 +50,8 @@ public class CreateListDialog1 extends DialogFragment {
                 else {
                     ((NavigationActivity) getActivity()).showDialog(CreateListDialog2.newInstance());
                 }
+
+                databaseAccess.close();
             }
         });
 
@@ -64,12 +67,5 @@ public class CreateListDialog1 extends DialogFragment {
         return listNameInput.getText().toString();
 
     }
-
-    private void createGList(String listName){
-        databaseAccess.open();
-        databaseAccess.createGList(listName);
-        databaseAccess.close();
-    }
-
 }
 
