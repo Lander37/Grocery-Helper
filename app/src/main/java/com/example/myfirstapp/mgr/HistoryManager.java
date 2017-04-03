@@ -8,7 +8,8 @@ import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 import java.util.ArrayList;
 /**
- * Created by Daniel on 3/26/2017.
+ * HistoryManager.java
+ * @author Daniel
  */
 
 public class HistoryManager {
@@ -16,11 +17,16 @@ public class HistoryManager {
     private DatabaseAccess databaseAccess;
     private ArrayList<GroceryList> gListArray;
 
+    /**
+     *
+     * @param context
+     */
     public HistoryManager(Context context){
         this.databaseAccess = DatabaseAccess.getInstance(context);
         gListArray = new ArrayList<GroceryList>(0);
         loadGroceryLists();
     }
+
 
     public void loadGroceryLists(){
         databaseAccess.open();

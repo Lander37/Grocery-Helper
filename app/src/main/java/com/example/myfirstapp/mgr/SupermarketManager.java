@@ -46,7 +46,10 @@ public class SupermarketManager {
         smArray.add(tobeAdded);
     }
 
-
+    /**
+     *
+     * @return
+     */
     //Get Full Product List of Current Supermarket
     public Product[] findSMProductList(){
         int i = 0;
