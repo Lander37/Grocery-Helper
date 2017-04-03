@@ -1,5 +1,4 @@
 package com.example.myfirstapp.ui;
-
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -10,17 +9,29 @@ import android.widget.Button;
 import com.example.myfirstapp.R;
 
 /**
- * Created by Daniel on 3/30/2017.
+ * BudgetUpdatedDialog.java
+ * @author Daniel
  */
 
-public class BudgetUpdatedDialog extends DialogFragment {
 
+public class BudgetUpdatedDialog extends DialogFragment {
+    /**
+     *Bundle has been passed on to onCreate.
+     * @param savedInstanceState UI state.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return v
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_budget_update, container, false);
@@ -36,6 +47,10 @@ public class BudgetUpdatedDialog extends DialogFragment {
         return v;
     }
 
+    /**
+     *
+     * @return pop up that diaog has been updated.
+     */
     public static BudgetUpdatedDialog newInstance() {
         BudgetUpdatedDialog budgetUpdatedDialog = new BudgetUpdatedDialog();
         return budgetUpdatedDialog;

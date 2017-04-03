@@ -11,7 +11,8 @@ import android.widget.CheckBox;
 import com.example.myfirstapp.R;
 
 /**
- * Created by Daniel on 3/30/2017.
+ * FilterDietaryPrefDialog.java
+ * @author Daniel
  */
 
 public class FilterDietaryPrefDialog extends DialogFragment {

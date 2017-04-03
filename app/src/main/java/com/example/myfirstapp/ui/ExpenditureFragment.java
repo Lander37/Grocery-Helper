@@ -1,4 +1,8 @@
 package com.example.myfirstapp.ui;
+/**
+ * ExpenditureFragment.jave
+ * @author
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +18,27 @@ import com.example.myfirstapp.R;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+
 public class ExpenditureFragment extends Fragment {
     TextView txt;
     private Button btInputBudget;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         String months [] = {
@@ -95,6 +112,10 @@ public class ExpenditureFragment extends Fragment {
         return view;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ExpenditureFragment newInstance() {
         return new ExpenditureFragment();
     }

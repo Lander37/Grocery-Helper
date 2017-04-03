@@ -1,4 +1,7 @@
 package com.example.myfirstapp.ui;
+/**
+ * ChooseLocationDialog.java
+ */
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +26,10 @@ public class CartFragment extends Fragment {
     private GroceryManager groceryManager;
     private ArrayList<GroceryList> gListArray;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +37,13 @@ public class CartFragment extends Fragment {
         gListArray = groceryManager.getgListArray();
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,7 +113,10 @@ public class CartFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public static CartFragment newInstance() {
         return new CartFragment();
     }

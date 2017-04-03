@@ -1,4 +1,7 @@
 package com.example.myfirstapp.ui;
+/**
+ * BudgetFragment.java
+ */
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +19,13 @@ public class BudgetFragment extends Fragment {
 
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_budget_calculator, container, false);
@@ -42,6 +52,10 @@ public class BudgetFragment extends Fragment {
         return view;
     }
 
+    /**
+     *
+     * @return
+     */
     public static BudgetFragment newInstance() {
         return new BudgetFragment();
     }

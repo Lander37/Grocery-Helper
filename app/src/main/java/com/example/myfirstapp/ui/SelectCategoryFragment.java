@@ -20,8 +20,10 @@ import static android.R.attr.category;
 public class SelectCategoryFragment extends Fragment {
 
     private int gl_id;
+    private String subCategory;
     private Button btLocation;
     private Button btFilter;
+
     Button btBeverages;
     Button btCereal;
     Button btDiary;
@@ -33,8 +35,11 @@ public class SelectCategoryFragment extends Fragment {
     Button btSeafood;
     Button btGluten;
     private ListView lvProductList;
+
     private SearchView prodSearch;
     private DatabaseAccess databaseAccess;
+
+
     Button btDone;
     Button btBack;
 
@@ -43,6 +48,7 @@ public class SelectCategoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
         gl_id = args.getInt("gl_id");
+        subCategory =args.getString("subCategory");
 
     }
 
@@ -69,7 +75,7 @@ public class SelectCategoryFragment extends Fragment {
         lvProductList = (ListView) view.findViewById(R.id.productList);
 
         databaseAccess.open();
-        List<String> productList = databaseAccess.getProductList("Beverages");
+        List<String> productList = databaseAccess.getProductList(subCategory);
         databaseAccess.close();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, productList);
@@ -97,27 +103,32 @@ public class SelectCategoryFragment extends Fragment {
             }
         });
 
-
         btDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
-=========
+                ((NavigationActivity) getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id), "Cart");
+
+            }
+        });
+
+
         btCereal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Cereal"), "Cart");
 
->>>>>>>>> Temporary merge branch 2
+
             }
         });
 
         return view;
     }
 
-    public static SelectCategoryFragment newInstance(int gl_id, String passed) {
+    public static SelectCategoryFragment newInstance(int gl_id, String subCategory) {
         SelectCategoryFragment fragment = new SelectCategoryFragment();
         Bundle args = new Bundle();
         args.putInt("gl_id",gl_id);
+        args.putString("subCategory",subCategory);
         fragment.setArguments(args);
         return fragment;
     }
