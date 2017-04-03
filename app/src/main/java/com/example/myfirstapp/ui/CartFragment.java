@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
+import java.util.Random;
+
 public class CartFragment extends Fragment {
     private Button btAddList;
     private DatabaseAccess databaseAccess;
@@ -43,6 +45,8 @@ public class CartFragment extends Fragment {
 
         Cursor cursor = databaseAccess.populateGListTable();
         if (cursor.getCount() > 0) {
+
+
             while (cursor.moveToNext()) {
                 // Read columns data
                 String listName = cursor.getString(cursor.getColumnIndex("Name"));
@@ -50,6 +54,20 @@ public class CartFragment extends Fragment {
 
                 // data rows
                 TableRow row = new TableRow(view.getContext());
+                row.setClickable(true);
+                row.setOnClickListener(new View.OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(100),"Cart");
+                    }
+                });
+
+
+
+
+
                 row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
 
