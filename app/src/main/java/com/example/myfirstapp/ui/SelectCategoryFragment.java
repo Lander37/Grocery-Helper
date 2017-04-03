@@ -22,6 +22,7 @@ public class SelectCategoryFragment extends Fragment {
     private int gl_id;
     private Button btLocation;
     private Button btFilter;
+
     Button btBeverages;
     Button btCereal;
     Button btDiary;
@@ -33,9 +34,12 @@ public class SelectCategoryFragment extends Fragment {
     Button btSeafood;
     Button btGluten;
     private ListView lvProductList;
+
     private SearchView prodSearch;
     private DatabaseAccess databaseAccess;
 
+
+    Button btDone;
     Button btBack;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class SelectCategoryFragment extends Fragment {
         btLocation = (Button) view.findViewById(R.id.LocationP);
         btFilter = (Button) view.findViewById(R.id.FilterP);
         btBack = (Button) view.findViewById(R.id.back);
+        btDone = (Button) view.findViewById(R.id.done);
         btBeverages = (Button) view.findViewById(R.id.beverages);
         btCereal = (Button) view.findViewById(R.id.cereal);
         btDiary = (Button) view.findViewById(R.id.diary);
@@ -94,9 +99,16 @@ public class SelectCategoryFragment extends Fragment {
             }
         });
 
+
         btCereal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+        btDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
 
             }
         });

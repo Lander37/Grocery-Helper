@@ -12,7 +12,10 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.R;
+
+import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
 
 public class ProfileFragment extends Fragment {
 
@@ -26,20 +29,26 @@ public class ProfileFragment extends Fragment {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    private boolean isCheckedHC = false;
-    private boolean isCheckedHA = false;
-    private boolean isCheckedVG = false;
-    private boolean isCheckedGF = false;
+    private boolean isCheckedHC = true;
+    private boolean isCheckedHA = true;
+    private boolean isCheckedVG = true;
+    private boolean isCheckedGF = true;
+    private DatabaseAccess databaseAccess;
+    private int healthPref;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.databaseAccess= DatabaseAccess.getInstance(getContext());
+
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btLogOut = (Button) view.findViewById(R.id.logOut);
         btLogOut.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +66,23 @@ public class ProfileFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.location_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLocationList.setAdapter(adapter);
+
+        databaseAccess.open();
+        healthPref = databaseAccess.getDpId(thisUsername);
+        databaseAccess.close();
+
+        if ((healthPref % 2)==0){
+            isCheckedGF = false;
+        }
+        if (((healthPref/2) % 2)==0){
+            isCheckedHC = false;
+        }
+        if (((healthPref/4) % 2)==0){
+            isCheckedVG = false;
+        }
+        if (((healthPref/8) % 2)==0){
+            isCheckedHA = false;
+        }
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);

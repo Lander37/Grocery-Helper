@@ -52,5 +52,4 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("postExecActivity","login");
         startActivity(intent);
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.myfirstapp.ui;
 
+import java.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -52,8 +53,9 @@ public class HistorySpecListFragment extends Fragment {
         GroceryList selectedList = manager.getGroceryList(list_id);
         int[][] arrayProduct = selectedList.getArrayProduct();
 
+
         listName.setText(selectedList.getName());
-        //listDate.setText(selectedList.getDate().getTime());
+        listDate.setText(new SimpleDateFormat("dd-MMM-yyyy").format(selectedList.getDate()));
         String totalExp = "$" + String.format ("%.2f", selectedList.getTotalCost());
         totalExpenditure.setText(totalExp);
         for(int i = 0; i < arrayProduct.length; i++){

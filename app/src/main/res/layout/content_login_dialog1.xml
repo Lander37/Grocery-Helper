@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/dialog_login_1">
+    tools:showIn="@layout/login_dialog1">
 
     <TextView
         android:id="@+id/login_dialog1_prompt"
