@@ -1,6 +1,9 @@
 package com.example.myfirstapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+
+import android.app.AlertDialog;
+
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.Profile;
@@ -22,11 +28,13 @@ public class CreateProfileActivity extends AppCompatActivity {
     private EditText etEditPassword;
     private Spinner spLocationList;
     private SeekBar sbHealthSeekBar;
+
     private CheckBox tbHealthierChoice;
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
     private static Profile thisProfile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,49 +58,107 @@ public class CreateProfileActivity extends AppCompatActivity {
         btDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setProfile();
-                launchActivity();
+                if(setProfile()){
+                    launchActivity();
+                }
             }
         });
     };
 
-    private void setProfile(){
-        String username = etEditUsername.getText().toString();
-        String password = etEditPassword.getText().toString();
-        int healthEmphasis = sbHealthSeekBar.getProgress();
-        String defaultLocation = spLocationList.getSelectedItem().toString();
 
-        boolean HA = false;
-        boolean HC = false;
-        boolean GF = false;
-        boolean VG = false;
+    private boolean setProfile(){
+        if(areFieldsEmpty(etEditUsername, etEditPassword)) {
+            showDialog(LoginDialog1.newInstance());
+            return false;
+        }
 
-        if(tbHalal.isChecked()){HA = true;}
-        if(tbHealthierChoice.isChecked()){HC = true;}
-        if(tbGluten.isChecked()){GF = true;}
-        if(tbVegetarian.isChecked()){VG = true;}
+        else if(shortPassword(etEditPassword)){
+            showDialog(LoginDialog2.newInstance());
+            return false;
+        }
+        else {
+            String username = etEditUsername.getText().toString();
+            String password = etEditPassword.getText().toString();
+            int healthEmphasis = sbHealthSeekBar.getProgress();
+            String defaultLocation = spLocationList.getSelectedItem().toString();
 
-        int a=0;
-        int b=0;
-        int c=0;
-        int d=0;
-        if(HA){a=1;}
-        if(HC){b=1;}
-        if(GF){c=1;}
-        if(VG){d=1;}
+            boolean HA = false;
+            boolean HC = false;
+            boolean GF = false;
+            boolean VG = false;
 
-        int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b)+ String.valueOf(c)+ String.valueOf(d) );
+            if (tbHalal.getText() == "On") {
+                HA = true;
+            }
+            if (tbHealthierChoice.getText() == "On") {
+                HC = true;
+            }
+            if (tbGluten.getText() == "On") {
+                GF = true;
+            }
+            if (tbVegetarian.getText() == "On") {
+                VG = true;
+            }
 
-        //just a random number generator for now
-        Random rn = new Random();
-        int profileID = rn.nextInt();
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int d = 0;
+            if (HA == true) {
+                a = 1;
+            }
+            if (HC == true) {
+                b = 1;
+            }
+            if (GF == true) {
+                c = 1;
+            }
+            if (VG == true) {
+                d = 1;
+            }
 
-        thisProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
+            int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b) + String.valueOf(c) + String.valueOf(d));
+
+            //make creating a profile id more consistent
+            Random rn = new Random();
+            int profileID = rn.nextInt();
+
+            newProfile = new Profile(username, password, defaultLocation, dpId, healthEmphasis, profileID);
+            return true;
+        }
+    }
+    private boolean areFieldsEmpty(EditText... fields) {
+        for(int i = 0; i < fields.length; i++) {
+            if(fields[i].getText().toString().matches("")){
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean shortPassword(EditText passwordField){
+        if(passwordField.getText().toString().length() > (MinPassLen-1)){
+           return false;
+        }
+        return true;
+
     }
     private void launchActivity() {
 
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
+    }
+    public void showDialog(DialogFragment fragment){
+        closeDialogs();
+        fragment.show(getSupportFragmentManager().beginTransaction(),"dialog");
+    }
+
+    public void closeDialogs(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if(prev != null){
+            transaction.remove(prev);
+        }
+        transaction.commit();
     }
 };
 
