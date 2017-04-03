@@ -11,6 +11,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -120,11 +123,11 @@ public class DatabaseAccess {
         database.execSQL(query);
     }
 
-    public boolean listNameValidity(String listName){
+    public boolean listNameValidity(String listName) {
         String query = "SELECT Name FROM GLists WHERE Name = \"" + listName + "\";";
         Cursor cursor = database.rawQuery(query, null);
 
-        if (cursor.getCount() <= 0){
+        if (cursor.getCount() <= 0) {
             cursor.close();
             return true;
         }
@@ -132,4 +135,9 @@ public class DatabaseAccess {
         return false;
     }
 
+    public Cursor populateGListTable() {
+        String query = "SELECT Name, TotalCost FROM GLists; ";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
 }
