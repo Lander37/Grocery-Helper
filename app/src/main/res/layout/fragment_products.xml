@@ -32,27 +32,34 @@
             <TableRow>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="50"
+                    android:paddingBottom="20dp"
                     android:text="Item" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="50"
+                    android:paddingLeft="26dp"
+                    android:paddingBottom="20dp"
                     android:text="Brand" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="60"
+                    android:paddingLeft="38dp"
+                    android:paddingBottom="20dp"
                     android:text="Quantity" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="30"
+                    android:paddingLeft="17dp"
+                    android:paddingBottom="20dp"
                     android:text="Price" />
             </TableRow>
         </TableLayout>

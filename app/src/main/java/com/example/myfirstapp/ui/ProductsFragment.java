@@ -20,6 +20,8 @@ import com.example.myfirstapp.mgr.GroceryManager;
 
 import java.util.ArrayList;
 
+import static com.example.myfirstapp.ui.MainActivity.df;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -62,7 +64,7 @@ public class ProductsFragment extends Fragment {
 
             brand.setText(product.getBrand());
             item.setText(product.getProductName());
-            price.setText((quantity*product.getUnitPrice())+"");
+            price.setText(df.format((quantity*product.getUnitPrice()))+"");
             quantityPicker.setMinValue(1);
             quantityPicker.setMaxValue(100);
             quantityPicker.setValue(quantity);
@@ -76,10 +78,13 @@ public class ProductsFragment extends Fragment {
             });
 
             row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
-            brand.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
-            item.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
-            quantityPicker.setLayoutParams(new TableRow.LayoutParams(200,100));
-            price.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
+            brand.setPadding(18,0,0,0);
+            brand.setLayoutParams(new TableRow.LayoutParams(200,200));
+            item.setLayoutParams(new TableRow.LayoutParams(200,200));
+            quantityPicker.setLayoutParams(new TableRow.LayoutParams(100,120));
+            price.setPadding(60,0,0,0);
+            price.setLayoutParams(new TableRow.LayoutParams(200,200));
+
 
             row.addView(item);
             row.addView(brand);
