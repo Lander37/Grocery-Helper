@@ -62,8 +62,8 @@ public class ExpenditureFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_expenditure, container, false);
         etRemainingBudget = (EditText) view.findViewById(R.id.remain);
         etMonthlyBudget = (EditText) view.findViewById(R.id.budget);
-        tvRemainingBudget = (EditText) view.findViewById(R.id.remainNum);
-        tvMonthlyBudget = (EditText) view.findViewById(R.id.budgetNum);
+        tvRemainingBudget = (TextView) view.findViewById(R.id.remainNum);
+        tvMonthlyBudget = (TextView) view.findViewById(R.id.budgetNum);
         databaseAccess.open();
         float Budget = databaseAccess.getBudget(thisUsername);
         tvMonthlyBudget.setText(String.valueOf(Budget));
