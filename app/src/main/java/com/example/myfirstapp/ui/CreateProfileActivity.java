@@ -69,7 +69,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 }
             }
         });
-    };
+    }
 
 
     private boolean setProfile(){
@@ -84,6 +84,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         }
         else {
             String username = etEditUsername.getText().toString();
+            thisUsername = username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
             String defaultLocation = spLocationList.getSelectedItem().toString();
@@ -150,10 +151,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         return false;
     }
     private boolean shortPassword(EditText passwordField){
-        if(passwordField.getText().toString().length() > (MinPassLen-1)){
-           return false;
-        }
-        return true;
+        return passwordField.getText().toString().length() <= (MinPassLen - 1);
 
     }
     private void launchActivity() {
@@ -174,6 +172,6 @@ public class CreateProfileActivity extends AppCompatActivity {
         }
         transaction.commit();
     }
-};
+}
 
 

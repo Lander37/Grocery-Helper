@@ -1,53 +1,37 @@
 package com.example.myfirstapp.classes;
 
 /**
- * APIactivity.java - a simple class for reading a Data API and
+ * HealthierChoiceAPIHandler.java - a simple class for reading a Data API and
  * inserting its data into our application using JSON method.
  * @author tosy
  * @see HttpHandler
  **/
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.myfirstapp.R;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
-import com.example.myfirstapp.ui.CreateProfileActivity;
-import com.example.myfirstapp.ui.LoginActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class APIactivity extends AppCompatActivity {
-
-    private APIactivity thisActivity;
-    private String TAG = APIactivity.class.getSimpleName();
-    private String nextActivity;
-    private ListView lv;
-
+public class HealthierChoiceAPIHandler {
+    private Context appContext;
+    private String TAG = HealthierChoiceAPIHandler.class.getSimpleName();
     private ArrayList<String> productList;
+    private boolean errorRetrievingData;
+    private String errorMessage;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        nextActivity = getIntent().getStringExtra("postExecActivity");
-        System.out.println(nextActivity);
-        thisActivity = this;
-        setContentView(R.layout.activity_main);
-
+    public HealthierChoiceAPIHandler(Context context) {
+        appContext = context;
         productList = new ArrayList<String>(0);
-        // lv = (ListView) findViewById(R.id.list);
+        errorRetrievingData = false;
+        errorMessage = "No errors";
 
         new GetProducts().execute();
     }
@@ -56,18 +40,23 @@ public class APIactivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(APIactivity.this,"Json Data is downloading",Toast.LENGTH_LONG).show();
-
+            Toast.makeText(appContext,"Json Data is downloading",Toast.LENGTH_LONG).show();
         }
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
             /**
              * Making a request to the url and getting a reply.
+             * Includes code for retrieving JSON Array.
+             * Loops through the data API
+             * and add all products into an ArrayList
              * @param url - an absolute URL where we got our data API from.
+             * @param records
+             * @param i
              */
-            String url = "https://data.gov.sg/api/action/datastore_search?resource_id=6bf1e41f-cdf8-47ca-ac72-c5c076f59416";
+            HttpHandler sh = new HttpHandler();
+
+            String url = "https://data.gov.sg/api/action/datastore_search?resource_id=6bf1e41f-cdf8-47ca-ac72-c5c076f59416&limit=5780";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -75,14 +64,9 @@ public class APIactivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
-                    /**Code for retrieving JSON Array.
-                     * @param records the location of the data.
-                     */
                     JSONArray products = jsonObj.getJSONObject("result").getJSONArray("records");
 
-                    /**Loops through all the products.
-                     * @param i the total number of products in this list.
-                     */
+
                     for (int i = 0; i < products.length(); i++) {
                         JSONObject c = products.getJSONObject(i);
                         //String _id = c.optString("id");
@@ -104,51 +88,32 @@ public class APIactivity extends AppCompatActivity {
                         // product.put("product weight", product_weight);
                         //productList.add(product);
 
-                        /**Adds products into this product list.
-                         * @param product item that can be found in this list.
-                         */
+
                         //productList.add(product);
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-
+                    errorRetrievingData = true;
+                    errorMessage = "Json parsing error: " + e.getMessage();
                 }
 
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+                errorRetrievingData = true;
+                errorMessage = "Couldn't get json from server. Possible connection issues!";
             }
 
             return null;
         }
        /* @Override
         protected void onPostExecute(Void result) {
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
-            databaseAccess.open();
-            databaseAccess.updateProductHealthierChoice(productList);
-            databaseAccess.close();
-
-            if(nextActivity.equals("createProfile")) {
-                Intent intent = new Intent(thisActivity, CreateProfileActivity.class);
-                startActivity(intent);
+            if(!errorRetrievingData){
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(appContext);
+                databaseAccess.open();
+                databaseAccess.updateProductHealthierChoice(productList);
+                databaseAccess.close();
             } else {
-                Intent intent = new Intent(thisActivity, LoginActivity.class);
-                startActivity(intent);
+                Toast.makeText(appContext, errorMessage , Toast.LENGTH_LONG).show();
             }
         }
 

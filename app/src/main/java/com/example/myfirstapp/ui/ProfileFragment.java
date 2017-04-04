@@ -50,6 +50,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(editProfile()){
-                    showDialog(EditProfileConfirmationDialog.newInstance());;
+                    showDialog(EditProfileConfirmationDialog.newInstance());
                 }
             }
         });
@@ -105,7 +106,8 @@ public class ProfileFragment extends Fragment {
         }
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
-        sbHealthSeekBar.setProgress(healthEmphasis);
+        sbHealthSeekBar.setMax(4);
+        sbHealthSeekBar.setProgress(healthEmphasis-1);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
         tbHealthierChoice.setChecked(isCheckedHC);
         tbHalal = (CheckBox) view.findViewById(R.id.halalButton);
@@ -193,10 +195,7 @@ public class ProfileFragment extends Fragment {
         return true;
     }
     private boolean shortPassword(EditText passwordField) {
-        if (passwordField.getText().toString().length() > (MinPassLen - 1)) {
-            return false;
-        }
-        return true;
+        return passwordField.getText().toString().length() <= (MinPassLen - 1);
     }
 
     public void showDialog(DialogFragment fragment){
