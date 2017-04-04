@@ -196,24 +196,12 @@
         android:layout_marginStart="230dp"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="325dp"
+        android:layout_marginTop="380dp"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Save Changes"
         app:layout_anchor="@+id/include" />
 
-    <Button
-        android:id="@+id/closeApp"
-        android:layout_marginLeft="230dp"
-        android:layout_marginStart="230dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="380dp"
-        android:layout_marginBottom="30dp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Close App"
-        app:layout_anchor="@+id/include" />
 
     <Button
         android:id="@+id/logOut"
