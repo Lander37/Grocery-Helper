@@ -58,8 +58,8 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
         btSaveChanges.setOnClickListener(new View.OnClickListener() {
-            if(editProfile()){
-            }
+            //if(editProfile()){
+            //}
             @Override
             public void onClick(View view) {
                 showDialog(EditProfileConfirmationDialog.newInstance());
@@ -79,8 +79,8 @@ public class ProfileFragment extends Fragment {
 
         databaseAccess.open();
         healthPref = databaseAccess.getDpId(thisUsername);
-        healthEmphasis = databaseAccess.gethealthEmphasis(thisUsername);
-        defaultLocation = databaseAccess.getdefaultLocation(thisUsername);
+        healthEmphasis = databaseAccess.getDpId(thisUsername);
+        //defaultLocation = databaseAccess.get(thisUsername);
         databaseAccess.close();
 
         spLocationList = (Spinner) view.findViewById(R.id.locationList);
@@ -187,7 +187,7 @@ public class ProfileFragment extends Fragment {
             int dpId = 8*a + 4*b + 2*c + d;
 
             databaseAccess.open();
-            databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
+            //databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
             databaseAccess.close();
         }
         return true;
