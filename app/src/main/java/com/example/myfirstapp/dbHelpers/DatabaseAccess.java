@@ -11,6 +11,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.ui.CreateProfileActivity;
 
 import java.text.SimpleDateFormat;
@@ -67,8 +69,30 @@ public class DatabaseAccess {
 
     public List<String> getSubCategoryList(String category) {
         List<String> list = new ArrayList<>();
+
+        int halal = 0;
+        int vegetarian = 0;
+        int healthierChoice = 0;
+        int glutenFree = 0;
+        int dpId = getDpId(thisUsername);
+
+        if ((dpId % 2) == 1){
+            glutenFree = 1;
+        }
+        if (((dpId/2) % 2) == 1){
+            healthierChoice = 1;
+        }
+        if (((dpId/4) % 2) == 1){
+            vegetarian = 1;
+        }
+        if (((dpId/8) % 2) == 1){
+            halal = 1;
+        }
+
         Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 " +
-                "WHERE category = ? ORDER BY " + "subCategory", new String[] {category + ""});
+                "WHERE category = ? AND halal >= ? AND vegetarian >= ? AND healthierChoice >= ? AND glutenFree >= ? " +
+                "ORDER BY " + "subCategory", new String[] {category, String.valueOf(halal),
+                String.valueOf(vegetarian), String.valueOf(healthierChoice), String.valueOf(glutenFree)});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
@@ -93,19 +117,94 @@ public class DatabaseAccess {
         }
     }
 
-    public void addProduct(String subcategory) {
+    /*public void addProduct(String subCategory) {
+
+
+        String productName;
+        int productID;
+        String category;
+        String brand;
+        String subCat;
+        float unitPrice;
+        int weightOrVolume;
+        int item_dpId;
+        double healthRating;
+
+        int healthEmphasis;
+        int halal = 0;
+        int vegetarian = 0;
+        int healthierChoice = 0;
+        int glutenFree = 0;
+        int dpId = getDpId(thisUsername);
+
+        if ((dpId % 2) == 1){
+            glutenFree = 1;
+        }
+        if (((dpId/2) % 2) == 1){
+            healthierChoice = 1;
+        }
+        if (((dpId/4) % 2) == 1){
+            vegetarian = 1;
+        }
+        if (((dpId/8) % 2) == 1){
+            halal = 1;
+        }
 
         //Get List of Products in same SubCategory in the Supermarket
+       /ArrayList<Product> productsInSubCategory = new ArrayList<>();
+
+        Cursor cursor = database.rawQuery("SELECT * FROM ProductList1 " +
+                        "WHERE (subCategory = ? OR productName LIKE '%?%') " +
+                "AND halal >= ? AND vegetarian >= ? AND healthierChoice >= ? AND glutenFree >= ? ",
+                new String[] {subCategory, subCategory, String.valueOf(halal), String.valueOf(vegetarian),
+                        String.valueOf(healthierChoice), String.valueOf(glutenFree)});
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            productID = cursor.getInt(cursor.getColumnIndex("productID"));
+            weightOrVolume = cursor.getInt(cursor.getColumnIndex("weightOrVolume"));
+            productName = cursor.getString(cursor.getColumnIndex("productName"));
+            category = cursor.getString(cursor.getColumnIndex("category"));
+            brand = cursor.getString(cursor.getColumnIndex("brand"));
+            unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
+            healthRating = cursor.getDouble(cursor.getColumnIndex("healthRating"));
+            subCat = subCategory;
+            item_dpId = cursor.getInt(cursor.getColumnIndex("dpId"));
+
+            Product tobeAdded = new Product(productID, category, brand, productName, subCat,
+            unitPrice, item_dpId, weightOrVolume, healthRating);
+
+            productsInSubCategory.add(tobeAdded);
+
+            cursor.moveToNext();
+        }
+        cursor.close();
 
         //Get Value of User's healthEmphasis
+        Cursor cursor2 = null;
+        cursor2 = database.rawQuery("SELECT healthEmphasis FROM Profiles WHERE username = ? ", new String[] {thisUsername + ""});
+        if(cursor2.getCount() > 0) {
+            cursor2.moveToFirst();
+            healthEmphasis = cursor2.getInt(cursor.getColumnIndex("healthEmphasis"));
+        }
+        cursor2.close();
+
+        //Algorithm to decide which product to add
+
+        ArrayList<Double> recommendationValues = new ArrayList<Double>();
+        ArrayList<Integer> recommendationProdID = new ArrayList<Integer>();
+
+        */
+
+        //Add item to grocery list
 
         /*ContentValues values = new ContentValues();
         values.put("productName", productName);
         values.put("unitPrice", unitPrice);
         values.put("quantity", 1);
 
-        database.insert("List1", null, values);*/
-    }
+        database.insert("List1", null, values);
+    }*/
 
     public int createGList(String listName) {
         database.execSQL("UPDATE GLists SET isCurrent = 0");
@@ -177,10 +276,15 @@ public class DatabaseAccess {
 
     public void updateProductHealthierChoice(ArrayList<String> healthierChoiceList){
         Cursor cursor = database.rawQuery("SELECT * FROM ProductList1",null);
-        System.out.println("test");
         if(cursor.getCount() > 0){
-            while(cursor.moveToNext()){
+            if (!cursor.moveToFirst()){
+                cursor.moveToFirst();
+            }
+            System.out.println(healthierChoiceList.size());
+
+            do{
                 String productName = cursor.getString(cursor.getColumnIndex("productName"));
+                //Correct until this point
                 if(healthierChoiceList.contains(productName)){
                     //Add method to set healthier choice of rowIndex i to 1
                     ContentValues values = new ContentValues();
@@ -192,7 +296,7 @@ public class DatabaseAccess {
                     values.put("healthierChoice", 0);
                     database.update("ProductList1", values, "productName = ?", new String[]{productName});
                 }
-            }
+            } while(cursor.moveToNext());
         }
     }
 
