@@ -2,6 +2,8 @@ package com.example.myfirstapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +25,8 @@ public class SelectCategoryFragment extends Fragment{
 
     private int gl_id;
     private String subCategory;
-    private Button btLocation;
-    private Button btFilter;
+    Button btLocation;
+    Button btFilter;
 
     Button btBeverages;
     Button btCereal;
@@ -36,10 +38,9 @@ public class SelectCategoryFragment extends Fragment{
     Button btSauces;
     Button btSeafood;
     Button btGluten;
-    private ListView lvProductList;
 
     private SearchView prodSearch;
-    private DatabaseAccess databaseAccess;
+    DatabaseAccess databaseAccess;
 
 
     Button btDone;
@@ -74,24 +75,10 @@ public class SelectCategoryFragment extends Fragment{
         btSauces = (Button) view.findViewById(R.id.sauces);
         btSeafood = (Button) view.findViewById(R.id.seafood);
         btGluten = (Button) view.findViewById(R.id.glutenFree);
-        lvProductList = (ListView) view.findViewById(R.id.productList);
-
-        databaseAccess.open();
-        List<String> productList = databaseAccess.getSubCategoryList(subCategory);
-        databaseAccess.close();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, productList);
-        this.lvProductList.setAdapter(adapter);
 
 
-        lvProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
 
-               String selectedProduct = (String)adapter.getItemAtPosition(position);
-               // databaseAccess.addProduct(selectedProduct,);
-            }
-        });
+
 
         btLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,71 +112,72 @@ public class SelectCategoryFragment extends Fragment{
         btBeverages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Beverages"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Beverages"), "Cart");
             }
         });
 
         btCereal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Cereal"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Cereal"), "Cart");
             }
         });
 
         btDairy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Dairy Products"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Dairy Products"), "Cart");
             }
         });
 
         btFats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Fats and Oils"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Fats and Oils"), "Cart");
             }
         });
 
         btFruits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Fruit and Vegetables"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Fruit and Vegetables"), "Cart");
             }
         });
 
         btIceCream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Ice Cream"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Ice Cream"), "Cart");
             }
         });
 
         btMeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Meat and Poultry"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Meat and Poultry"), "Cart");
             }
         });
 
         btSauces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance
-                        (gl_id,"Sauces, Soups and Recipe Mixes"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Sauces, Soups and Recipe Mixes"), "Cart");
             }
         });
 
         btSeafood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Seafood"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Seafood"), "Cart");
+
             }
         });
 
         btGluten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((NavigationActivity) getActivity()).replaceThis(SelectCategoryFragment.newInstance(gl_id,"Gluten-Free"), "Cart");
+                replaceList(SubCategoryFragment.newInstance(gl_id,"Gluten-Free"), "Cart");
+
             }
         });
 
@@ -203,5 +191,12 @@ public class SelectCategoryFragment extends Fragment{
         args.putString("subCategory",subCategory);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void replaceList(Fragment fragment, String tag) {
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame2, fragment, tag);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
