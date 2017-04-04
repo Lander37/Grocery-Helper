@@ -19,6 +19,8 @@ import com.example.myfirstapp.mgr.GroceryManager;
 
 import java.util.ArrayList;
 
+import static com.example.myfirstapp.ui.MainActivity.df;
+
 public class SpecificListFragment extends Fragment {
     private int gl_id;
     private GroceryList currentList;
@@ -95,7 +97,7 @@ public class SpecificListFragment extends Fragment {
 
             brand.setText(product.getBrand());
             item.setText(product.getProductName());
-            price.setText((quantity*product.getUnitPrice())+"");
+            price.setText(df.format((quantity*product.getUnitPrice()))+"");
             quantityPicker.setMinValue(1);
             quantityPicker.setMaxValue(100);
             quantityPicker.setValue(quantity);

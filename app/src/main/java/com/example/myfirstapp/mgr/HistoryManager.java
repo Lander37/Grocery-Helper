@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.widget.Toast;
 
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 import java.text.SimpleDateFormat;
@@ -56,6 +57,19 @@ public class HistoryManager {
                 } catch (Exception e){
                     Toast.makeText(appContext,"Could not parse date!, using instance time",Toast.LENGTH_LONG).show();
                 }
+
+                Cursor productCursor = databaseAccess.pullProductsOfList(listName);
+                if (productCursor.getCount() > 0) {
+                    int index = 0;
+                    while (productCursor.moveToNext()) {
+                        int productId = productCursor.getInt(productCursor.getColumnIndex("productID"));
+                        int quantity = productCursor.getInt(productCursor.getColumnIndex("quantity"));
+                        Product product = databaseAccess.getProductById(productId);
+
+                        gList.addProdToList(product,quantity);
+                    }
+                }
+
                 gListArray.add(gList);
             }
         }
