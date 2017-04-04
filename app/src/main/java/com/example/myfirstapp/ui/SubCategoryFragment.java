@@ -52,7 +52,9 @@ public class SubCategoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
                 String selectedProduct = (String)adapter.getItemAtPosition(position);
-                // databaseAccess.addProduct(selectedProduct,);
+                databaseAccess.open();
+                databaseAccess.addProduct(selectedProduct, gl_id);
+                databaseAccess.close();
             }
         });
         databaseAccess.open();
