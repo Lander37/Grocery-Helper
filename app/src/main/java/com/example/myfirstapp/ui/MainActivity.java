@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public static String thisUsername;
 
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static String thisUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

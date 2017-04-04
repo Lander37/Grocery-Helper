@@ -34,6 +34,7 @@ public class HistoryManager {
 
 
     public void loadGroceryLists(){
+        gListArray.clear();
         databaseAccess.open();
         Cursor cursor = databaseAccess.pullHLists();
         if (cursor.getCount() > 0) {
