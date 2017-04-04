@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.R;
@@ -24,7 +25,7 @@ public class ProfileFragment extends Fragment {
     private Button btLogOut;
     private Button btCloseApp;
     private Button btSaveChanges;
-    private EditText etEditUsername;
+    private TextView tvUsername;
     private EditText etEditPassword;
     private Spinner spLocationList;
     private SeekBar sbHealthSeekBar;
@@ -75,14 +76,17 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        etEditUsername = (EditText) view.findViewById(R.id.editUserName);
-        etEditPassword = (EditText) view.findViewById(R.id.editPassword);
+
 
         databaseAccess.open();
         healthPref = databaseAccess.getDpId(thisUsername);
         healthEmphasis = databaseAccess.getHealthEmphasis(thisUsername);
         defaultLocation = databaseAccess.getDefaultLocation(thisUsername);
         databaseAccess.close();
+
+        tvUsername = (TextView) view.findViewById(R.id.usernameP);
+        tvUsername.setText(thisUsername);
+        etEditPassword = (EditText) view.findViewById(R.id.editPassword);
 
         spLocationList = (Spinner) view.findViewById(R.id.locationList);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.location_array, android.R.layout.simple_spinner_item);
@@ -144,7 +148,7 @@ public class ProfileFragment extends Fragment {
             return false;
         }
         else {
-            String username = etEditUsername.getText().toString();
+            String username = tvUsername.getText().toString();
             thisUsername =  username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
