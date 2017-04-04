@@ -109,10 +109,13 @@ public class SpecificListFragment extends Fragment {
             });
 
             row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
-            brand.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
-            item.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
-            quantityPicker.setLayoutParams(new TableRow.LayoutParams(200,100));
-            price.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
+            brand.setPadding(18,0,0,0);
+            brand.setLayoutParams(new TableRow.LayoutParams(200,200));
+            item.setLayoutParams(new TableRow.LayoutParams(200,200));
+            quantityPicker.setLayoutParams(new TableRow.LayoutParams(100,120));
+            price.setPadding(65,0,0,0);
+            price.setLayoutParams(new TableRow.LayoutParams(200,200));
+
 
             row.addView(item);
             row.addView(brand);
