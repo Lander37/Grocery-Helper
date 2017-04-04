@@ -81,7 +81,6 @@ public class HistoryFragment extends Fragment {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
-
                     return  gList1.getDate().compareTo(gList2.getDate());
                 }
             });
