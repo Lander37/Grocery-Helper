@@ -79,8 +79,8 @@ public class ProfileFragment extends Fragment {
 
         databaseAccess.open();
         healthPref = databaseAccess.getDpId(thisUsername);
-        healthEmphasis = databaseAccess.gethealthEmphasis(thisUsername);
-        defaultLocation = databaseAccess.getdefaultLocation(thisUsername);
+        healthEmphasis = databaseAccess.getHealthEmphasis(thisUsername);
+        defaultLocation = databaseAccess.getDefaultLocation(thisUsername);
         databaseAccess.close();
 
         spLocationList = (Spinner) view.findViewById(R.id.locationList);

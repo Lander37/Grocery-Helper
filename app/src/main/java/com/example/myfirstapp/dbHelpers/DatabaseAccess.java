@@ -175,7 +175,7 @@ public class DatabaseAccess {
         cursor.close();
         return dpId;
     }
-    public int gethealthEmphasis(String username){
+    public int getHealthEmphasis(String username){
         String query = "SELECT healthEmphasis FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
         if (!cursor.moveToFirst())
@@ -184,7 +184,7 @@ public class DatabaseAccess {
         cursor.close();
         return healthEmphasis;
     }
-    public String getdefaultLocation(String username){
+    public String getDefaultLocation(String username){
         String query = "SELECT defaultLocation FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
         if (!cursor.moveToFirst())
