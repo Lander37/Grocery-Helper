@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button btCreateProfile;
     Button btLogin;
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static String thisUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
