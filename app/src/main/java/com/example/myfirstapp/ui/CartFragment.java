@@ -19,6 +19,8 @@ import com.example.myfirstapp.mgr.GroceryManager;
 
 import java.util.ArrayList;
 
+import static com.example.myfirstapp.ui.MainActivity.df;
+
 public class CartFragment extends Fragment {
     Button btAddList;
     GroceryManager groceryManager;
@@ -56,44 +58,45 @@ public class CartFragment extends Fragment {
         rowHeader.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
 
-        /*Cursor cursor = databaseAccess.populateGListTable();
-        if (cursor.getCount() > 0) {*/
+       /*Cursor cursor = databaseAccess.populateGListTable();
+       if (cursor.getCount() > 0) {*/
 
-            for (int i = 0; i < gListArray.size(); i++) {
-                // Read columns data
-                String listName = gListArray.get(i).getName();
-                String totalCost = gListArray.get(i).getTotalCost() + "";
-                final int gl_id = gListArray.get(i).getGL_ID();
+        for (int i = 0; i < gListArray.size(); i++) {
+            // Read columns data
+            String listName = gListArray.get(i).getName();
+            String totalCost = df.format(gListArray.get(i).getTotalCost()) + "";
+            final int gl_id = gListArray.get(i).getGL_ID();
 
-                // data rows
-                TableRow row = new TableRow(view.getContext());
-                row.setClickable(true);
-                row.setOnClickListener(new View.OnClickListener() {
+            // data rows
+            TableRow row = new TableRow(view.getContext());
+            row.setClickable(true);
+            row.setOnClickListener(new View.OnClickListener() {
 
 
-                    @Override
-                    public void onClick(View view) {
-                        ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
-                    }
-                });
-
-                row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
-
-                String[] colText = {listName, totalCost};
-                for (String text : colText) {
-                    TextView tv = new TextView(this.getActivity());
-                    tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                            TableRow.LayoutParams.WRAP_CONTENT));
-                    tv.setGravity(Gravity.CENTER);
-                    tv.setTextSize(25);
-                    tv.setPadding(40, 5, 255, 5);
-                    tv.setText(text);
-                    row.addView(tv);
+                @Override
+                public void onClick(View view) {
+                    ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
                 }
-                tableLayout.addView(row);
+            });
 
+            row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
+
+            String[] colText = {listName, totalCost};
+            for (String text : colText) {
+
+                TextView tv = new TextView(this.getActivity());
+                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
+
+                tv.setTextSize(25);
+                tv.setPadding(40, 5, 190, 5);
+                tv.setText(text);
+                row.addView(tv);
             }
+            tableLayout.addView(row);
+
+        }
         //}
 
         btAddList.setOnClickListener(new View.OnClickListener() {
