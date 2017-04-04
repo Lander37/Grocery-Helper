@@ -77,7 +77,7 @@ public class SelectCategoryFragment extends Fragment{
         btGluten = (Button) view.findViewById(R.id.glutenFree);
 
 
-
+        replaceList(SubCategoryFragment.newInstance(gl_id,subCategory),"Cart");
 
 
         btLocation.setOnClickListener(new View.OnClickListener() {

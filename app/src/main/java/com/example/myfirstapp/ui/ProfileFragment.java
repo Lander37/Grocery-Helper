@@ -13,18 +13,19 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.R;
 
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
 
 public class ProfileFragment extends Fragment {
 
     private Button btLogOut;
     private Button btCloseApp;
     private Button btSaveChanges;
-    private EditText etEditUsername;
+    private TextView tvUsername;
     private EditText etEditPassword;
     private Spinner spLocationList;
     private SeekBar sbHealthSeekBar;
@@ -50,19 +51,20 @@ public class ProfileFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
-
+        System.out.println(thisUsername);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
         btSaveChanges.setOnClickListener(new View.OnClickListener() {
-            //if(editProfile()){
-            //}
             @Override
             public void onClick(View view) {
-                showDialog(EditProfileConfirmationDialog.newInstance());
+                if(editProfile()){
+                    showDialog(EditProfileConfirmationDialog.newInstance());
+                }
             }
         });
         btLogOut = (Button) view.findViewById(R.id.logOut);
@@ -74,14 +76,17 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        etEditUsername = (EditText) view.findViewById(R.id.editUserName);
-        etEditPassword = (EditText) view.findViewById(R.id.editPassword);
+
 
         databaseAccess.open();
         healthPref = databaseAccess.getDpId(thisUsername);
-        healthEmphasis = databaseAccess.getDpId(thisUsername);
-        //defaultLocation = databaseAccess.get(thisUsername);
+        healthEmphasis = databaseAccess.getHealthEmphasis(thisUsername);
+        defaultLocation = databaseAccess.getDefaultLocation(thisUsername);
         databaseAccess.close();
+
+        tvUsername = (TextView) view.findViewById(R.id.usernameP);
+        tvUsername.setText(thisUsername);
+        etEditPassword = (EditText) view.findViewById(R.id.editPassword);
 
         spLocationList = (Spinner) view.findViewById(R.id.locationList);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.location_array, android.R.layout.simple_spinner_item);
@@ -105,7 +110,8 @@ public class ProfileFragment extends Fragment {
         }
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
-        sbHealthSeekBar.setProgress(healthEmphasis);
+        sbHealthSeekBar.setMax(4);
+        sbHealthSeekBar.setProgress(healthEmphasis-1);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
         tbHealthierChoice.setChecked(isCheckedHC);
         tbHalal = (CheckBox) view.findViewById(R.id.halalButton);
@@ -142,7 +148,7 @@ public class ProfileFragment extends Fragment {
             return false;
         }
         else {
-            String username = etEditUsername.getText().toString();
+            String username = tvUsername.getText().toString();
             thisUsername =  username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
@@ -187,16 +193,13 @@ public class ProfileFragment extends Fragment {
             int dpId = 8*a + 4*b + 2*c + d;
 
             databaseAccess.open();
-            //databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
+            databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
             databaseAccess.close();
         }
         return true;
     }
     private boolean shortPassword(EditText passwordField) {
-        if (passwordField.getText().toString().length() > (MinPassLen - 1)) {
-            return false;
-        }
-        return true;
+        return passwordField.getText().toString().length() <= (MinPassLen - 1);
     }
 
     public void showDialog(DialogFragment fragment){

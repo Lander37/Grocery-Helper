@@ -2,11 +2,14 @@ package com.example.myfirstapp.mgr;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.widget.Toast;
 
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  * HistoryManager.java
  * @author Daniel
@@ -16,47 +19,47 @@ public class HistoryManager {
 
     private DatabaseAccess databaseAccess;
     private ArrayList<GroceryList> gListArray;
+    private Context appContext;
 
     /**
      *
      * @param context
      */
     public HistoryManager(Context context){
-        this.databaseAccess = DatabaseAccess.getInstance(context);
+        appContext = context;
+        databaseAccess = DatabaseAccess.getInstance(context);
         gListArray = new ArrayList<GroceryList>(0);
         loadGroceryLists();
     }
 
 
     public void loadGroceryLists(){
+        gListArray.clear();
         databaseAccess.open();
-        Cursor cursor = databaseAccess.pullGLists();
+        Cursor cursor = databaseAccess.pullHLists();
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
-                int addToHistory = cursor.getInt(cursor.getColumnIndex("isHistory"));
+                GroceryList gList;
 
-                if(addToHistory == 1) {
-                    GroceryList gList;
+                // Read columns data
+                int id = (int) cursor.getLong(cursor.getColumnIndex("_id"));
+                String listName = cursor.getString(cursor.getColumnIndex("Name"));
+                float totalCost = (float) cursor.getDouble(cursor.getColumnIndex("TotalCost"));
+                Date listDate;
 
-                    // Read columns data
-                    int id = (int) cursor.getLong(cursor.getColumnIndex("_id"));
-                    String listName = cursor.getString(cursor.getColumnIndex("Name"));
-                    float totalCost = (float) cursor.getDouble(cursor.getColumnIndex("TotalCost"));
-
-                    // Make Grocery List
-                    gList = new GroceryList(listName, id);
-                    gList.setTotalCost(totalCost);
-                    gListArray.add(gList);
+                // Make Grocery List
+                gList = new GroceryList(listName, id);
+                gList.setTotalCost(totalCost);
+                try {
+                    listDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(cursor.getString(cursor.getColumnIndex("creationDate")));
+                    gList.setDate(listDate);
+                } catch (Exception e){
+                    Toast.makeText(appContext,"Could not parse date!, using instance time",Toast.LENGTH_LONG).show();
                 }
+                gListArray.add(gList);
             }
         }
         databaseAccess.close();
-
-        //For testing purposes, remove when ready to test actual
-        GroceryList gList1 = new GroceryList("testList",1);
-        GroceryList gList2 = new GroceryList("testList2",2);
-        gListArray.add(gList1);
-        gListArray.add(gList2);
     }
 
     public GroceryList getGroceryList(int list_id){
