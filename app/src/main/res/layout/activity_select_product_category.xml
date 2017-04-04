@@ -121,15 +121,15 @@
     <Button
         android:id="@+id/back"
         android:layout_width="95dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="440dp"
-        android:text="back" />
+        android:text="See All Lists" />
 
     <Button
         android:id="@+id/done"
         android:layout_width="120dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="150dp"
         android:layout_marginTop="440dp"
         android:text="Done"

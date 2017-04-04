@@ -11,8 +11,8 @@
     <Button
         android:id="@+id/back"
         android:layout_width="95dp"
-        android:layout_height="60dp"
-        android:text="Back"
+        android:layout_height="70dp"
+        android:text="See All Lists"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
@@ -27,8 +27,8 @@
     <Button
         android:id="@+id/addItem"
         android:layout_width="135dp"
-        android:layout_height="60dp"
-        android:text="Add Other Items"
+        android:layout_height="70dp"
+        android:text="Add More Items"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
@@ -42,12 +42,12 @@
     <Button
         android:id="@+id/confirmList"
         android:layout_width="95dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="Confirm List"
+        android:text="Confirm This List"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,7 +61,7 @@
         android:layout_height="327dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -77,26 +77,31 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="4"
-                android:text="Item" />
+                android:text="Item"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="Brand" />
+                android:text="Type"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Quantity" />
+                android:text="Quantity"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Price" />
+                android:text="Price"
+                android:textSize="20sp"/>
         </TableRow>
 
     </TableLayout>
@@ -106,6 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_list_dialog_list_name_placeholder"
+        android:textSize="25sp"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
