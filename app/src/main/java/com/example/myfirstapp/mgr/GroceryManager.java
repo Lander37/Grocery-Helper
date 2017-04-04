@@ -217,22 +217,18 @@ public class GroceryManager {
     /**
      *
      */
-    public void confirmList () {
-        //Add List to ListHistory/Expenditure. Check who is doing and how to implement
-        for (int i = 0; i < gListArray.size(); i++){
-            if (currentListID == gListArray.get(i).getGL_ID()){
-                gListArray.remove(i);
-            }
-        }
-    }
 
-    public void confirmList (int GL_ID) {
+
+    public void confirmList (int gl_id) {
         //Add List to ListHistory/Expenditure. Check who is doing and how to implement
-        for (int i = 0; i < gListArray.size(); i++){
-            if (GL_ID == gListArray.get(i).getGL_ID()){
-                gListArray.remove(i);
-            }
-        }
+        //for (int i = 0; i < gListArray.size(); i++){
+        //    if (GL_ID == gListArray.get(i).getGL_ID()){
+        //        gListArray.remove(i);
+        //    }
+        //}
+        databaseAccess.open();
+        databaseAccess.setIsHistory(gl_id);
+        databaseAccess.close();
     }
 
 //    private String[] interpretGroceryLists(GroceryList[] groceryLists){

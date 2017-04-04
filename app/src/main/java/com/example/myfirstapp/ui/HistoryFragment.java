@@ -23,7 +23,7 @@ public class HistoryFragment extends Fragment {
 
     private AppCompatSpinner spinner;
     private AdapterView.OnItemSelectedListener spinnerListener;
-    private HistoryManager manager;
+    HistoryManager manager;
     private ArrayList<GroceryList> gListArray;
     private ArrayList<String> gListDescriptions;
     private ArrayAdapter<String> gListAdapter;
@@ -36,18 +36,20 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.manager = new HistoryManager(getActivity().getApplicationContext());
+        manager = new HistoryManager(getActivity().getApplicationContext());
+        gListArray = this.manager.getgListArray();
+
 
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_history, container, false);
-        gListArray = this.manager.getgListArray();
         gListDescriptions = new ArrayList<String>(0);
         spinner = (AppCompatSpinner) view.findViewById(R.id.history_sorting_spinner);
         groceryLists = (ListView) view.findViewById(R.id.history_main_list);
         gListAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,gListDescriptions);
         groceryLists.setAdapter(gListAdapter);
+        manager.loadGroceryLists();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

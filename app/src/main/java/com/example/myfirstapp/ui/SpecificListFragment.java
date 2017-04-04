@@ -53,7 +53,7 @@ public class SpecificListFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                groceryManager.confirmList();
+                groceryManager.confirmList(gl_id);
                 ((NavigationActivity)getActivity()).showDialog(ListConfirmedDialog.newInstance());
                 ((NavigationActivity)getActivity()).replaceThis(CartFragment.newInstance(),"Cart");
             }
