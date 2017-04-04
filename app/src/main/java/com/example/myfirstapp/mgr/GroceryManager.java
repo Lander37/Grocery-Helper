@@ -2,13 +2,16 @@ package com.example.myfirstapp.mgr;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.widget.Toast;
 
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 
 /**
@@ -20,8 +23,8 @@ public class GroceryManager {
 
     private DatabaseAccess databaseAccess;
     private int currentListID;
-    private int latestListID;
     private ArrayList<GroceryList> gListArray;
+    private Context appContext;
 
 
     public GroceryManager(Context context){
@@ -61,6 +64,7 @@ public class GroceryManager {
      * Accesses Database.
      */
     public void loadGListsFromDB(){
+        gListArray.clear();
         databaseAccess.open();
         Cursor cursor = databaseAccess.pullGLists();
         if (cursor.getCount() > 0) {
@@ -71,10 +75,30 @@ public class GroceryManager {
                 int id = (int)cursor.getLong(cursor.getColumnIndex("_id"));
                 String listName = cursor.getString(cursor.getColumnIndex("Name"));
                 float totalCost = (float)cursor.getDouble(cursor.getColumnIndex("TotalCost"));
+                Date listDate;
 
                 // Make Grocery List
                 gList = new GroceryList(listName,id);
                 gList.setTotalCost(totalCost);
+                try {
+                    listDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(cursor.getString(cursor.getColumnIndex("creationDate")));
+                    gList.setDate(listDate);
+                } catch (Exception e){
+                    Toast.makeText(appContext,"Could not parse date!, using instance time",Toast.LENGTH_LONG).show();
+                }
+
+                Cursor productCursor = databaseAccess.pullProductsOfList(listName);
+                if (productCursor.getCount() > 0) {
+                    int index = 0;
+                    while (productCursor.moveToNext()) {
+                        int productId = productCursor.getInt(productCursor.getColumnIndex("productID"));
+                        int quantity = productCursor.getInt(productCursor.getColumnIndex("quantity"));
+                        Product product = databaseAccess.getProductById(productId);
+
+                        gList.addProdToList(product,quantity);
+                    }
+                }
+
                 gListArray.add(gList);
             }
         }
@@ -194,7 +218,10 @@ public class GroceryManager {
     public void addSpecificItem(int prod_ID, int QTY) {
         for (int i = 0; i < gListArray.size(); i++){
             if (currentListID == gListArray.get(i).getGL_ID()){
-                gListArray.get(i).addProdToList(prod_ID , QTY);
+                databaseAccess.open();
+                Product product = databaseAccess.getProductById(prod_ID);
+                databaseAccess.close();
+                gListArray.get(i).addProdToList(product, QTY);
                 break;
             }
         }
@@ -209,6 +236,10 @@ public class GroceryManager {
         for (int i = 0; i < gListArray.size(); i++){
             if (currentListID == gListArray.get(i).getGL_ID()){
                 gListArray.get(i).setQty(prod_ID , QTY);
+                databaseAccess.open();
+                databaseAccess.updateProductQty(getCurrentList().getName(),prod_ID,QTY);
+                databaseAccess.refreshListCosts(currentListID,getCurrentList().getName());
+                databaseAccess.close();
                 break;
             }
         }

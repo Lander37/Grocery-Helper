@@ -13,12 +13,17 @@ import android.widget.TextView;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.classes.Product;
+import com.example.myfirstapp.classes.ProductQty;
 import com.example.myfirstapp.mgr.GroceryManager;
+
+import java.util.ArrayList;
 
 public class SpecificListFragment extends Fragment {
     private int gl_id;
     private GroceryList currentList;
     private GroceryManager groceryManager;
+    private Fragment thisFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class SpecificListFragment extends Fragment {
         gl_id = args.getInt("gl_id");
         groceryManager = new GroceryManager(getActivity().getApplicationContext());
         groceryManager.setCurrentListID(gl_id);
-        currentList = groceryManager.getCurrentList();
+        thisFragment = this;
     }
 
     @Override
@@ -40,6 +45,9 @@ public class SpecificListFragment extends Fragment {
         Button confirmList = (Button) view.findViewById(R.id.confirmList);
         Button backBtn = (Button) view.findViewById(R.id.back);
         TableLayout listTable = (TableLayout) view.findViewById(R.id.specific_list_details);
+
+        groceryManager.loadGListsFromDB();
+        currentList = groceryManager.getCurrentList();
 
         addItem.setOnClickListener(new View.OnClickListener() {
 
@@ -67,49 +75,50 @@ public class SpecificListFragment extends Fragment {
         });
 
         listName.setText(currentList.getName());
+
         updateTable(view,listTable);
 
         return view;
     }
 
     private void updateTable(final View view, final TableLayout listTable){
-        int[][] arrayProduct = currentList.getArrayProduct();
-        for(int i = 0; i < arrayProduct.length; i++){
-            if(arrayProduct[i][1] != 0){
-                final int product_id = arrayProduct[i][0];
-                TableRow row = new TableRow(view.getContext());
-                TextView brand = new TextView(view.getContext());
-                TextView item = new TextView(view.getContext());
-                NumberPicker quantity = new NumberPicker(view.getContext());
-                TextView price = new TextView(view.getContext());
+        ArrayList<ProductQty> arrayProduct = currentList.getArrayProduct();
+        for(int i = 0; i < arrayProduct.size(); i++){
+            Product product = arrayProduct.get(i).getProduct();
+            final int product_id = product.getProductID();
+            int quantity = arrayProduct.get(i).getQuantity();
+            TableRow row = new TableRow(view.getContext());
+            TextView brand = new TextView(view.getContext());
+            TextView item = new TextView(view.getContext());
+            NumberPicker quantityPicker = new NumberPicker(view.getContext());
+            TextView price = new TextView(view.getContext());
 
-                brand.setText("");
-                item.setText("");
-                price.setText("");
-                quantity.setValue((arrayProduct[i][1]));
-                quantity.setMaxValue(1);
-                quantity.setMaxValue(99999);
+            brand.setText(product.getBrand());
+            item.setText(product.getProductName());
+            price.setText((quantity*product.getUnitPrice())+"");
+            quantityPicker.setMinValue(1);
+            quantityPicker.setMaxValue(100);
+            quantityPicker.setValue(quantity);
 
-                quantity.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-                    @Override
-                    public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        groceryManager.updateItemQty(product_id, i1);
-                        updateTable(view,listTable);
-                    }
-                });
+            quantityPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                @Override
+                public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                    groceryManager.updateItemQty(product_id, i1);
+                    ((NavigationActivity)getActivity()).refreshThis(thisFragment);
+                }
+            });
 
-                row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
-                brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
-                item.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,5));
-                quantity.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
-                price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
+            row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
+            brand.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
+            item.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
+            quantityPicker.setLayoutParams(new TableRow.LayoutParams(200,100));
+            price.setLayoutParams(new TableRow.LayoutParams(200,row.getLayoutParams().MATCH_PARENT));
 
-                row.addView(item);
-                row.addView(brand);
-                row.addView(quantity);
-                row.addView(price);
-                listTable.addView(row);
-            }
+            row.addView(item);
+            row.addView(brand);
+            row.addView(quantityPicker);
+            row.addView(price);
+            listTable.addView(row);
         }
     }
 

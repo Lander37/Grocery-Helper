@@ -12,14 +12,24 @@ import com.example.myfirstapp.R;
 
 public class SelectBrandFragment extends Fragment {
 
-    public static SelectBrandFragment newInstance() {
-        return new SelectBrandFragment();
+    private int gl_id;
+    private String subCategory;
+
+    public static SelectBrandFragment newInstance(int gl_id ,String subcategory) {
+        Bundle args = new Bundle();
+        args.putInt("gl_id", gl_id);
+        args.putString("subCat",subcategory);
+        SelectBrandFragment fragment = new SelectBrandFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Bundle args = getArguments();
+        gl_id = args.getInt("gl_id");
+        subCategory = args.getString("subCat");
     }
 
     @Override

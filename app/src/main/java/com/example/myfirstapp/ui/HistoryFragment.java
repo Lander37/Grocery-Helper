@@ -95,33 +95,7 @@ public class HistoryFragment extends Fragment {
                     return  -gList1.getDate().compareTo(gList2.getDate());
                 }
             });
-        } else if (sortingBy == getString(R.string.sortby_Quantity)){
-            Collections.sort(gListArray, new Comparator<GroceryList>() {
-                @Override
-                public int compare(GroceryList gList1, GroceryList gList2)
-                {
-                    int gListQty1 = 0;
-                    int gListQty2 = 0;
-
-                    for(int i = 0; i < gList1.getArrayProduct().length; i++){
-                        gListQty1 += gList1.getArrayProduct()[i][1];
-                    }
-
-                    for(int i = 0; i < gList2.getArrayProduct().length; i++){
-                        gListQty2 += gList2.getArrayProduct()[i][1];
-                    }
-
-                    if(gListQty1 < gListQty2){
-                        return -1;
-                    } else if (gListQty1 > gListQty2){
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-            });
-
-        } else if (sortingBy == getString(R.string.sortby_Price)){
+        }  else if (sortingBy == getString(R.string.sortby_Price)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)
