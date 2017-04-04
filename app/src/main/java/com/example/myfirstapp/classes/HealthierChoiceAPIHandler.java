@@ -105,7 +105,7 @@ public class HealthierChoiceAPIHandler {
 
             return null;
         }
-        @Override
+       /* @Override
         protected void onPostExecute(Void result) {
             if(!errorRetrievingData){
                 DatabaseAccess databaseAccess = DatabaseAccess.getInstance(appContext);
@@ -120,7 +120,7 @@ public class HealthierChoiceAPIHandler {
         public ArrayList<String> getProductList(){
             return productList;
         }
-    }
+    }*/
 
 
-}
+}}

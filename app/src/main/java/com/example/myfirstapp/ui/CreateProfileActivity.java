@@ -69,7 +69,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 }
             }
         });
-    };
+    }
 
 
     private boolean setProfile(){
@@ -151,10 +151,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         return false;
     }
     private boolean shortPassword(EditText passwordField){
-        if(passwordField.getText().toString().length() > (MinPassLen-1)){
-           return false;
-        }
-        return true;
+        return passwordField.getText().toString().length() <= (MinPassLen - 1);
 
     }
     private void launchActivity() {
@@ -175,6 +172,6 @@ public class CreateProfileActivity extends AppCompatActivity {
         }
         transaction.commit();
     }
-};
+}
 
 

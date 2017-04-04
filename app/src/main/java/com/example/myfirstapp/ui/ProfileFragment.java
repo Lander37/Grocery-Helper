@@ -50,6 +50,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,11 +59,11 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
         btSaveChanges.setOnClickListener(new View.OnClickListener() {
-            //if(editProfile()){
-            //}
             @Override
             public void onClick(View view) {
-                showDialog(EditProfileConfirmationDialog.newInstance());
+                if(editProfile()){
+                    showDialog(EditProfileConfirmationDialog.newInstance());
+                }
             }
         });
         btLogOut = (Button) view.findViewById(R.id.logOut);
@@ -79,8 +80,8 @@ public class ProfileFragment extends Fragment {
 
         databaseAccess.open();
         healthPref = databaseAccess.getDpId(thisUsername);
-        healthEmphasis = databaseAccess.getDpId(thisUsername);
-        //defaultLocation = databaseAccess.get(thisUsername);
+        healthEmphasis = databaseAccess.getHealthEmphasis(thisUsername);
+        defaultLocation = databaseAccess.getDefaultLocation(thisUsername);
         databaseAccess.close();
 
         spLocationList = (Spinner) view.findViewById(R.id.locationList);
@@ -105,7 +106,8 @@ public class ProfileFragment extends Fragment {
         }
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
-        sbHealthSeekBar.setProgress(healthEmphasis);
+        sbHealthSeekBar.setMax(4);
+        sbHealthSeekBar.setProgress(healthEmphasis-1);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
         tbHealthierChoice.setChecked(isCheckedHC);
         tbHalal = (CheckBox) view.findViewById(R.id.halalButton);
@@ -187,16 +189,13 @@ public class ProfileFragment extends Fragment {
             int dpId = 8*a + 4*b + 2*c + d;
 
             databaseAccess.open();
-            //databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
+            databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
             databaseAccess.close();
         }
         return true;
     }
     private boolean shortPassword(EditText passwordField) {
-        if (passwordField.getText().toString().length() > (MinPassLen - 1)) {
-            return false;
-        }
-        return true;
+        return passwordField.getText().toString().length() <= (MinPassLen - 1);
     }
 
     public void showDialog(DialogFragment fragment){
