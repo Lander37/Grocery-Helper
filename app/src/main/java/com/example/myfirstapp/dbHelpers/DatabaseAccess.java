@@ -463,7 +463,20 @@ public class DatabaseAccess {
             return false;
         }
     }
+    public int getMonthlyExpenditure(String month){
+        String compare = month + "%";
+        //Cursor cursor = database.rawQuery("SELECT SUM(TotalCost) FROM GLists instr(creationDate, ?)>0 AND isHistory = ?",new String[] {month,"1"});
+        Cursor cursor = database.rawQuery("SELECT SUM(TotalCost) FROM GLists WHERE  isHistory = ? AND creationDate LIKE ?",new String[] {"1",compare});
+        if (!cursor.moveToFirst()) {
 
+            cursor.moveToFirst();
+        }
+        int monthlyExpenditure = cursor.getInt(0);
+        cursor.close();
+        System.out.println(monthlyExpenditure);
+        return monthlyExpenditure;
+
+    }
 
 }
 
