@@ -73,5 +73,8 @@
     <string name="login_dialog2_prompt">Your selected password is too short!</string>
     <string name="edit_profile_cfm_dialog">Your Profile has been updated!</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
