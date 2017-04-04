@@ -21,8 +21,8 @@ import com.example.myfirstapp.mgr.GroceryManager;
 import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
-    private Button btAddList;
-    private GroceryManager groceryManager;
+    Button btAddList;
+    GroceryManager groceryManager;
     private ArrayList<GroceryList> gListArray;
 
     /**
