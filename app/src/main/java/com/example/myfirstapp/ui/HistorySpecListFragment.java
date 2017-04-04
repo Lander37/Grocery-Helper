@@ -5,6 +5,8 @@ package com.example.myfirstapp.ui;
  */
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.GroceryList;
+import com.example.myfirstapp.classes.Product;
+import com.example.myfirstapp.classes.ProductQty;
 import com.example.myfirstapp.mgr.HistoryManager;
 
 public class HistorySpecListFragment extends Fragment {
@@ -64,39 +68,39 @@ public class HistorySpecListFragment extends Fragment {
         TextView listDate = (TextView)view.findViewById(R.id.history_list_date);
         TextView totalExpenditure = (TextView)view.findViewById(R.id.history_list_total_exp);
         GroceryList selectedList = manager.getGroceryList(list_id);
-        int[][] arrayProduct = selectedList.getArrayProduct();
+        ArrayList<ProductQty> arrayProduct = selectedList.getArrayProduct();
 
 
         listName.setText(selectedList.getName());
         listDate.setText(new SimpleDateFormat("dd-MMM-yyyy").format(selectedList.getDate()));
         String totalExp = "$" + String.format ("%.2f", selectedList.getTotalCost());
         totalExpenditure.setText(totalExp);
-        for(int i = 0; i < arrayProduct.length; i++){
-            if(arrayProduct[i][1] != 0){
-                int product_id = arrayProduct[i][0];
-                TableRow row = new TableRow(view.getContext());
-                TextView brand = new TextView(view.getContext());
-                TextView item = new TextView(view.getContext());
-                TextView quantity = new TextView(view.getContext());
-                TextView price = new TextView(view.getContext());
+        for(int i = 0; i < arrayProduct.size(); i++){
+            Product product = arrayProduct.get(i).getProduct();
+            final int product_id = product.getProductID();
+            int quantity = arrayProduct.get(i).getQuantity();
+            TableRow row = new TableRow(view.getContext());
+            TextView brand = new TextView(view.getContext());
+            TextView item = new TextView(view.getContext());
+            TextView quantityDisp = new TextView(view.getContext());
+            TextView price = new TextView(view.getContext());
 
-                brand.setText("");
-                item.setText("");
-                quantity.setText(arrayProduct[i][1]);
-                price.setText("");
+            brand.setText(product.getBrand());
+            item.setText(product.getProductName());
+            quantityDisp.setText(quantity);
+            price.setText((quantity*product.getUnitPrice())+"");
 
-                row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
-                brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
-                item.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,5));
-                quantity.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
-                price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
+            row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
+            brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
+            item.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,5));
+            quantityDisp.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
+            price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
 
-                row.addView(brand);
-                row.addView(item);
-                row.addView(quantity);
-                row.addView(price);
-                listTable.addView(row);
-            }
+            row.addView(brand);
+            row.addView(item);
+            row.addView(quantityDisp);
+            row.addView(price);
+            listTable.addView(row);
         }
     }
 

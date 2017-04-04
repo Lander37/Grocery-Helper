@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.mgr.GroceryManager;
@@ -87,7 +86,7 @@ public class CartFragment extends Fragment {
                     tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                             TableRow.LayoutParams.WRAP_CONTENT));
                     tv.setGravity(Gravity.CENTER);
-                    tv.setTextSize(20);
+                    tv.setTextSize(25);
                     tv.setPadding(40, 5, 255, 5);
                     tv.setText(text);
                     row.addView(tv);

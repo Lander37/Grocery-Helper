@@ -20,7 +20,9 @@ public class GroceryList {
     /**
      * Stores the productID and quantity of products in a list.
      */
-    private int[][] ArrayProduct; // Stores ProductID & Quantity
+
+    // Stores ProductID & Quantity
+    private ArrayList<ProductQty> ArrayProduct;
 
     /**
      * Assigns an ID, list name, creation date to that grocery list.
@@ -35,7 +37,7 @@ public class GroceryList {
         this.Name = listName;
         this.TotalCost = 0;
         this.creationDate = new Date();
-        this.ArrayProduct = new int[50][2];
+        this.ArrayProduct = new ArrayList<ProductQty>(0);
     }
 
     /**
@@ -81,15 +83,13 @@ public class GroceryList {
  * Multiply unit price by quantity of that product
  * to get the TotalCost of the grocery list.
  */
-        for (int i = 0; i < ArrayProduct.length; i++) {
-            if (ArrayProduct[i][1] != 0) {
-                int prod_ID = ArrayProduct[i][0];
-                Product[] allProductsInSM = smManager.findSMProductList();
-                //Get UnitPrice from ProductID and add (Price*Qty) to TotalCost of GroceryList
-                for (int j = 0; j < allProductsInSM.length; j++) {
-                    if (prod_ID == allProductsInSM[j].getProductID()) {
-                        this.TotalCost += (allProductsInSM[j].getUnitPrice() * ArrayProduct[i][1]);
-                    }
+        for (int i = 0; i < ArrayProduct.size(); i++) {
+            int prod_ID = ArrayProduct.get(i).getProduct().getProductID();
+            Product[] allProductsInSM = smManager.findSMProductList();
+            //Get UnitPrice from ProductID and add (Price*Qty) to TotalCost of GroceryList
+            for (int j = 0; j < allProductsInSM.length; j++) {
+                if (prod_ID == allProductsInSM[j].getProductID()) {
+                    this.TotalCost += (allProductsInSM[j].getUnitPrice() * ArrayProduct.get(i).getQuantity());
                 }
             }
         }
@@ -97,9 +97,9 @@ public class GroceryList {
 
 
     public void setQty(int prod_ID, int QTY){
-        for(int i=0;i<ArrayProduct.length;i++){
-            if(ArrayProduct[i][0]==prod_ID){
-                ArrayProduct[i][1]=QTY;
+        for(int i=0;i<ArrayProduct.size();i++){
+            if(ArrayProduct.get(i).getProduct().getProductID() == prod_ID){
+                ArrayProduct.get(i).setQuantity(QTY);
             }
         }
     }
@@ -137,7 +137,7 @@ public class GroceryList {
      * @return
      */
 
-    public int[][] getArrayProduct() {
+    public ArrayList<ProductQty> getArrayProduct() {
         return this.ArrayProduct;
     }
 
@@ -145,24 +145,18 @@ public class GroceryList {
      * @param ArrayProduct
      */
 
-    public void setArrayProduct(int[][] ArrayProduct) {
+    public void setArrayProduct(ArrayList<ProductQty> ArrayProduct) {
         this.ArrayProduct = ArrayProduct;
     }
 
     /**
      * Add Product and quantity of this product to array list
-     * @param prod_ID ID of this product
+     * @param product ID of this product
      * @param QTY quantity of this product in grocery list
      */
-    public void addProdToList(int prod_ID, int QTY) {
-        for (int i = 0; i < ArrayProduct.length; i++) {
-            if (ArrayProduct[i][1] == 0) {
-                ArrayProduct[i][0] = prod_ID;
-                ArrayProduct[i][1] = QTY;
-                break;
-            }
-            i++;
-        }
+    public void addProdToList(Product product, int QTY) {
+        ProductQty newProduct = new ProductQty(product,QTY);
+        ArrayProduct.add(newProduct);
     }
 
     /**
@@ -173,10 +167,9 @@ public class GroceryList {
      */
 
     public void increaseQty(int prod_ID) {
-        for (int i = 0; i < ArrayProduct.length; i++) {
-            if (ArrayProduct[i][0] == prod_ID) {
-                ArrayProduct[i][1] += 1;
-                break;
+        for (int i = 0; i < ArrayProduct.size(); i++) {
+            if(ArrayProduct.get(i).getProduct().getProductID() == prod_ID){
+                ArrayProduct.get(i).setQuantity(ArrayProduct.get(i).getQuantity()+1);
             }
         }
     }
@@ -188,10 +181,11 @@ public class GroceryList {
      * @param prod_ID product ID of this product.
      */
     public void decreaseQty(int prod_ID) {
-        for (int i = 0; i < ArrayProduct.length; i++) {
-            if (ArrayProduct[i][0] == prod_ID) {
-                ArrayProduct[i][1] -= 1;
-                break;
+        for (int i = 0; i < ArrayProduct.size(); i++) {
+            if(ArrayProduct.get(i).getProduct().getProductID() == prod_ID){
+                if(ArrayProduct.get(i).getQuantity() > 1){
+                ArrayProduct.get(i).setQuantity(ArrayProduct.get(i).getQuantity()-1);
+                }
             }
         }
     }
@@ -202,9 +196,9 @@ public class GroceryList {
      * @param prod_ID product ID of this product.
      */
     public void removeProduct(int prod_ID) {
-        for (int i = 0; i < ArrayProduct.length; i++){
-            if (prod_ID == ArrayProduct[i][0]){
-                ArrayProduct[i][1] = 0;
+        for (int i = 0; i < ArrayProduct.size(); i++){
+            if (prod_ID == ArrayProduct.get(i).getProduct().getProductID()){
+                ArrayProduct.remove(i);
             }
         }
     }
@@ -213,9 +207,9 @@ public class GroceryList {
      * @param prod_ID product ID of this product.
      * @return result on whether product is inside this grocery list.
      */
-    public boolean checkProdinList(int prod_ID){
-        for (int i = 0; i < ArrayProduct.length; i++){
-            if (ArrayProduct[i][0] == prod_ID && ArrayProduct[i][1] != 0) {
+    public boolean checkProdInList(int prod_ID){
+        for (int i = 0; i < ArrayProduct.size(); i++){
+            if (ArrayProduct.get(i).getProduct().getProductID() == prod_ID) {
                 return true;
             }
         }
