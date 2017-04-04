@@ -1,11 +1,9 @@
 package com.example.myfirstapp.ui;
-
 /**
- * Created by Daniel on 4/5/2017.
+ * HistorySpecListFragment.java
+ * @author
  */
 
-
-public class HistorySpecListFragment {
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -94,8 +92,10 @@ public class HistorySpecListFragment extends Fragment {
             price.setText((quantity*product.getUnitPrice())+"");
 
             row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
-            brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
+
             item.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,5));
+            brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
+
             quantityDisp.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
             price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
 
@@ -123,3 +123,4 @@ public class HistorySpecListFragment extends Fragment {
 
 
 }
+

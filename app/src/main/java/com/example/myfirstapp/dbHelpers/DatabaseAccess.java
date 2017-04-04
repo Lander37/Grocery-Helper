@@ -295,6 +295,9 @@ public class DatabaseAccess {
         return productsInSubCategory;
     }
 
+    public void replaceProduct(int oldProdId, int newProdId, int gl_id){
+    }
+
     public int getUserHealthEmp(){
 
         int userHealthEmp = 0;
