@@ -19,7 +19,6 @@ import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.mgr.GroceryManager;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class CartFragment extends Fragment {
     private Button btAddList;
@@ -61,7 +60,6 @@ public class CartFragment extends Fragment {
         /*Cursor cursor = databaseAccess.populateGListTable();
         if (cursor.getCount() > 0) {*/
 
-
             for (int i = 0; i < gListArray.size(); i++) {
                 // Read columns data
                 String listName = gListArray.get(i).getName();
@@ -80,10 +78,6 @@ public class CartFragment extends Fragment {
                     }
                 });
 
-
-
-
-
                 row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                         TableLayout.LayoutParams.WRAP_CONTENT));
 
@@ -93,7 +87,7 @@ public class CartFragment extends Fragment {
                     tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                             TableRow.LayoutParams.WRAP_CONTENT));
                     tv.setGravity(Gravity.CENTER);
-                    tv.setTextSize(16);
+                    tv.setTextSize(20);
                     tv.setPadding(40, 5, 255, 5);
                     tv.setText(text);
                     row.addView(tv);

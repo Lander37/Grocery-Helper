@@ -72,8 +72,15 @@ public class DatabaseAccess {
         values.put("healthEmphasis", healthEmp);
         values.put("defaultLocation", defaultLocation);
         database.update("Profiles", values,"username" +" = ?", new String[] {username + ""});
+    }
+
+    public void setIsHistory(int gl_id){
+        ContentValues values = new ContentValues();
+        values.put("isHistory",1);
+        database.update("GLists",values,"_id="+gl_id,null);
 
     }
+
     public int getDpId(String username){
         String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
@@ -290,7 +297,7 @@ public class DatabaseAccess {
     public Cursor pullGLists(){
         //String query = "SELECT * FROM GLists; ";
         //Cursor cursor = database.rawQuery(query, null);
-        Cursor cursor = database.rawQuery("SELECT * FROM GLists WHERE listUser = ? ", new String[] {thisUsername + ""});
+        Cursor cursor = database.rawQuery("SELECT * FROM GLists WHERE listUser = ? AND isHistory = ?", new String[] {thisUsername + "", "0"});
         return cursor;
     }
 
@@ -335,8 +342,5 @@ public class DatabaseAccess {
             } while(cursor.moveToNext());
         }
     }
-
-
-
 }
 
