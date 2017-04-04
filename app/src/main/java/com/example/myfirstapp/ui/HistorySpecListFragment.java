@@ -93,11 +93,14 @@ public class HistorySpecListFragment extends Fragment {
 
             row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
 
-            item.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,5));
-            brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
+            item.setLayoutParams(new TableRow.LayoutParams(200,200));
+            brand.setLayoutParams(new TableRow.LayoutParams(200,200));
+            brand.setPadding(30,0,0,0);
+            quantityDisp.setLayoutParams(new TableRow.LayoutParams(200,200));
+            quantityDisp.setPadding(20,0,0,0);
+            price.setLayoutParams(new TableRow.LayoutParams(200,200));
+            price.setPadding(0,0,50,0);
 
-            quantityDisp.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
-            price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
 
             row.addView(item);
             row.addView(brand);

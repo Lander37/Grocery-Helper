@@ -110,33 +110,36 @@
 
                 <TextView
                     android:id="@+id/itemH"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5"
+                    android:layout_weight="50"
                     android:text="Item"
                     android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/brandH"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="50"
                     android:text="Brand"
+                    android:paddingLeft="18dp"
                     android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/quantityH"
 
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Quantity"
+                    android:layout_weight="50"
+                    android:text="Qty"
+                    android:paddingLeft="10dp"
                     android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/priceH"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="30"
+                    android:paddingLeft="3px"
                     android:text="Total Price"
                     android:textSize="20sp"/>
             </TableRow>
