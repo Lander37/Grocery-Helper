@@ -7,13 +7,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myfirstapp.R;
-import com.example.myfirstapp.classes.APIactivity;
+import com.example.myfirstapp.classes.HealthierChoiceAPIHandler;
 
 public class MainActivity extends AppCompatActivity {
 
+    HealthierChoiceAPIHandler healthierChoiceAPIHandler;
     Button btCreateProfile;
     Button btLogin;
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,19 +39,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        healthierChoiceAPIHandler = new HealthierChoiceAPIHandler(getApplicationContext());
     }
 
     private void launchActivity() {
 
-        Intent intent = new Intent(this, APIactivity.class);
-        intent.putExtra("postExecActivity","createProfile");
+        Intent intent = new Intent(this, CreateProfileActivity.class);
         startActivity(intent);
 
     }
     private void launchLogin() {
 
-        Intent intent = new Intent(this, APIactivity.class);
-        intent.putExtra("postExecActivity","login");
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

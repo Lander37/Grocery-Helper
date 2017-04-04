@@ -47,7 +47,7 @@ public class ExpenditureFragment extends Fragment {
                 "September","October","November","December"};
         GregorianCalendar gCalendar = new GregorianCalendar();
 
-        View view = inflater.inflate(R.layout.activity_expenditure_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_expenditure, container, false);
         btInputBudget = (Button) view.findViewById(R.id.inputBudget);
 
         btInputBudget.setOnClickListener(new View.OnClickListener() {
@@ -58,56 +58,15 @@ public class ExpenditureFragment extends Fragment {
             }
         });
 
-        txt = (TextView)view.findViewById(R.id.currentmonth);
+        txt = (TextView)view.findViewById(R.id.month);
         String currentMonth = String.valueOf(months[gCalendar.get(Calendar.MONTH)]);
         txt.setText(currentMonth);
 
-        txt = (TextView)view.findViewById(R.id.threemonths);
-        String threeMonths = String.valueOf((months[(((gCalendar.get(Calendar.MONTH)-3)+12)%12)]));
-        txt.setText(threeMonths);
 
-        txt = (TextView)view.findViewById(R.id.twomonths);
-        String twoMonths = String.valueOf((months[(((gCalendar.get(Calendar.MONTH)-2)+12)%12)]));
-        txt.setText(twoMonths);
-
-        txt = (TextView)view.findViewById(R.id.lastmonth);
-        String lastMonth = String.valueOf((months[(((gCalendar.get(Calendar.MONTH)-1)+12)%12)]));
-        txt.setText(lastMonth);
-
-
-        txt = (TextView)view.findViewById(R.id.currentyear);
+        txt = (TextView)view.findViewById(R.id.year);
         String currentYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
         txt.setText(currentYear);
 
-        txt = (TextView)view.findViewById(R.id.threemonthsyear);
-        if (gCalendar.get(Calendar.MONTH) >= 2){
-            String threeMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(threeMonthsYear);
-        }
-        else {
-            String threeMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(threeMonthsYear);
-        }
-
-        txt = (TextView)view.findViewById(R.id.twomonthsyear);
-        if (gCalendar.get(Calendar.MONTH) >= 1){
-            String twoMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(twoMonthsYear);
-        }
-        else {
-            String twoMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(twoMonthsYear);
-        }
-
-        txt = (TextView)view.findViewById(R.id.lastmonthyear);
-        if (gCalendar.get(Calendar.MONTH) >= 0){
-            String lastMonthYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(lastMonthYear);
-        }
-        else {
-            String lastMonthYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(lastMonthYear);
-        }
 
         return view;
     }

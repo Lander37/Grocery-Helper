@@ -207,7 +207,7 @@ public class DatabaseAccess {
     }*/
 
     public int createGList(String listName) {
-          database.execSQL("UPDATE GLists SET isCurrent = 0");
+        database.execSQL("UPDATE GLists SET isCurrent = 0");
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -311,3 +311,4 @@ public class DatabaseAccess {
     }
 
 }
+

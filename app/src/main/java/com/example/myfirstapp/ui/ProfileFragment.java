@@ -1,7 +1,9 @@
 package com.example.myfirstapp.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ public class ProfileFragment extends Fragment {
 
     private Button btLogOut;
     private Button btCloseApp;
+    private Button btSaveChanges;
     private EditText etEditUsername;
     private EditText etEditPassword;
     private Spinner spLocationList;
@@ -35,6 +38,9 @@ public class ProfileFragment extends Fragment {
     private boolean isCheckedGF = true;
     private DatabaseAccess databaseAccess;
     private int healthPref;
+    private int healthEmphasis;
+    private String defaultLocation;
+    private static final int MinPassLen = 6;
 
 
 
@@ -50,6 +56,15 @@ public class ProfileFragment extends Fragment {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
+        btSaveChanges.setOnClickListener(new View.OnClickListener() {
+            //if(editProfile()){
+            //}
+            @Override
+            public void onClick(View view) {
+                showDialog(EditProfileConfirmationDialog.newInstance());
+            }
+        });
         btLogOut = (Button) view.findViewById(R.id.logOut);
         btLogOut.setOnClickListener(new View.OnClickListener() {
 
@@ -62,14 +77,19 @@ public class ProfileFragment extends Fragment {
         etEditUsername = (EditText) view.findViewById(R.id.editUserName);
         etEditPassword = (EditText) view.findViewById(R.id.editPassword);
 
+        databaseAccess.open();
+        healthPref = databaseAccess.getDpId(thisUsername);
+        healthEmphasis = databaseAccess.getDpId(thisUsername);
+        //defaultLocation = databaseAccess.get(thisUsername);
+        databaseAccess.close();
+
         spLocationList = (Spinner) view.findViewById(R.id.locationList);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.location_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spLocationList.setAdapter(adapter);
+        spLocationList.setSelection(getIndex(spLocationList, defaultLocation));
 
-        databaseAccess.open();
-        healthPref = databaseAccess.getDpId(thisUsername);
-        databaseAccess.close();
+
 
         if ((healthPref % 2)==0){
             isCheckedGF = false;
@@ -85,6 +105,7 @@ public class ProfileFragment extends Fragment {
         }
 
         sbHealthSeekBar = (SeekBar) view.findViewById(R.id.healthSeekBar);
+        sbHealthSeekBar.setProgress(healthEmphasis);
         tbHealthierChoice = (CheckBox) view.findViewById(R.id.healthierChoiceButton);
         tbHealthierChoice.setChecked(isCheckedHC);
         tbHalal = (CheckBox) view.findViewById(R.id.halalButton);
@@ -102,7 +123,93 @@ public class ProfileFragment extends Fragment {
         return new ProfileFragment();
     }
 
+    private int getIndex(Spinner spinner, String myString)
+    {
+        int index = 0;
 
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
+    private boolean editProfile(){
+        if(shortPassword(etEditPassword)){
+            showDialog(LoginDialog2.newInstance());
+            return false;
+        }
+        else {
+            String username = etEditUsername.getText().toString();
+            thisUsername =  username;
+            String password = etEditPassword.getText().toString();
+            int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
+            String defaultLocation = spLocationList.getSelectedItem().toString();
 
+            boolean HA = false;
+            boolean HC = false;
+            boolean GF = false;
+            boolean VG = false;
+
+            if (tbHalal.isChecked()) {
+                HA = true;
+            }
+            if (tbHealthierChoice.isChecked()) {
+                HC = true;
+            }
+            if (tbGluten.isChecked()) {
+                GF = true;
+            }
+            if (tbVegetarian.isChecked()) {
+                VG = true;
+            }
+
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int d = 0;
+
+            if(tbHalal.isChecked()){
+                a = 1;
+            }
+            if(tbVegetarian.isChecked()){
+                b = 1;
+            }
+            if(tbHealthierChoice.isChecked()){
+                c = 1;
+            }
+            if(tbGluten.isChecked()){
+                d = 1;
+            }
+
+            int dpId = 8*a + 4*b + 2*c + d;
+
+            databaseAccess.open();
+            //databaseAccess.editProfile(username, password, healthEmphasis, defaultLocation, dpId);
+            databaseAccess.close();
+        }
+        return true;
+    }
+    private boolean shortPassword(EditText passwordField) {
+        if (passwordField.getText().toString().length() > (MinPassLen - 1)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void showDialog(DialogFragment fragment){
+        closeDialogs();
+        fragment.show(getFragmentManager().beginTransaction(),"dialog");
+    }
+
+    public void closeDialogs(){
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if(prev != null){
+            transaction.remove(prev);
+        }
+        transaction.commit();
+    }
 }
