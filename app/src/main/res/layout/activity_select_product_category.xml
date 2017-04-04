@@ -108,15 +108,15 @@
 
     </ScrollView>
 
-    <ListView
-        android:id="@+id/productList"
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:layout_marginBottom="60dp"
         android:layout_marginLeft="140dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="60dp">
-    </ListView>
+        android:layout_marginTop="60dp"
+        android:id="@+id/frame2"/>
 
     <Button
         android:id="@+id/back"

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/budget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monthly Budget:"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/budgetNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="180dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/remain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remaining:"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="65dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/remainNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="180dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="90dp"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="190dp"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/expenditure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="220dp"
+        android:textAlignment="center"
+        android:textSize="40sp"/>
+
+    <Button
+        android:id="@+id/inputBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="80dp"
+        android:onClick="goToBudgetCalculator"
+        android:text="Input Budget"
+        android:textSize="25sp"/>
+</android.support.design.widget.CoordinatorLayout>

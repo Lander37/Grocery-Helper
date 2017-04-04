@@ -84,6 +84,7 @@ public class CreateProfileActivity extends AppCompatActivity {
         }
         else {
             String username = etEditUsername.getText().toString();
+            thisUsername = username;
             String password = etEditPassword.getText().toString();
             int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
             String defaultLocation = spLocationList.getSelectedItem().toString();
