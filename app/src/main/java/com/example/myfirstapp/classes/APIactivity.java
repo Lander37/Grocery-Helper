@@ -46,7 +46,7 @@ public class APIactivity extends AppCompatActivity {
         thisActivity = this;
         setContentView(R.layout.activity_main);
 
-        productList = new ArrayList<String>(0);
+        productList = new ArrayList<String>();
         // lv = (ListView) findViewById(R.id.list);
 
         new GetProducts().execute();
@@ -67,7 +67,8 @@ public class APIactivity extends AppCompatActivity {
              * Making a request to the url and getting a reply.
              * @param url - an absolute URL where we got our data API from.
              */
-            String url = "https://data.gov.sg/api/action/datastore_search?resource_id=6bf1e41f-cdf8-47ca-ac72-c5c076f59416";
+            //String url = "https://data.gov.sg/api/action/datastore_search?resource_id=6bf1e41f-cdf8-47ca-ac72-c5c076f59416";
+            String url = "https://data.gov.sg/api/action/datastore_search?resource_id=6bf1e41f-cdf8-47ca-ac72-c5c076f59416&limit=5780";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
