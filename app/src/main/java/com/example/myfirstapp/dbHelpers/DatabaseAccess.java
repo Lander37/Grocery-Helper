@@ -476,6 +476,20 @@ public class DatabaseAccess {
         System.out.println(monthlyExpenditure);
         return monthlyExpenditure;
 
+
+    public void deleteProductFromList (int gl_id, String subCategory){
+
+        String listName = "";
+
+        Cursor cursor = null;
+        cursor = database.rawQuery("SELECT Name FROM GLists WHERE _id = ? ", new String[]{gl_id + ""});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            listName = listName.concat(cursor.getString(cursor.getColumnIndex("Name")));
+        }
+        cursor.close();
+
+        database.delete(listName, "subCategory = ? ", new String[] {subCategory});
     }
 
 }

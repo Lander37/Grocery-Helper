@@ -20,9 +20,9 @@ import java.util.List;
 
 public class SubCategoryFragment extends Fragment {
 
-    ListView lvProductList;
     private int gl_id;
     private String subCategory;
+    ListView lvProductList;
     DatabaseAccess databaseAccess;
 
     public static SubCategoryFragment newInstance(int gl_id, String subCategory) {
@@ -57,7 +57,7 @@ public class SubCategoryFragment extends Fragment {
                 databaseAccess.open();
                 databaseAccess.addProduct(selectedProduct, gl_id);
                 databaseAccess.close();
-                Toast.makeText(getContext(), selectedProduct + "  Added!" , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), selectedProduct + "  Added!" , Toast.LENGTH_SHORT).show();
 
             }
         });
