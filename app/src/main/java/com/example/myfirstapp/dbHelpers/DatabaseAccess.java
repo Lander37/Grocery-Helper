@@ -118,20 +118,10 @@ public class DatabaseAccess {
         int healthierChoice = 0;
         int glutenFree = 0;
         int dpId = getDpId(thisUsername);
-
-        if ((dpId % 2) == 1){
-            glutenFree = 1;
-        }
-        if (((dpId/2) % 2) == 1){
-            healthierChoice = 1;
-        }
-        if (((dpId/4) % 2) == 1){
-            vegetarian = 1;
-        }
-        if (((dpId/8) % 2) == 1){
-            halal = 1;
-        }
-
+        if ((dpId % 2) == 1){ glutenFree = 1;}
+        if (((dpId/2) % 2) == 1){healthierChoice = 1;}
+        if (((dpId/4) % 2) == 1){vegetarian = 1;}
+        if (((dpId/8) % 2) == 1){halal = 1;}
         Cursor cursor = database.rawQuery("SELECT DISTINCT subCategory FROM ProductList1 " +
                 "WHERE category = ? AND halal >= ? AND vegetarian >= ? AND healthierChoice >= ? AND glutenFree >= ? " +
                 "ORDER BY " + "subCategory", new String[] {category, String.valueOf(halal),
@@ -145,6 +135,17 @@ public class DatabaseAccess {
         return list;
     }
 
+    public List<String> getHLists(){
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Name + TotalCost FROM GLists WHERE listUser = ? AND isHistory = ?", new String[] {thisUsername + "", "1"});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
     public double getUnitPrice(String productName) {
         Cursor cursor = null;
         double unitPrice = 0;
@@ -300,6 +301,14 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT * FROM GLists WHERE listUser = ? AND isHistory = ?", new String[] {thisUsername + "", "0"});
         return cursor;
     }
+
+    public Cursor pullHLists(){
+        //String query = "SELECT * FROM GLists; ";
+        //Cursor cursor = database.rawQuery(query, null);
+        Cursor cursor = database.rawQuery("SELECT * FROM GLists WHERE listUser = ? AND isHistory = ?", new String[] {thisUsername + "", "1"});
+        return cursor;
+    }
+
 
     public void createProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
         ContentValues values = new ContentValues();
