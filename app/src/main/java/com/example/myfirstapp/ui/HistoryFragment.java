@@ -95,7 +95,9 @@ public class HistoryFragment extends Fragment {
                     return  -gList1.getDate().compareTo(gList2.getDate());
                 }
             });
-        }  else if (sortingBy == getString(R.string.sortby_Price)){
+
+
+        } else if (sortingBy == getString(R.string.sortby_Price)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)

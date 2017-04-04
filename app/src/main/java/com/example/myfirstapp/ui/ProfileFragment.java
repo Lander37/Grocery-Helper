@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 import com.example.myfirstapp.R;
 
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
 
 public class ProfileFragment extends Fragment {
 
@@ -56,7 +56,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
-
+        System.out.println(thisUsername);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
         btSaveChanges.setOnClickListener(new View.OnClickListener() {

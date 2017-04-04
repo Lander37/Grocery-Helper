@@ -86,7 +86,7 @@ public class CartFragment extends Fragment {
                     tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                             TableRow.LayoutParams.WRAP_CONTENT));
                     tv.setGravity(Gravity.CENTER);
-                    tv.setTextSize(20);
+                    tv.setTextSize(25);
                     tv.setPadding(40, 5, 255, 5);
                     tv.setText(text);
                     row.addView(tv);
