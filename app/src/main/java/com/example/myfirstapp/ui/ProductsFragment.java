@@ -56,6 +56,7 @@ public class ProductsFragment extends Fragment {
             Product product = arrayProduct.get(i).getProduct();
             final int product_id = product.getProductID();
             int quantity = arrayProduct.get(i).getQuantity();
+            final String subCategory = product.getSubCategory();
             TableRow row = new TableRow(view.getContext());
             TextView brand = new TextView(view.getContext());
             TextView item = new TextView(view.getContext());
@@ -90,6 +91,12 @@ public class ProductsFragment extends Fragment {
             row.addView(brand);
             row.addView(quantityPicker);
             row.addView(price);
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((NavigationActivity)getActivity()).replaceThis(SelectBrandFragment.newInstance(gl_id,product_id,subCategory),"Cart");
+                }
+            });
             listTable.addView(row);
         }
     }
