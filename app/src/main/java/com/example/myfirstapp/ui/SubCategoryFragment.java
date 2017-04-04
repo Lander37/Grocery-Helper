@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 
 
 import com.example.myfirstapp.R;
@@ -46,15 +48,17 @@ public class SubCategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_sub_category, container, false);
         this.databaseAccess = DatabaseAccess.getInstance(getActivity().getApplicationContext());
-
         lvProductList = (ListView) view.findViewById(R.id.list);
         lvProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+
                 String selectedProduct = (String)adapter.getItemAtPosition(position);
                 databaseAccess.open();
                 databaseAccess.addProduct(selectedProduct, gl_id);
                 databaseAccess.close();
+                Toast.makeText(getContext(), selectedProduct + "  Added!" , Toast.LENGTH_LONG).show();
+
             }
         });
         databaseAccess.open();
