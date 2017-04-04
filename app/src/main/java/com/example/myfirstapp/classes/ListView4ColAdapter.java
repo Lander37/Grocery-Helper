@@ -15,7 +15,7 @@ import com.example.myfirstapp.R;
  * Created by Daniel on 4/5/2017.
  */
 
-public class listView4ColAdapter extends BaseAdapter{
+public class ListView4ColAdapter extends BaseAdapter{
     public static final String FIRST_COLUMN = "First";
     public static final String SECOND_COLUMN = "Second";
     public static final String THIRD_COLUMN = "Third";
@@ -23,7 +23,7 @@ public class listView4ColAdapter extends BaseAdapter{
     private ArrayList<HashMap> list;
     Activity activity;
 
-    public listView4ColAdapter(Activity activity, ArrayList<HashMap> list) {
+    public ListView4ColAdapter(Activity activity, ArrayList<HashMap> list) {
         super();
         this.activity = activity;
         this.list = list;
@@ -31,19 +31,16 @@ public class listView4ColAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
@@ -56,12 +53,8 @@ public class listView4ColAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-
-        // TODO Auto-generated method stub
         ViewHolder holder;
         LayoutInflater inflater =  activity.getLayoutInflater();
-
         if (convertView == null)
         {
             convertView = inflater.inflate(R.layout.listview_row_4_col, null);
@@ -78,10 +71,10 @@ public class listView4ColAdapter extends BaseAdapter{
         }
 
         HashMap map = list.get(position);
-        holder.txtFirst.setText(map.get(FIRST_COLUMN).toString());
-        holder.txtSecond.setText(map.get(SECOND_COLUMN).toString());
-        holder.txtThird.setText(map.get(THIRD_COLUMN).toString());
-        holder.txtFourth.setText(map.get(FOURTH_COLUMN).toString());
+        holder.txtFirst.setText((String)map.get(FIRST_COLUMN));
+        holder.txtSecond.setText((String)map.get(SECOND_COLUMN));
+        holder.txtThird.setText((String)map.get(THIRD_COLUMN));
+        holder.txtFourth.setText((String)map.get(FOURTH_COLUMN));
 
         return convertView;
     }

@@ -6,6 +6,7 @@ package com.example.myfirstapp.ui;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,19 +14,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.classes.ProductQty;
+import com.example.myfirstapp.classes.ListView4ColAdapter;
 import com.example.myfirstapp.mgr.HistoryManager;
 
-public class HistorySpecListFragment extends Fragment {
+public class HistorySpecListFragment2 extends Fragment {
+    private ArrayList<HashMap> list;
+    private ListView4ColAdapter adapter;
     private HistoryManager manager;
     private Button backButton;
+    private ListView listView;
 
     /**
      *
@@ -35,12 +39,17 @@ public class HistorySpecListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.manager = new HistoryManager(getActivity().getApplicationContext());
+        list = new ArrayList<HashMap>(0);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
         View view = inflater.inflate(R.layout.activity_history_spec_list, container, false);
         backButton = (Button) view.findViewById(R.id.history_back_to_main);
+        listView = (ListView) view.findViewById(R.id.listview);
+        populateList(bundle.getInt("list_id"), view);
+        adapter = new ListView4ColAdapter(getActivity(), list);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +58,7 @@ public class HistorySpecListFragment extends Fragment {
             }
         });
 
-        Bundle bundle = getArguments();
-        populateList(bundle.getInt("list_id"), view);
+        listView.setAdapter(adapter);
         return view;
     }
 
@@ -63,7 +71,6 @@ public class HistorySpecListFragment extends Fragment {
      */
     //Populates the table history_list_details with
     public void populateList(int list_id, View view){
-        TableLayout listTable = (TableLayout)view.findViewById(R.id.history_list_details);
         TextView listName = (TextView)view.findViewById(R.id.history_list_name);
         TextView listDate = (TextView)view.findViewById(R.id.history_list_date);
         TextView totalExpenditure = (TextView)view.findViewById(R.id.history_list_total_exp);
@@ -77,31 +84,20 @@ public class HistorySpecListFragment extends Fragment {
         totalExpenditure.setText(totalExp);
         for(int i = 0; i < arrayProduct.size(); i++){
             Product product = arrayProduct.get(i).getProduct();
-            final int product_id = product.getProductID();
+            int product_id = product.getProductID();
             int quantity = arrayProduct.get(i).getQuantity();
-            TableRow row = new TableRow(view.getContext());
-            TextView brand = new TextView(view.getContext());
-            TextView item = new TextView(view.getContext());
-            TextView quantityDisp = new TextView(view.getContext());
-            TextView price = new TextView(view.getContext());
+            String productName = product.getProductName();
+            String productBrand = product.getBrand();
+            float price = product.getUnitPrice() * quantity;
 
-            brand.setText(product.getBrand());
-            item.setText(product.getProductName());
-            quantityDisp.setText(quantity);
-            price.setText((quantity*product.getUnitPrice())+"");
-
-            row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
-            brand.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,3));
-            item.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,5));
-            quantityDisp.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
-            price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
-
-            row.addView(brand);
-            row.addView(item);
-            row.addView(quantityDisp);
-            row.addView(price);
-            listTable.addView(row);
+            HashMap temp = new HashMap();
+            temp.put(adapter.FIRST_COLUMN,productName);
+            temp.put(adapter.SECOND_COLUMN,productBrand);
+            temp.put(adapter.THIRD_COLUMN,quantity+"");
+            temp.put(adapter.FOURTH_COLUMN,price+"");
+            list.add(temp);
         }
+        //adapter.notifyDataSetChanged();
     }
 
     /**
@@ -109,8 +105,8 @@ public class HistorySpecListFragment extends Fragment {
      * @param list_id
      * @return
      */
-    public static HistorySpecListFragment newInstance(int list_id) {
-        HistorySpecListFragment historySpecListFragment = new HistorySpecListFragment();
+    public static HistorySpecListFragment2 newInstance(int list_id) {
+        HistorySpecListFragment2 historySpecListFragment = new HistorySpecListFragment2();
         Bundle bundle = new Bundle();
         bundle.putInt("list_id",list_id);
         historySpecListFragment.setArguments(bundle);

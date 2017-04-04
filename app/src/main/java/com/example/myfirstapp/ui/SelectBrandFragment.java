@@ -84,13 +84,4 @@ public class SelectBrandFragment extends Fragment {
         return view;
     }
 
-    public static SelectBrandFragment newInstance(int gl_id, String subCategory) {
-        SelectBrandFragment fragment = new SelectBrandFragment();
-        Bundle args = new Bundle();
-        args.putInt("gl_id",gl_id);
-        args.putString("subCategory",subCategory);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
 }
