@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <EditText
         android:id="@+id/budget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Monthly Budget:"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:textSize="20sp"/>
 
@@ -21,12 +21,12 @@
         android:layout_marginLeft="180dp"
         android:textSize="20sp"/>
 
-    <TextView
+    <EditText
         android:id="@+id/remain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Remaining:"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         android:layout_marginLeft="65dp"
         android:textSize="20sp"/>
 
