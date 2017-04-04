@@ -23,7 +23,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
@@ -86,9 +86,11 @@ public class DatabaseAccess {
 
     public int getDpId(String username){
         String query = "SELECT dpId FROM Profiles WHERE username = \"" + username + "\";";
+        System.out.println(username);
         Cursor cursor = database.rawQuery(query, null);
-        if (!cursor.moveToFirst())
+        if (!cursor.moveToFirst()) {
             cursor.moveToFirst();
+        }
         int dpId = cursor.getInt(0);
         cursor.close();
         return dpId;
@@ -449,5 +451,19 @@ public class DatabaseAccess {
             } while(cursor.moveToNext());
         }
     }
+
+    public boolean isLoginValid(String username, String password){
+        Cursor cursor = database.rawQuery("SELECT * FROM Profiles WHERE username = ? AND password = ?",new String[] {username,password});
+        if(cursor!=null && cursor.getCount()>0) {
+                cursor.moveToFirst();
+                cursor.close();
+                return true;
+            }
+        else {
+            return false;
+        }
+    }
+
+
 }
 
