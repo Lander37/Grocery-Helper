@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myfirstapp.R;
@@ -26,7 +27,11 @@ public class ExpenditureFragment extends Fragment {
     private TextView txt;
     private TextView tvMonthlyExpenditure;
     private Button btInputBudget;
-    private String totalMonthlyExpenditure;
+    private float totalMonthlyExpenditure;
+    private EditText etMonthlyBudget;
+    private EditText etRemainingBudget;
+    private TextView tvMonthlyBudget;
+    private TextView tvRemainingBudget;
 
     /**
      *
@@ -55,7 +60,13 @@ public class ExpenditureFragment extends Fragment {
 
 
         View view = inflater.inflate(R.layout.fragment_expenditure, container, false);
-
+        etRemainingBudget = (EditText) view.findViewById(R.id.remain);
+        etMonthlyBudget = (EditText) view.findViewById(R.id.budget);
+        tvRemainingBudget = (TextView) view.findViewById(R.id.remainNum);
+        tvMonthlyBudget = (TextView) view.findViewById(R.id.budgetNum);
+        databaseAccess.open();
+        float Budget = databaseAccess.getBudget(thisUsername);
+        tvMonthlyBudget.setText(String.valueOf(Budget));
         btInputBudget = (Button) view.findViewById(R.id.inputBudget);
 
         btInputBudget.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +86,7 @@ public class ExpenditureFragment extends Fragment {
         String currentYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
         txt.setText(currentYear);
 
-        databaseAccess.open();
+
         String month = "0";
         if (gCalendar.get(Calendar.MONTH)<10){
             month = (currentYear + "-" + "0" + Integer.toString(gCalendar.get(Calendar.MONTH)+1));
@@ -83,11 +94,12 @@ public class ExpenditureFragment extends Fragment {
         else{
             month = (currentYear + "-" + Integer.toString(gCalendar.get(Calendar.MONTH)+1));
         }
-        totalMonthlyExpenditure = String.valueOf(databaseAccess.getMonthlyExpenditure(month,thisUsername));
+        totalMonthlyExpenditure = databaseAccess.getMonthlyExpenditure(month,thisUsername);
         tvMonthlyExpenditure = (TextView) view.findViewById(R.id.expenditure);
-        tvMonthlyExpenditure.setText("$" + totalMonthlyExpenditure);
+        tvMonthlyExpenditure.setText("$" + String.valueOf(totalMonthlyExpenditure));
+        float remainingBudget = Budget - totalMonthlyExpenditure;
+        tvRemainingBudget.setText(String.valueOf(remainingBudget));
         databaseAccess.close();
-
         return view;
     }
 

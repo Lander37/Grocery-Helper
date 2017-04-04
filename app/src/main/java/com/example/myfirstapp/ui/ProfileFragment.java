@@ -23,7 +23,6 @@ import static com.example.myfirstapp.ui.MainActivity.thisUsername;
 public class ProfileFragment extends Fragment {
 
     private Button btLogOut;
-    private Button btCloseApp;
     private Button btSaveChanges;
     private TextView tvUsername;
     private EditText etEditPassword;

@@ -97,7 +97,7 @@
 
     <ScrollView
         android:layout_width="343dp"
-        android:layout_height="327dp"
+        android:layout_height="320dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -132,30 +132,36 @@
             <TableRow>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="50"
+                    android:paddingBottom="20dp"
                     android:text="Item" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="50"
+                    android:paddingLeft="31dp"
+                    android:paddingBottom="20dp"
                     android:text="Brand" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="60"
+                    android:paddingLeft="42dp"
+                    android:paddingBottom="20dp"
                     android:text="Quantity" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="50"
+                    android:paddingLeft="33dp"
+                    android:paddingBottom="20dp"
                     android:text="Price" />
             </TableRow>
         </TableLayout>
     </ScrollView>
-
 </android.support.constraint.ConstraintLayout>
