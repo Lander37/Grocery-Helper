@@ -9,6 +9,9 @@ import android.widget.Button;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.HealthierChoiceAPIHandler;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     HealthierChoiceAPIHandler healthierChoiceAPIHandler;
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button btLogin;
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static String thisUsername;
+    public static DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         healthierChoiceAPIHandler = new HealthierChoiceAPIHandler(getApplicationContext());
+        df.setRoundingMode(RoundingMode.HALF_UP);
     }
 
     private void launchActivity() {
