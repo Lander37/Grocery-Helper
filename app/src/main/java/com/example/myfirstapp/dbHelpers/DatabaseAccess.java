@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.mgr.GroceryManager;
@@ -29,6 +30,7 @@ public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private static DatabaseAccess instance;
+    private Context appContenxt;
 
     /**
      * Private constructor to avoid object creation from outside classes.
@@ -37,6 +39,7 @@ public class DatabaseAccess {
      */
     private DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
+        appContenxt = context;
     }
 
     /**
@@ -177,6 +180,55 @@ public class DatabaseAccess {
         }
     }
 
+    public Product getProductById(int productID){
+        String productName;
+        String category;
+        String brand;
+        String subCat;
+        float unitPrice;
+        int weightOrVolume;
+        int item_dpId;
+        double healthRating;
+
+        int halal = 0;
+        int vegetarian = 0;
+        int healthierChoice = 0;
+        int glutenFree = 0;
+        int dpId = getDpId(thisUsername);
+
+        if ((dpId % 2) == 1){
+            glutenFree = 1;
+        }
+        if (((dpId/2) % 2) == 1){
+            healthierChoice = 1;
+        }
+        if (((dpId/4) % 2) == 1){
+            vegetarian = 1;
+        }
+        if (((dpId/8) % 2) == 1){
+            halal = 1;
+        }
+
+        Cursor cursor = database.rawQuery("SELECT * FROM ProductList1 WHERE productID = ?",
+                new String[] {productID+""});
+
+        cursor.moveToFirst();
+        productID = cursor.getInt(cursor.getColumnIndex("productID"));
+        weightOrVolume = cursor.getInt(cursor.getColumnIndex("weightOrVolume"));
+        productName = cursor.getString(cursor.getColumnIndex("productName"));
+        category = cursor.getString(cursor.getColumnIndex("category"));
+        brand = cursor.getString(cursor.getColumnIndex("brand"));
+        unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
+        healthRating = cursor.getDouble(cursor.getColumnIndex("healthRating"));
+        subCat = cursor.getString(cursor.getColumnIndex("subCategory"));
+        item_dpId = cursor.getInt(cursor.getColumnIndex("dpId"));
+
+        Product tobeAdded = new Product(productID, category, brand, productName, subCat,
+                unitPrice, item_dpId, weightOrVolume, healthRating);
+        cursor.close();
+        return tobeAdded;
+    }
+
     public ArrayList<Product> listProductsInSubCategory(String subCategory){
 
         String productName;
@@ -301,27 +353,27 @@ public class DatabaseAccess {
         float unitPrice = 0;
         String productName = "";
         String listName = "";
-        String brand = "";
 
         ArrayList<Product> productsForCompare = listProductsInSubCategory(subCategory);
         int userHealthEmp = getUserHealthEmp();
         int recProdID = chooseSpecificProductID(productsForCompare, userHealthEmp);
 
         //Add item to grocery list
-        Cursor cursor = null;
-        cursor = database.rawQuery("SELECT productName, unitPrice, brand FROM ProductList1 WHERE productID = ? ", new String[]{recProdID + ""});
+       Cursor cursor = null;
+        cursor = database.rawQuery("SELECT productName, unitPrice FROM ProductList1 WHERE productID = ? ", new String[]{recProdID + ""});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             productName = productName.concat(cursor.getString(cursor.getColumnIndex("productName")));
             unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
-            brand = brand.concat(cursor.getString(cursor.getColumnIndex("brand")));
+         // subCategory = brand.concat(cursor.getString(cursor.getColumnIndex("subCategory")));
         }
         cursor.close();
 
         ContentValues values = new ContentValues();
+        values.put("productID",recProdID);
         values.put("productName", productName);
         values.put("unitPrice", unitPrice);
-        values.put("brand", brand);
+        values.put("subCategory", subCategory);
         values.put("quantity", 1);
 
         Cursor cr = null;
@@ -336,11 +388,11 @@ public class DatabaseAccess {
 
     public void refreshListCosts(int gl_id, String listName){
 
-        int totalCost = 0;
+        float totalCost = 0;
         int quantity = 0;
         float unitPrice = 0;
         Cursor cursor = null;
-        cursor = database.rawQuery("SELECT quantity, unitPrice FROM " + listName, null);
+        cursor = database.rawQuery("SELECT quantity, productID, unitPrice FROM " + listName, null);
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -348,13 +400,19 @@ public class DatabaseAccess {
 
                 quantity = cursor.getInt(cursor.getColumnIndex("quantity"));
                 unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
-                totalCost += (quantity*unitPrice);
+                totalCost += ((float)quantity*unitPrice);
                 cursor.moveToNext();
             }
         }
         database.execSQL("UPDATE GLists SET TotalCost = " + totalCost + "" + " WHERE _id = " + gl_id + "");
         cursor.close();
 
+    }
+
+    public void updateProductQty(String listName, int productID, int quantity){
+        ContentValues values = new ContentValues();
+        values.put("quantity", quantity);
+        database.update(listName, values, "productID = ?", new String[]{productID + ""});
     }
 
     public int createGList(String listName) {
@@ -380,8 +438,8 @@ public class DatabaseAccess {
             int id = (int) idLong;
 
 
-            String query = "CREATE TABLE " + listName + "(productName TEXT NOT NULL PRIMARY KEY, " +
-                    "quantity INTEGER NOT NULL, unitPrice REAL NOT NULL, brand TEXT NOT NULL);";
+            String query = "CREATE TABLE " + listName + "(productID TEXT NOT NULL PRIMARY KEY, productName TEXT NOT NULL, " +
+                    "subCategory TEXT NOT NULL, quantity INTEGER NOT NULL, unitPrice REAL NOT NULL);";
             database.execSQL(query);
 
             return id;
@@ -420,6 +478,11 @@ public class DatabaseAccess {
         return cursor;
     }
 
+    public Cursor pullProductsOfList(String listName){
+        Cursor cursor = database.rawQuery("SELECT * FROM " + listName, null);
+        return cursor;
+    }
+
 
     public void createProfile(String username, String password, int healthEmp, String defaultLocation, int dpId){
         ContentValues values = new ContentValues();
@@ -428,6 +491,7 @@ public class DatabaseAccess {
         values.put("dpId", dpId);
         values.put("healthEmphasis", healthEmp);
         values.put("defaultLocation", defaultLocation);
+        values.put("budget", (float)0);
 
         database.insert("Profiles", null, values);
     }

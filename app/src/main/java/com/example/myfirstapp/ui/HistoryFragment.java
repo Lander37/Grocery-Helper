@@ -96,6 +96,7 @@ public class HistoryFragment extends Fragment {
                 }
             });
 
+
         } else if (sortingBy == getString(R.string.sortby_Price)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
                 @Override

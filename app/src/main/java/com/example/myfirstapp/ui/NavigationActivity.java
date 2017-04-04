@@ -104,6 +104,12 @@ public class NavigationActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public void refreshThis(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.detach(fragment);
+        transaction.attach(fragment);
+        transaction.commit();
+    }
 
 
     public void showDialog(DialogFragment fragment) {
