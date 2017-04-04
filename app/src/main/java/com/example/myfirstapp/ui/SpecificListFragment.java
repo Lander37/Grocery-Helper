@@ -53,6 +53,7 @@ public class SpecificListFragment extends Fragment {
         listName = (TextView) view.findViewById(R.id.specific_list_name);
         listName.setText(currentList.getName());
         replaceList2(ProductsFragment.newInstance(gl_id),"Cart");
+
         addItem.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -97,4 +98,6 @@ public class SpecificListFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 }
