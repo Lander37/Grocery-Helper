@@ -87,7 +87,7 @@ public class HistorySpecListFragment extends Fragment {
 
             brand.setText(product.getBrand());
             item.setText(product.getProductName());
-            quantityDisp.setText(quantity);
+            quantityDisp.setText(quantity+"");
             price.setText((quantity*product.getUnitPrice())+"");
 
             row.setLayoutParams(new TableRow.LayoutParams(listTable.getLayoutParams().MATCH_PARENT,listTable.getLayoutParams().MATCH_PARENT));
@@ -96,8 +96,8 @@ public class HistorySpecListFragment extends Fragment {
             quantityDisp.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
             price.setLayoutParams(new TableRow.LayoutParams(row.getLayoutParams().MATCH_PARENT,row.getLayoutParams().MATCH_PARENT,1));
 
-            row.addView(brand);
             row.addView(item);
+            row.addView(brand);
             row.addView(quantityDisp);
             row.addView(price);
             listTable.addView(row);
