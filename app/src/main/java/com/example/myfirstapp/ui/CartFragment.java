@@ -19,6 +19,8 @@ import com.example.myfirstapp.mgr.GroceryManager;
 
 import java.util.ArrayList;
 
+import static com.example.myfirstapp.ui.MainActivity.df;
+
 public class CartFragment extends Fragment {
     Button btAddList;
     GroceryManager groceryManager;
@@ -62,7 +64,7 @@ public class CartFragment extends Fragment {
         for (int i = 0; i < gListArray.size(); i++) {
             // Read columns data
             String listName = gListArray.get(i).getName();
-            String totalCost = gListArray.get(i).getTotalCost() + "";
+            String totalCost = df.format(gListArray.get(i).getTotalCost()) + "";
             final int gl_id = gListArray.get(i).getGL_ID();
 
             // data rows
@@ -82,11 +84,13 @@ public class CartFragment extends Fragment {
 
             String[] colText = {listName, totalCost};
             for (String text : colText) {
+
                 TextView tv = new TextView(this.getActivity());
                 tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
+
                 tv.setTextSize(25);
-                tv.setPadding(40, 5, 70, 5);
+                tv.setPadding(40, 5, 190, 5);
                 tv.setText(text);
                 row.addView(tv);
             }

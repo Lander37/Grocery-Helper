@@ -56,9 +56,7 @@ public class SelectBrandFragment extends Fragment {
         btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Code for deleting this item from database
-                  refer to gl_id to find right list, and subCategory to find right item.
-                */
+
                 databaseAccess.deleteProductFromList(gl_id, subCategory);
                 ((NavigationActivity) getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id), "Cart");
             }
