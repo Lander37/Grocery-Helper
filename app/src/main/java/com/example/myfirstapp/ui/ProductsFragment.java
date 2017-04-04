@@ -16,6 +16,8 @@ import com.example.myfirstapp.classes.GroceryList;
 import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.classes.ProductQty;
 import com.example.myfirstapp.mgr.GroceryManager;
+import com.example.myfirstapp.ui.SpecificListFragment;
+
 
 
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class ProductsFragment extends Fragment {
     private int gl_id;
     private GroceryList currentList;
     private GroceryManager groceryManager;
+    private Fragment thisFragment;
+    SpecificListFragment sf = SpecificListFragment.newInstance(gl_id);
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,7 @@ public class ProductsFragment extends Fragment {
         gl_id = args.getInt("gl_id");
         groceryManager = new GroceryManager(getActivity().getApplicationContext());
         groceryManager.setCurrentListID(gl_id);
-
+        thisFragment = this;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +77,7 @@ public class ProductsFragment extends Fragment {
                 @Override
                 public void onValueChange(NumberPicker numberPicker, int i, int i1) {
                     groceryManager.updateItemQty(product_id, i1);
-                    replaceList2(ProductsFragment.newInstance(gl_id),"Cart");
+                    ((SpecificListFragment)getParentFragment()).replaceList2(ProductsFragment.newInstance(gl_id),"Cart");
                 }
             });
 
@@ -102,12 +106,13 @@ public class ProductsFragment extends Fragment {
         return fragment;
     }
 
-    public void replaceList2(Fragment fragment, String tag) {
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame4, fragment, tag);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+   // public void replaceList3(Fragment fragment,  String tag) {
+   //     FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+  //      transaction.replace(R.id.frame4, fragment, tag);
+   //     transaction.addToBackStack(null);
+    //    transaction.commit();
+   // }
+
 
 
 }
