@@ -19,6 +19,15 @@ import java.util.List;
 public class SelectBrandFragment extends Fragment {
 
 
+    public static SelectBrandFragment newInstance(int gl_id ,String subcategory) {
+        Bundle args = new Bundle();
+        args.putInt("gl_id", gl_id);
+        args.putString("subCat",subcategory);
+        SelectBrandFragment fragment = new SelectBrandFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     Button btBack;
     Button btDelete;
@@ -32,6 +41,7 @@ public class SelectBrandFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
         gl_id = args.getInt("gl_id");
+
         subCategory =args.getString("subCategory");
 
     }
