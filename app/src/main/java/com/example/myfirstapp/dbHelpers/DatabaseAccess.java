@@ -117,7 +117,7 @@ public class DatabaseAccess {
         }
     }
 
-    public void addProduct(String subCategory) {
+    /*public void addProduct(String subCategory) {
 
 
         String productName;
@@ -151,7 +151,7 @@ public class DatabaseAccess {
         }
 
         //Get List of Products in same SubCategory in the Supermarket
-       /* ArrayList<Product> productsInSubCategory = new ArrayList<>();
+       /ArrayList<Product> productsInSubCategory = new ArrayList<>();
 
         Cursor cursor = database.rawQuery("SELECT * FROM ProductList1 " +
                         "WHERE (subCategory = ? OR productName LIKE '%?%') " +
@@ -203,8 +203,8 @@ public class DatabaseAccess {
         values.put("unitPrice", unitPrice);
         values.put("quantity", 1);
 
-        database.insert("List1", null, values);*/
-    }
+        database.insert("List1", null, values);
+    }*/
 
     public int createGList(String listName) {
           database.execSQL("UPDATE GLists SET isCurrent = 0");
@@ -284,8 +284,6 @@ public class DatabaseAccess {
             do{
                 String productName = cursor.getString(cursor.getColumnIndex("productName"));
                 //Correct until this point
-
-
                 if(healthierChoiceList.contains(productName)){
                     //Add method to set healthier choice of rowIndex i to 1
                     ContentValues values = new ContentValues();
