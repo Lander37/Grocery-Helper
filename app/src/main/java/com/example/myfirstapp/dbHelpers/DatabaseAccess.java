@@ -277,10 +277,11 @@ public class DatabaseAccess {
     public void updateProductHealthierChoice(ArrayList<String> healthierChoiceList){
         Cursor cursor = database.rawQuery("SELECT * FROM ProductList1",null);
         if(cursor.getCount() > 0){
-            if (!cursor.moveToFirst())
+            if (!cursor.moveToFirst()){
                 cursor.moveToFirst();
+            }
+            System.out.println(healthierChoiceList.size());
 
-            for (int i = 0; i < healthierChoiceList.size(); i++)
             do{
                 String productName = cursor.getString(cursor.getColumnIndex("productName"));
                 //Correct until this point
