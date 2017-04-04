@@ -10,14 +10,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myfirstapp.classes.Product;
+import com.example.myfirstapp.mgr.GroceryManager;
 import com.example.myfirstapp.ui.CreateProfileActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
@@ -161,8 +164,7 @@ public class DatabaseAccess {
         }
     }
 
-    /*public void addProduct(String subCategory) {
-
+    public ArrayList<Product> listProductsInSubCategory(String subCategory){
 
         String productName;
         int productID;
@@ -174,7 +176,6 @@ public class DatabaseAccess {
         int item_dpId;
         double healthRating;
 
-        int healthEmphasis;
         int halal = 0;
         int vegetarian = 0;
         int healthierChoice = 0;
@@ -195,13 +196,16 @@ public class DatabaseAccess {
         }
 
         //Get List of Products in same SubCategory in the Supermarket
-       /ArrayList<Product> productsInSubCategory = new ArrayList<>();
+        String compare = "%" + subCategory + "%";
 
         Cursor cursor = database.rawQuery("SELECT * FROM ProductList1 " +
-                        "WHERE (subCategory = ? OR productName LIKE '%?%') " +
-                "AND halal >= ? AND vegetarian >= ? AND healthierChoice >= ? AND glutenFree >= ? ",
-                new String[] {subCategory, subCategory, String.valueOf(halal), String.valueOf(vegetarian),
+                        "WHERE (subCategory = ? OR productName LIKE ? ) " +
+                        "AND halal >= ? AND vegetarian >= ? AND healthierChoice >= ? AND glutenFree >= ? ",
+                new String[] {subCategory, compare, String.valueOf(halal), String.valueOf(vegetarian),
                         String.valueOf(healthierChoice), String.valueOf(glutenFree)});
+
+        //Add Products to ArrayList
+        ArrayList<Product> productsInSubCategory = new ArrayList<>();
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -216,65 +220,159 @@ public class DatabaseAccess {
             item_dpId = cursor.getInt(cursor.getColumnIndex("dpId"));
 
             Product tobeAdded = new Product(productID, category, brand, productName, subCat,
-            unitPrice, item_dpId, weightOrVolume, healthRating);
+                    unitPrice, item_dpId, weightOrVolume, healthRating);
 
             productsInSubCategory.add(tobeAdded);
 
             cursor.moveToNext();
         }
         cursor.close();
+        return productsInSubCategory;
+    }
+
+    public int getUserHealthEmp(){
+
+        int userHealthEmp = 0;
 
         //Get Value of User's healthEmphasis
         Cursor cursor2 = null;
         cursor2 = database.rawQuery("SELECT healthEmphasis FROM Profiles WHERE username = ? ", new String[] {thisUsername + ""});
         if(cursor2.getCount() > 0) {
             cursor2.moveToFirst();
-            healthEmphasis = cursor2.getInt(cursor.getColumnIndex("healthEmphasis"));
+            userHealthEmp = cursor2.getInt(cursor2.getColumnIndex("healthEmphasis"));
         }
         cursor2.close();
+        return userHealthEmp;
+    }
+
+    public int chooseSpecificProductID(ArrayList<Product> productsForCompare, int userHealthEmp){
+
+        double recValue;
+        int recProdID;
 
         //Algorithm to decide which product to add
-
         ArrayList<Double> recommendationValues = new ArrayList<Double>();
         ArrayList<Integer> recommendationProdID = new ArrayList<Integer>();
 
-        */
+        for (int j = 0; j < productsForCompare.size(); j++) {
+            if (userHealthEmp == 1) {
+                recValue = 0.8 * productsForCompare.get(j).getHealthRating() +
+                        1.2 * (productsForCompare.get(j).getWeightOrVolume() / productsForCompare.get(j).getUnitPrice() * 100);
+            } else if (userHealthEmp == 2) {
+                recValue = 0.9 * productsForCompare.get(j).getHealthRating() +
+                        1.1 * (productsForCompare.get(j).getWeightOrVolume() / productsForCompare.get(j).getUnitPrice() * 100);
+            } else if (userHealthEmp == 3) {
+                recValue = 1.0 * productsForCompare.get(j).getHealthRating() +
+                        1.0 * (productsForCompare.get(j).getWeightOrVolume() / productsForCompare.get(j).getUnitPrice() * 100);
+            } else if (userHealthEmp == 4) {
+                recValue = 1.1 * productsForCompare.get(j).getHealthRating() +
+                        0.9 * (productsForCompare.get(j).getWeightOrVolume() / productsForCompare.get(j).getUnitPrice() * 100);
+            } else {
+                recValue = 1.2 * productsForCompare.get(j).getHealthRating() +
+                        0.8 * (productsForCompare.get(j).getWeightOrVolume() / productsForCompare.get(j).getUnitPrice() * 100);
+            }
+
+            recommendationValues.add(recValue);
+            recProdID = productsForCompare.get(j).getProductID();
+            recommendationProdID.add(recProdID);
+        }
+
+        double maxRecValue = Collections.max(recommendationValues);
+        int index = recommendationValues.indexOf(maxRecValue);
+        recProdID = recommendationProdID.get(index);
+        return recProdID;
+    }
+
+    public void addProduct(String subCategory, int gl_id) {
+
+        float unitPrice = 0;
+        String productName = "";
+        String listName = "";
+        String brand = "";
+
+        ArrayList<Product> productsForCompare = listProductsInSubCategory(subCategory);
+        int userHealthEmp = getUserHealthEmp();
+        int recProdID = chooseSpecificProductID(productsForCompare, userHealthEmp);
 
         //Add item to grocery list
-
-        /*ContentValues values = new ContentValues();
-        values.put("productName", productName);
-        values.put("unitPrice", unitPrice);
-        values.put("quantity", 1);
-
-        database.insert("List1", null, values);
-    }*/
-
-    public int createGList(String listName) {
-        database.execSQL("UPDATE GLists SET isCurrent = 0");
-
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateNow = sdf.format(cal.getTime());
+        Cursor cursor = null;
+        cursor = database.rawQuery("SELECT productName, unitPrice, brand FROM ProductList1 WHERE productID = ? ", new String[]{recProdID + ""});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            productName = productName.concat(cursor.getString(cursor.getColumnIndex("productName")));
+            unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
+            brand = brand.concat(cursor.getString(cursor.getColumnIndex("brand")));
+        }
+        cursor.close();
 
         ContentValues values = new ContentValues();
-        values.put("Name", listName);
-        values.put("TotalCost", 0);
-        values.put("isHistory", 0);
-        values.put("isCurrent", 1);
-        values.put("listUser", thisUsername);
-        values.put("creationDate", dateNow);
+        values.put("productName", productName);
+        values.put("unitPrice", unitPrice);
+        values.put("brand", brand);
+        values.put("quantity", 1);
+
+        Cursor cr = null;
+        cr = database.rawQuery("SELECT Name FROM GLists WHERE _id = ? ", new String[]{gl_id + ""});
+        if (cr.getCount() > 0) {
+            cr.moveToFirst();
+            listName = listName.concat(cr.getString(cr.getColumnIndex("Name")));
+            database.insert(listName, null, values);
+        }
+        refreshListCosts(gl_id, listName);
+    }
+
+    public void refreshListCosts(int gl_id, String listName){
+
+        int totalCost = 0;
+        int quantity = 0;
+        float unitPrice = 0;
+        Cursor cursor = null;
+        cursor = database.rawQuery("SELECT quantity, unitPrice FROM " + listName, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+
+                quantity = cursor.getInt(cursor.getColumnIndex("quantity"));
+                unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
+                totalCost += (quantity*unitPrice);
+                cursor.moveToNext();
+            }
+        }
+        database.execSQL("UPDATE GLists SET TotalCost = " + totalCost + "" + " WHERE _id = " + gl_id + "");
+        cursor.close();
+
+    }
+
+    public int createGList(String listName) {
+        try {
+            database.execSQL("UPDATE GLists SET isCurrent = 0 WHERE listUser = " + thisUsername + "");
+        } catch (SQLiteException e){
+        }
+        finally {
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateNow = sdf.format(cal.getTime());
+
+            ContentValues values = new ContentValues();
+            values.put("Name", listName);
+            values.put("TotalCost", 0);
+            values.put("isHistory", 0);
+            values.put("isCurrent", 1);
+            values.put("listUser", thisUsername);
+            values.put("creationDate", dateNow);
 
 
-        long idLong = database.insert("GLists", null, values);
-        int id = (int)idLong;
+            long idLong = database.insert("GLists", null, values);
+            int id = (int) idLong;
 
 
-        String query = "CREATE TABLE " + listName + "(productName TEXT NOT NULL PRIMARY KEY, " +
-                "quantity INTEGER NOT NULL, unitPrice REAL NOT NULL);";
-        database.execSQL(query);
+            String query = "CREATE TABLE " + listName + "(productName TEXT NOT NULL PRIMARY KEY, " +
+                    "quantity INTEGER NOT NULL, unitPrice REAL NOT NULL, brand TEXT NOT NULL);";
+            database.execSQL(query);
 
-        return id;
+            return id;
+        }
     }
 
     public boolean listNameValidity(String listName) {
