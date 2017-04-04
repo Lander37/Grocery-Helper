@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
+import com.example.myfirstapp.mgr.GroceryManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,14 @@ public class SelectBrandFragment extends Fragment {
 
     Button btBack;
     Button btDelete;
+    TextView subCategoryView;
     TableLayout brandsListTable;
     DatabaseAccess databaseAccess;
     private int prod_id;
     private int gl_id;
     private String subCategory;
     private ArrayList<Product> prodList;
+    private GroceryManager manager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class SelectBrandFragment extends Fragment {
         gl_id = args.getInt("gl_id");
         subCategory = args.getString("subCategory");
         prodList = new ArrayList<Product>(0);
+        manager = new GroceryManager(getActivity().getApplicationContext());
     }
 
     @Override
@@ -47,10 +51,13 @@ public class SelectBrandFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.fragment_select_brand, container, false);
+        subCategoryView = (TextView) view.findViewById(R.id.productCategory);
         btBack = (Button) view.findViewById(R.id.backB);
         btDelete= (Button) view.findViewById(R.id.deleteB);
         this.databaseAccess = DatabaseAccess.getInstance(getActivity().getApplicationContext());
         brandsListTable = (TableLayout) view.findViewById(R.id.overviewTable);
+
+        subCategoryView.setText(subCategory);
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +73,7 @@ public class SelectBrandFragment extends Fragment {
                 */
                 databaseAccess.open();
                 databaseAccess.deleteProductFromList(gl_id, subCategory);
+                databaseAccess.refreshListCosts(gl_id,manager.getListById(gl_id).getName());
                 databaseAccess.close();
                 ((NavigationActivity) getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id), "Cart");
             }
@@ -74,7 +82,6 @@ public class SelectBrandFragment extends Fragment {
         databaseAccess.open();
         //Code for getting a list of brands
         prodList = databaseAccess.listProductsInSubCategory(subCategory);
-
         databaseAccess.close();
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, prodList);
         //this.lvBrandsList.setAdapter(adapter);
@@ -86,7 +93,7 @@ public class SelectBrandFragment extends Fragment {
     private void populateList(View view, TableLayout tableLayout){
         for (int i = 0; i < prodList.size(); i++) {
             // Read columns data
-            int product_id = prodList.get(i).getProductID();
+            final int newProduct_id = prodList.get(i).getProductID();
             String brandName = prodList.get(i).getBrand();
             String productName = prodList.get(i).getProductName();
             int netWeight = prodList.get(i).getWeightOrVolume();
@@ -99,7 +106,10 @@ public class SelectBrandFragment extends Fragment {
 
                 @Override
                 public void onClick(View view) {
-
+                    databaseAccess.open();
+                    databaseAccess.replaceProduct(prod_id, newProduct_id, gl_id);
+                    databaseAccess.refreshListCosts(gl_id,manager.getListById(gl_id).getName());
+                    databaseAccess.close();
                     ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
                 }
             });
