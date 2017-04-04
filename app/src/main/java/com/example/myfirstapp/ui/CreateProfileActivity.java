@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
+
 
 import android.app.AlertDialog;
 
@@ -34,7 +36,6 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    public static String thisUsername;
     private static final int MinPassLen = 6;
     private DatabaseAccess databaseAccess;
 

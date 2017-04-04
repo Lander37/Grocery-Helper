@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
-import static com.example.myfirstapp.ui.CreateProfileActivity.thisUsername;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
 
 /**
  * FilterDietaryPrefDialog.java
