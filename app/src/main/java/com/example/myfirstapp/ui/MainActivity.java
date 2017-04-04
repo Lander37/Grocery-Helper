@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     HealthierChoiceAPIHandler healthierChoiceAPIHandler;
     Button btCreateProfile;
     Button btLogin;
+    public static String thisUsername;
+
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
@@ -52,5 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    public void setThisUsername(String username){
+        thisUsername = username;
     }
 }
