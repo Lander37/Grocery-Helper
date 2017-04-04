@@ -475,7 +475,7 @@ public class DatabaseAccess {
         cursor.close();
         System.out.println(monthlyExpenditure);
         return monthlyExpenditure;
-
+    }
 
     public void deleteProductFromList (int gl_id, String subCategory){
 
