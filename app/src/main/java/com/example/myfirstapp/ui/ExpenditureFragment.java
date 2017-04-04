@@ -83,8 +83,7 @@ public class ExpenditureFragment extends Fragment {
         else{
             month = (currentYear + "-" + Integer.toString(gCalendar.get(Calendar.MONTH)+1));
         }
-        System.out.println(month);
-        totalMonthlyExpenditure = String.valueOf(databaseAccess.getMonthlyExpenditure(month));
+        totalMonthlyExpenditure = String.valueOf(databaseAccess.getMonthlyExpenditure(month,thisUsername));
         tvMonthlyExpenditure = (TextView) view.findViewById(R.id.expenditure);
         tvMonthlyExpenditure.setText("$" + totalMonthlyExpenditure);
         databaseAccess.close();
