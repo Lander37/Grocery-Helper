@@ -20,9 +20,9 @@ import java.util.List;
 
 public class SubCategoryFragment extends Fragment {
 
-    ListView lvProductList;
     private int gl_id;
     private String subCategory;
+    ListView lvProductList;
     DatabaseAccess databaseAccess;
 
     public static SubCategoryFragment newInstance(int gl_id, String subCategory) {
