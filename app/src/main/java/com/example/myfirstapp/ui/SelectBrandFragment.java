@@ -10,31 +10,36 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.myfirstapp.R;
+import com.example.myfirstapp.classes.Product;
 import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SelectBrandFragment extends Fragment {
 
-
-
     Button btBack;
     Button btDelete;
-    ListView lvBrandsList;
+    TableLayout brandsListTable;
     DatabaseAccess databaseAccess;
+    private int prod_id;
     private int gl_id;
     private String subCategory;
+    private ArrayList<Product> prodList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
+        prod_id = args.getInt("prod_id");
         gl_id = args.getInt("gl_id");
-
-        subCategory =args.getString("subCategory");
-
+        subCategory = args.getString("subCategory");
+        prodList = new ArrayList<Product>(0);
     }
 
     @Override
@@ -45,7 +50,7 @@ public class SelectBrandFragment extends Fragment {
         btBack = (Button) view.findViewById(R.id.backB);
         btDelete= (Button) view.findViewById(R.id.deleteB);
         this.databaseAccess = DatabaseAccess.getInstance(getActivity().getApplicationContext());
-        lvBrandsList = (ListView) view.findViewById(R.id.list);
+        brandsListTable = (TableLayout) view.findViewById(R.id.overviewTable);
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,25 +64,68 @@ public class SelectBrandFragment extends Fragment {
                 /*Code for deleting this item from database
                   refer to gl_id to find right list, and subCategory to find right item.
                 */
+                databaseAccess.open();
                 databaseAccess.deleteProductFromList(gl_id, subCategory);
+                databaseAccess.close();
                 ((NavigationActivity) getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id), "Cart");
             }
         });
 
         databaseAccess.open();
-        /*Code for getting a list of brands
-        List<String> prodList = databaseAccess.getBrands(subCategory); <-implement getBrands method
-        */
+        //Code for getting a list of brands
+        prodList = databaseAccess.listProductsInSubCategory(subCategory);
 
         databaseAccess.close();
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, prodList);
         //this.lvBrandsList.setAdapter(adapter);
+
+        populateList(view,brandsListTable);
         return view;
     }
 
-    public static SelectBrandFragment newInstance(int gl_id, String subCategory) {
+    private void populateList(View view, TableLayout tableLayout){
+        for (int i = 0; i < prodList.size(); i++) {
+            // Read columns data
+            int product_id = prodList.get(i).getProductID();
+            String brandName = prodList.get(i).getBrand();
+            String productName = prodList.get(i).getProductName();
+            int netWeight = prodList.get(i).getWeightOrVolume();
+            float unitPrice = prodList.get(i).getUnitPrice();
+
+            // data rows
+            TableRow row = new TableRow(view.getContext());
+            row.setClickable(true);
+            row.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    ((NavigationActivity)getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id),"Cart");
+                }
+            });
+
+            row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
+
+            String[] colText = {brandName, productName, netWeight + "", unitPrice + ""};
+            for (String text : colText) {
+                TextView tv = new TextView(this.getActivity());
+                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
+                tv.setTextSize(25);
+                tv.setPadding(40, 5, 70, 5);
+                tv.setText(text);
+                row.addView(tv);
+            }
+            tableLayout.addView(row);
+
+        }
+    }
+
+    public static SelectBrandFragment newInstance(int gl_id, int prod_id,String subCategory) {
         SelectBrandFragment fragment = new SelectBrandFragment();
         Bundle args = new Bundle();
+        args.putInt("prod_id",prod_id);
         args.putInt("gl_id",gl_id);
         args.putString("subCategory",subCategory);
         fragment.setArguments(args);
