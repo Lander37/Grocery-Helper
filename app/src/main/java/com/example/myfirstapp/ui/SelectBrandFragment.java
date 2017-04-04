@@ -58,6 +58,7 @@ public class SelectBrandFragment extends Fragment {
                 /*Code for deleting this item from database
                   refer to gl_id to find right list, and subCategory to find right item.
                 */
+                databaseAccess.deleteProductFromList(gl_id, subCategory);
                 ((NavigationActivity) getActivity()).replaceThis(SpecificListFragment.newInstance(gl_id), "Cart");
             }
         });
@@ -66,6 +67,7 @@ public class SelectBrandFragment extends Fragment {
         /*Code for getting a list of brands
         List<String> prodList = databaseAccess.getBrands(subCategory); <-implement getBrands method
         */
+
         databaseAccess.close();
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, prodList);
         //this.lvBrandsList.setAdapter(adapter);
