@@ -34,7 +34,7 @@ public class CreateProfileActivity extends AppCompatActivity {
     private CheckBox tbHalal;
     private CheckBox tbVegetarian;
     private CheckBox tbGluten;
-    public static Profile thisProfile;
+    public static String thisUsername;
     private static final int MinPassLen = 6;
     private DatabaseAccess databaseAccess;
 

@@ -58,11 +58,11 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         btSaveChanges = (Button) view.findViewById(R.id.saveChanges);
         btSaveChanges.setOnClickListener(new View.OnClickListener() {
-            if(editProfile()){
-            }
             @Override
             public void onClick(View view) {
-                showDialog(EditProfileConfirmationDialog.newInstance());
+                if(editProfile()){
+                    showDialog(EditProfileConfirmationDialog.newInstance());;
+                }
             }
         });
         btLogOut = (Button) view.findViewById(R.id.logOut);

@@ -77,11 +77,11 @@ public class SelectCategoryFragment extends Fragment{
         lvProductList = (ListView) view.findViewById(R.id.productList);
 
         databaseAccess.open();
-        List<String> productList = databaseAccess.getSubCategoryList(subCategory);
+        //List<String> productList = databaseAccess.getSubCategoryList(subCategory);
         databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, productList);
-        this.lvProductList.setAdapter(adapter);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, productList);
+        //this.lvProductList.setAdapter(adapter);
 
 
         lvProductList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

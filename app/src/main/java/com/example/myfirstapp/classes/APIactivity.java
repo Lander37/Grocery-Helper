@@ -136,7 +136,7 @@ public class APIactivity extends AppCompatActivity {
 
             return null;
         }
-        @Override
+       /* @Override
         protected void onPostExecute(Void result) {
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
             databaseAccess.open();
@@ -155,7 +155,7 @@ public class APIactivity extends AppCompatActivity {
         public ArrayList<String> getProductList(){
             return productList;
         }
-    }
+    }*/
 
 
-}
+}}
