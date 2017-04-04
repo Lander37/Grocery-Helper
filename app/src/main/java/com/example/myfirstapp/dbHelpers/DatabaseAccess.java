@@ -98,6 +98,17 @@ public class DatabaseAccess {
         cursor.close();
         return dpId;
     }
+    public float getBudget(String username){
+        String query = "SELECT budget FROM Profiles WHERE username = \"" + username + "\";";
+        System.out.println(username);
+        Cursor cursor = database.rawQuery(query, null);
+        if (!cursor.moveToFirst()) {
+            cursor.moveToFirst();
+        }
+        float budget = cursor.getInt(0);
+        cursor.close();
+        return budget;
+    }
     public int getHealthEmphasis(String username){
         String query = "SELECT healthEmphasis FROM Profiles WHERE username = \"" + username + "\";";
         Cursor cursor = database.rawQuery(query, null);
@@ -527,14 +538,13 @@ public class DatabaseAccess {
             return false;
         }
     }
-    public int getMonthlyExpenditure(String month, String username) {
+    public float getMonthlyExpenditure(String month, String username) {
         String compare = month + "%";
         Cursor cursor = database.rawQuery("SELECT SUM(TotalCost) FROM GLists WHERE  isHistory = ? AND listUser = ? AND creationDate LIKE ?", new String[]{"1", username,compare});
         if (!cursor.moveToFirst()) {
-
             cursor.moveToFirst();
         }
-        int monthlyExpenditure = cursor.getInt(0);
+        float monthlyExpenditure = cursor.getInt(0);
         cursor.close();
         System.out.println(monthlyExpenditure);
         return monthlyExpenditure;
@@ -554,6 +564,10 @@ public class DatabaseAccess {
 
         database.delete(listName, "subCategory = ? ", new String[] {subCategory});
     }
-
+    public void updateBudget (float budget, String username) {
+        ContentValues values = new ContentValues();
+        values.put("budget", budget);
+        database.update("Profiles", values,"username" +" = ?", new String[] {username + ""});
+    }
 }
 
