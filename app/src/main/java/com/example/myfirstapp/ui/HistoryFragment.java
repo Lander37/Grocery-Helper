@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.example.myfirstapp.ui.MainActivity.df;
+
 public class HistoryFragment extends Fragment {
 
     private AppCompatSpinner spinner;
@@ -118,7 +120,7 @@ public class HistoryFragment extends Fragment {
         gListDescriptions.clear();
 
         for(int i = 0; i < gListArray.size(); i++){
-            gListDescriptions.add(i,"List: " + gListArray.get(i).getName() + "\n Total spent: "  + gListArray.get(i).getTotalCost());
+            gListDescriptions.add(i,"List: " + gListArray.get(i).getName() + "\n Total spent: "  + df.format(gListArray.get(i).getTotalCost()));
         }
 
         gListAdapter.notifyDataSetChanged();
