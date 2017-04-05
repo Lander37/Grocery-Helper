@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,10 +123,10 @@ public class SelectBrandFragment extends Fragment {
             String[] colText = {brandName, productName, netWeight + "", unitPrice + ""};
             for (String text : colText) {
                 TextView tv = new TextView(this.getActivity());
-                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT));
-                tv.setTextSize(25);
-                tv.setPadding(40, 5, 70, 5);
+                tv.setLayoutParams(new TableRow.LayoutParams(190,200));
+                tv.setTextSize(12);
+                tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                tv.setPadding(0, 5, 60, 0);
                 tv.setText(text);
                 row.addView(tv);
             }
