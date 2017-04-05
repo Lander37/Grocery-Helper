@@ -1,4 +1,7 @@
-package com.example.myfirstapp.dbHelpers;
+
+
+
+        package com.example.myfirstapp.dbHelpers;
 
 /**
  * DatabaseAccess.java- to read and write the supermarket database into this application
@@ -6,25 +9,25 @@ package com.example.myfirstapp.dbHelpers;
  * @author Lander
  */
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
+        import android.content.ContentValues;
+        import android.content.Context;
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
+        import android.database.sqlite.SQLiteException;
+        import android.database.sqlite.SQLiteOpenHelper;
+        import android.widget.Toast;
 
-import com.example.myfirstapp.classes.Product;
-import com.example.myfirstapp.mgr.GroceryManager;
-import com.example.myfirstapp.ui.CreateProfileActivity;
+        import com.example.myfirstapp.classes.Product;
+        import com.example.myfirstapp.mgr.GroceryManager;
+        import com.example.myfirstapp.ui.CreateProfileActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
+        import java.text.SimpleDateFormat;
+        import java.util.ArrayList;
+        import java.util.Calendar;
+        import java.util.Collections;
+        import java.util.List;
 
-import static com.example.myfirstapp.ui.MainActivity.thisUsername;
+        import static com.example.myfirstapp.ui.MainActivity.thisUsername;
 
 public class DatabaseAccess {
     private SQLiteOpenHelper openHelper;
@@ -296,6 +299,47 @@ public class DatabaseAccess {
     }
 
     public void replaceProduct(int oldProdId, int newProdId, int gl_id){
+        String listName = "";
+        String newProductName = "";
+        float newUnitPrice = 0.0f;
+        String newSubCategory = "";
+        int sameQuantity = 1;
+
+
+        Cursor cursor = null;
+        cursor = database.rawQuery("SELECT Name FROM GLists WHERE _id = ? ", new String[]{gl_id + ""});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            listName = listName.concat(cursor.getString(cursor.getColumnIndex("Name")));
+        }
+        cursor.close();
+
+        cursor = database.rawQuery("SELECT quantity FROM "+ listName +" WHERE productID = ? ", new String[]{oldProdId + ""});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            sameQuantity = cursor.getInt(cursor.getColumnIndex("quantity"));
+        }
+        cursor.close();
+
+        database.delete(listName, "productID = ? ", new String[] {oldProdId+""});
+
+        cursor = database.rawQuery("SELECT productName, unitPrice, subCategory FROM ProductList1 WHERE productID = ? ", new String[]{newProdId + ""});
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            newProductName = cursor.getString(cursor.getColumnIndex("productName"));
+            newUnitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
+            newSubCategory = cursor.getString(cursor.getColumnIndex("subCategory"));
+        }
+        cursor.close();
+
+        ContentValues values = new ContentValues();
+        values.put("productID",newProdId);
+        values.put("productName", newProductName);
+        values.put("unitPrice", newUnitPrice);
+        values.put("subCategory", newSubCategory);
+        values.put("quantity", sameQuantity);
+
+        database.insert(listName, null, values);
     }
 
     public int getUserHealthEmp(){
@@ -362,13 +406,13 @@ public class DatabaseAccess {
         int recProdID = chooseSpecificProductID(productsForCompare, userHealthEmp);
 
         //Add item to grocery list
-       Cursor cursor = null;
+        Cursor cursor = null;
         cursor = database.rawQuery("SELECT productName, unitPrice FROM ProductList1 WHERE productID = ? ", new String[]{recProdID + ""});
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             productName = productName.concat(cursor.getString(cursor.getColumnIndex("productName")));
             unitPrice = cursor.getFloat(cursor.getColumnIndex("unitPrice"));
-         // subCategory = brand.concat(cursor.getString(cursor.getColumnIndex("subCategory")));
+            // subCategory = brand.concat(cursor.getString(cursor.getColumnIndex("subCategory")));
         }
         cursor.close();
 
@@ -533,10 +577,10 @@ public class DatabaseAccess {
     public boolean isLoginValid(String username, String password){
         Cursor cursor = database.rawQuery("SELECT * FROM Profiles WHERE username = ? AND password = ?",new String[] {username,password});
         if(cursor!=null && cursor.getCount()>0) {
-                cursor.moveToFirst();
-                cursor.close();
-                return true;
-            }
+            cursor.moveToFirst();
+            cursor.close();
+            return true;
+        }
         else {
             return false;
         }
@@ -573,4 +617,5 @@ public class DatabaseAccess {
         database.update("Profiles", values,"username" +" = ?", new String[] {username + ""});
     }
 }
+
 

@@ -33,7 +33,7 @@
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="440dp"
         android:text="Back to List"
         android:textSize="15sp"/>
 
@@ -42,14 +42,14 @@
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="190dp"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="440dp"
         android:text="Delete Item"
         android:textSize="15sp"/>
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/brandTable"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="330dp"
         android:layout_marginTop="100dp">
 
         <TableLayout
