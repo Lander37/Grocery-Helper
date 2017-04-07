@@ -7,6 +7,12 @@ import com.example.myfirstapp.R;
 
 public class SpecificListActivity extends AppCompatActivity {
 
+    /**
+     *
+     * @param savedInstanceState restores activities to a previous state
+     *                           using the data stored in this savedInstanceState
+     *                           bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

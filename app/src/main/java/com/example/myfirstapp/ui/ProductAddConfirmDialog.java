@@ -19,7 +19,7 @@ public class ProductAddConfirmDialog extends DialogFragment {
     String productName;
 
     /**
-     * Create a new instance of MyDialogFragment, providing "num"
+     * Creates a new instance of MyDialogFragment, providing "num"
      * as an argument.
      */
     static ProductAddConfirmDialog newInstance(int prod_id, String prodName) {
@@ -34,6 +34,11 @@ public class ProductAddConfirmDialog extends DialogFragment {
         return f;
     }
 
+    /**
+     * Creates a superclass of savedinstancestate to store an array
+     * of prod_id and prod_name
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

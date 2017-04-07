@@ -20,6 +20,14 @@ public class SelectCategoryFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_select_product_category, container, false);
