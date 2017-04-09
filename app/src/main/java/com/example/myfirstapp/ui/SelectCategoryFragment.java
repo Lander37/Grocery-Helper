@@ -184,6 +184,12 @@ public class SelectCategoryFragment extends Fragment{
         return view;
     }
 
+    /**
+     *
+     * @param gl_id
+     * @param subCategory
+     * @return
+     */
     public static SelectCategoryFragment newInstance(int gl_id, String subCategory) {
         SelectCategoryFragment fragment = new SelectCategoryFragment();
         Bundle args = new Bundle();

@@ -28,6 +28,10 @@ public class NavigationActivity extends AppCompatActivity {
     String tag;
     DatabaseAccess databaseAccess;
 
+    /**
+     *
+     */
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

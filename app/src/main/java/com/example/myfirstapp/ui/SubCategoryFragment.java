@@ -53,6 +53,9 @@ public class SubCategoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
 
+                /**
+                 * Opens the database and subsequently add the product to the database
+                 */
                 String selectedProduct = (String)adapter.getItemAtPosition(position);
                 databaseAccess.open();
                 databaseAccess.addProduct(selectedProduct, gl_id);
