@@ -23,6 +23,11 @@ public class ProductAddConfirmDialog extends DialogFragment {
 
 
     @Override
+
+    /**
+     * Creates a bundle class to store values of product_ID, productName, groceryList
+     *
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();

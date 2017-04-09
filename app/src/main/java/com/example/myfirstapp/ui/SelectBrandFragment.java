@@ -70,9 +70,11 @@ public class SelectBrandFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                /*Code for deleting this item from database
-                  refer to gl_id to find right list, and subCategory to find right item.
-                */
+                /**
+                 * Code for deleting this item from database
+                 * refer to gl_id to find right list, and subCategory to find right item.
+                 */
+
                 databaseAccess.open();
 
                 databaseAccess.deleteProductFromList(gl_id, subCategory);
@@ -82,8 +84,16 @@ public class SelectBrandFragment extends Fragment {
             }
         });
 
+        /**
+         * Opens the database to retrieve a list of brands
+         */
+
         databaseAccess.open();
-        //Code for getting a list of brands
+
+        /**
+         *Code for getting a list of brands
+         */
+
         prodList = databaseAccess.listProductsInSubCategory(subCategory);
         databaseAccess.close();
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, prodList);
@@ -135,6 +145,13 @@ public class SelectBrandFragment extends Fragment {
         }
     }
 
+    /**
+     * Change to the Brand Fragment
+     * @param gl_id         id of the grocery list
+     * @param prod_id       id of the product
+     * @param subCategory   category of the product
+     * @return
+     */
     public static SelectBrandFragment newInstance(int gl_id, int prod_id,String subCategory) {
         SelectBrandFragment fragment = new SelectBrandFragment();
         Bundle args = new Bundle();
