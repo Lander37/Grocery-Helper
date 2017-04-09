@@ -72,6 +72,12 @@ public class CreateProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Checks the username and password if they are blank, or if the password is too short. If both
+     * fields are valid, the username and password, alongside the preferences in the form of 4
+     * binary digits, will be saved into the database.
+     * @return
+     */
 
     private boolean setProfile(){
         if(areFieldsEmpty(etEditUsername, etEditPassword)) {

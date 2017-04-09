@@ -15,23 +15,14 @@ import com.example.myfirstapp.R;
  */
 
 public class CreateListDialog2 extends DialogFragment {
-    /**
-     *
-     * @param savedInstanceState
-     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_create_list_2, container, false);
@@ -48,8 +39,8 @@ public class CreateListDialog2 extends DialogFragment {
     }
 
     /**
-     *
-     * @return
+     * Creates and reflect that the list has been created
+     * @return  the dialog showing that the list has been created
      */
     public static CreateListDialog2 newInstance() {
         CreateListDialog2 createListDialog = new CreateListDialog2();
