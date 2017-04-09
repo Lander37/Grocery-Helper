@@ -1,7 +1,8 @@
 package com.example.myfirstapp.classes;
 
-/**
- * Created by XY on 8/3/2017.
+/**DietaryPreference.java - a class that helps indicates on whether an item is
+ * halal, vegetarian, healthier choice or gluten free.
+ * @author Xing Yue
  */
 
 public class DietaryPreference {
@@ -12,6 +13,10 @@ public class DietaryPreference {
     private boolean healthierChoice;
     private boolean glutenFree;
 
+    /**
+     * Registers a true or false value.
+     * @param dpId display dietary preference (1/0).
+     */
     public DietaryPreference(int dpId){
         this.dpId = dpId;
         this.halal = false;
@@ -20,6 +25,12 @@ public class DietaryPreference {
         this.glutenFree = false;
     }
 
+    /**@param dpId
+     * @param halal
+     * @param vegetarian
+     * @param healthierChoice
+     * @param glutenFree
+     */
     public DietaryPreference(int dpId, boolean halal, boolean vegetarian, boolean healthierChoice, boolean glutenFree){
         this.dpId = dpId;
         this.halal = halal;
@@ -33,8 +44,9 @@ public class DietaryPreference {
     }
 
     /**
-     *
-     * @param halal - is halal?
+     * Set to 1 if product is halal,
+     * set to 0 if product is not halal.
+     * @param halal - is product halal?
      */
     public void setHalal(boolean halal) {
         this.halal = halal;
@@ -45,8 +57,9 @@ public class DietaryPreference {
     }
 
     /**
-     *
-     * @param vegetarian - is vegetarian?
+     * Set to 1 if product is vegetarian,
+     * set to 0 if product is not vegetarian.
+     * @param vegetarian - is product vegetarian?
      */
     public void setVegetarian(boolean vegetarian) {
         this.vegetarian = vegetarian;
@@ -57,8 +70,10 @@ public class DietaryPreference {
     }
 
     /**
-     *
-     * @param healthierChoice - has the healthier choice label?
+     * Set to 1 if product has healthier choice label,
+     * set to 0 if product does not have.
+     * @param healthierChoice
+     * - does product have the healthier choice label?
      */
     public void setHealthierChoice(boolean healthierChoice) {
         this.healthierChoice = healthierChoice;
@@ -69,8 +84,9 @@ public class DietaryPreference {
     }
 
     /**
-     *
-     * @param glutenFree - is gluten free?
+     * Set to 1 if product is gluten free,
+     * set to 0 if product is not.
+     * @param glutenFree - is product gluten free?
      */
     public void setGlutenFree(boolean glutenFree) {
         this.glutenFree = glutenFree;
@@ -81,8 +97,8 @@ public class DietaryPreference {
     }
 
     /**
-     *
-     * @param dpId - (Integer) id of the dietary preference setting
+     * Assigns either a true of false value to the 4 listed preferences.
+     * @param dpId - display dietary preference (1/0).
      */
     public void setDP_ID(int dpId) {
         this.dpId = dpId;

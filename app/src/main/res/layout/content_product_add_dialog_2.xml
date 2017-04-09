@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/product_add_dialog_2">
+    tools:showIn="@layout/dialog_product_add_2">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/product_add_dialog_2_prompt"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.228" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/product_add_dialog_2_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/product_add_dialog_2_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:srcCompat="@mipmap/cart"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myfirstapp.ui.SpecificListActivity">
+    tools:context="com.example.myfirstapp.ui.SpecificListFragment">
 
 
     <android.support.design.widget.AppBarLayout
@@ -14,43 +14,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_specific_list"
-        android:id="@+id/include3" />
+    <include
+        android:id="@+id/include3"
+        layout="@layout/content_specific_list" />
 
-
-    <GridLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="300dp">
-
-    </GridLayout>
-
-    <Button
-        android:id="@+id/back"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="250dp"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Back" />
-
-    <Button
-        android:id="@+id/addItem"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginRight="120dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Add Other Items" />
-
-    <Button
-        android:id="@+id/confirmList"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="250dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Confirm List" />
 
 
 </android.support.design.widget.CoordinatorLayout>

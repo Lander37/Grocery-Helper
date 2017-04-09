@@ -1,37 +1,52 @@
 package com.example.myfirstapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.ToggleButton;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
+
+
+import android.app.AlertDialog;
+
 
 import com.example.myfirstapp.R;
 import com.example.myfirstapp.classes.Profile;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
 
 import java.util.Random;
 
 public class CreateProfileActivity extends AppCompatActivity {
 
-    private Button btDone;
+    Button btDone;
     private EditText etEditUsername;
     private EditText etEditPassword;
     private Spinner spLocationList;
     private SeekBar sbHealthSeekBar;
-    private ToggleButton tbHealthierChoice;
-    private ToggleButton tbHalal;
-    private ToggleButton tbVegetarian;
-    private ToggleButton tbGluten;
-    Profile newProfile;
+
+    private CheckBox tbHealthierChoice;
+    private CheckBox tbHalal;
+    private CheckBox tbVegetarian;
+    private CheckBox tbGluten;
+    private static final int MinPassLen = 6;
+    private DatabaseAccess databaseAccess;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_profile);
+
+        this.databaseAccess = DatabaseAccess.getInstance(getApplicationContext());
 
         btDone = (Button) findViewById(R.id.Done);
         etEditUsername = (EditText) findViewById(R.id.editUserName);
@@ -43,57 +58,121 @@ public class CreateProfileActivity extends AppCompatActivity {
         spLocationList.setAdapter(adapter);
 
         sbHealthSeekBar = (SeekBar) findViewById(R.id.healthSeekBar);
-        tbHealthierChoice = (ToggleButton) findViewById(R.id.healthierChoiceButton);
-        tbHalal = (ToggleButton) findViewById(R.id.halalButton);
-        tbVegetarian = (ToggleButton) findViewById(R.id.vegetarianButton);
-        tbGluten = (ToggleButton) findViewById(R.id.glutenButton);
+        tbHealthierChoice = (CheckBox) findViewById(R.id.healthierChoiceButton);
+        tbHalal = (CheckBox) findViewById(R.id.halalButton);
+        tbVegetarian = (CheckBox) findViewById(R.id.vegetarianButton);
+        tbGluten = (CheckBox) findViewById(R.id.glutenButton);
         btDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setProfile();
-                launchActivity();
+                if(setProfile()){
+                    launchActivity();
+                }
             }
         });
-    };
+    }
 
-    private void setProfile(){
-        String username = etEditUsername.getText().toString();
-        String password = etEditPassword.getText().toString();
-        int healthEmphasis = sbHealthSeekBar.getProgress();
-        String defaultLocation = spLocationList.getSelectedItem().toString();
 
-        boolean HA = false;
-        boolean HC = false;
-        boolean GF = false;
-        boolean VG = false;
+    private boolean setProfile(){
+        if(areFieldsEmpty(etEditUsername, etEditPassword)) {
+            showDialog(LoginDialog1.newInstance());
+            return false;
+        }
 
-        if(tbHalal.getText()=="On"){HA = true;}
-        if(tbHealthierChoice.getText()=="On"){HC = true;}
-        if(tbGluten.getText()=="On"){GF = true;}
-        if(tbVegetarian.getText()=="On"){VG = true;}
+        else if(shortPassword(etEditPassword)){
+            showDialog(LoginDialog2.newInstance());
+            return false;
+        }
+        else {
+            String username = etEditUsername.getText().toString();
+            thisUsername = username;
+            String password = etEditPassword.getText().toString();
+            int healthEmphasis = sbHealthSeekBar.getProgress() + 1;
+            String defaultLocation = spLocationList.getSelectedItem().toString();
 
-        int a=0;
-        int b=0;
-        int c=0;
-        int d=0;
-        if(HA == true){a=1;}
-        if(HC == true){b=1;}
-        if(GF == true){c=1;}
-        if(VG == true){d=1;}
+            boolean HA = false;
+            boolean HC = false;
+            boolean GF = false;
+            boolean VG = false;
 
-        int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b)+ String.valueOf(c)+ String.valueOf(d) );
+            if (tbHalal.isChecked()) {
+                HA = true;
+            }
+            if (tbHealthierChoice.isChecked()) {
+                HC = true;
+            }
+            if (tbGluten.isChecked()) {
+                GF = true;
+            }
+            if (tbVegetarian.isChecked()) {
+                VG = true;
+            }
 
-        //make creating a profile id more consistent
-        Random rn = new Random();
-        int profileID = rn.nextInt();
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int d = 0;
 
-        Profile newProfile= new Profile(username, password, defaultLocation, dpId, healthEmphasis,profileID);
+            if(tbHalal.isChecked()){
+                a = 1;
+            }
+            if(tbVegetarian.isChecked()){
+                b = 1;
+            }
+            if(tbHealthierChoice.isChecked()){
+                c = 1;
+            }
+            if(tbGluten.isChecked()){
+                d = 1;
+            }
+
+            int dpId = 8*a + 4*b + 2*c + d;
+
+            databaseAccess.open();
+            databaseAccess.createProfile(username, password, healthEmphasis, defaultLocation, dpId);
+            databaseAccess.close();
+
+            /*int dpId = Integer.valueOf(String.valueOf(a) + String.valueOf(b) + String.valueOf(c) + String.valueOf(d));
+
+            //make creating a profile id more consistent
+            Random rn = new Random();
+            int profileID = rn.nextInt();
+
+            thisProfile = new Profile(username, password, defaultLocation, dpId, healthEmphasis, profileID);
+            return true;*/
+        }
+        return true;
+    }
+    private boolean areFieldsEmpty(EditText... fields) {
+        for(int i = 0; i < fields.length; i++) {
+            if(fields[i].getText().toString().matches("")){
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean shortPassword(EditText passwordField){
+        return passwordField.getText().toString().length() <= (MinPassLen - 1);
+
     }
     private void launchActivity() {
 
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
-};
+    public void showDialog(DialogFragment fragment){
+        closeDialogs();
+        fragment.show(getSupportFragmentManager().beginTransaction(),"dialog");
+    }
+
+    public void closeDialogs(){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if(prev != null){
+            transaction.remove(prev);
+        }
+        transaction.commit();
+    }
+}
 
 

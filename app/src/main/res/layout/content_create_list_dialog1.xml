@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/create_list_dialog_1">
+    tools:showIn="@layout/dialog_create_list_1">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/create_list_dialog_1_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -23,7 +24,7 @@
         app:layout_constraintVertical_bias="0.068" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/create_list_dialog_1_confirm_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -39,7 +40,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/create_list_dialog_1_editText"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -48,7 +49,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/create_list_dialog_list_name_placeholder"
+        android:hint="@string/create_list_dialog_list_name_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

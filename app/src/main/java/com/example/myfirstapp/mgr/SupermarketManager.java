@@ -46,7 +46,12 @@ public class SupermarketManager {
         smArray.add(tobeAdded);
     }
 
-
+    /**
+     * This method retrieves the list of products that
+     * are available in the current supermarket
+     * with the same type/name.
+     * @return List of products.
+     */
     //Get Full Product List of Current Supermarket
     public Product[] findSMProductList(){
         int i = 0;

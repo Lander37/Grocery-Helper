@@ -1,7 +1,6 @@
 package com.example.myfirstapp.ui;
 
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
@@ -19,31 +18,39 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.example.myfirstapp.ui.MainActivity.df;
+
 public class HistoryFragment extends Fragment {
 
     private AppCompatSpinner spinner;
     private AdapterView.OnItemSelectedListener spinnerListener;
-    private HistoryManager manager;
+    HistoryManager manager;
     private ArrayList<GroceryList> gListArray;
     private ArrayList<String> gListDescriptions;
     private ArrayAdapter<String> gListAdapter;
     private ListView groceryLists;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        manager = new HistoryManager(getActivity().getApplicationContext());
+        gListArray = this.manager.getgListArray();
+
 
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_history, container, false);
-        this.manager = new HistoryManager();
-        gListArray = this.manager.getgListArray();
         gListDescriptions = new ArrayList<String>(0);
         spinner = (AppCompatSpinner) view.findViewById(R.id.history_sorting_spinner);
         groceryLists = (ListView) view.findViewById(R.id.history_main_list);
         gListAdapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,gListDescriptions);
         groceryLists.setAdapter(gListAdapter);
+        manager.loadGroceryLists();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,8 +84,7 @@ public class HistoryFragment extends Fragment {
                 @Override
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
-
-                    return  gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                    return  gList1.getDate().compareTo(gList2.getDate());
                 }
             });
         } else if(sortingBy == getString(R.string.sortby_Date_latest)){
@@ -87,34 +93,10 @@ public class HistoryFragment extends Fragment {
                 public int compare(GroceryList gList1, GroceryList gList2)
                 {
 
-                    return  -gList1.getDate().getTime().compareTo(gList2.getDate().getTime());
+                    return  -gList1.getDate().compareTo(gList2.getDate());
                 }
             });
-        } else if (sortingBy == getString(R.string.sortby_Quantity)){
-            Collections.sort(gListArray, new Comparator<GroceryList>() {
-                @Override
-                public int compare(GroceryList gList1, GroceryList gList2)
-                {
-                    int gListQty1 = 0;
-                    int gListQty2 = 0;
 
-                    for(int i = 0; i < gList1.getArrayProduct().length; i++){
-                        gListQty1 += gList1.getArrayProduct()[i][1];
-                    }
-
-                    for(int i = 0; i < gList2.getArrayProduct().length; i++){
-                        gListQty2 += gList2.getArrayProduct()[i][1];
-                    }
-
-                    if(gListQty1 < gListQty2){
-                        return -1;
-                    } else if (gListQty1 > gListQty2){
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-            });
 
         } else if (sortingBy == getString(R.string.sortby_Price)){
             Collections.sort(gListArray, new Comparator<GroceryList>() {
@@ -138,7 +120,7 @@ public class HistoryFragment extends Fragment {
         gListDescriptions.clear();
 
         for(int i = 0; i < gListArray.size(); i++){
-            gListDescriptions.add(i,"List: " + gListArray.get(i).getName() + "\n Total spent: "  + gListArray.get(i).getTotalCost());
+            gListDescriptions.add(i,"List: " + gListArray.get(i).getName() + "\n Total spent: "  + df.format(gListArray.get(i).getTotalCost()));
         }
 
         gListAdapter.notifyDataSetChanged();

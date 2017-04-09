@@ -1,4 +1,8 @@
 package com.example.myfirstapp.ui;
+/**
+ * ExpenditureFragment.jave
+ * @author
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,30 +11,62 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myfirstapp.R;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import com.example.myfirstapp.dbHelpers.DatabaseAccess;
+import static com.example.myfirstapp.ui.MainActivity.thisUsername;
+
 
 public class ExpenditureFragment extends Fragment {
-    TextView txt;
+    private DatabaseAccess databaseAccess;
+    private TextView txt;
+    private TextView tvMonthlyExpenditure;
     private Button btInputBudget;
+    private float totalMonthlyExpenditure;
+    private EditText etMonthlyBudget;
+    private EditText etRemainingBudget;
+    private TextView tvMonthlyBudget;
+    private TextView tvRemainingBudget;
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        this.databaseAccess= DatabaseAccess.getInstance(getContext());
         String months [] = {
                 "January","February","March","April",
                 "May","June","July","August",
                 "September","October","November","December"};
-        GregorianCalendar gCalendar = new GregorianCalendar();
+        Calendar gCalendar = GregorianCalendar.getInstance();
 
-        View view = inflater.inflate(R.layout.activity_expenditure_main, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_expenditure, container, false);
+        etRemainingBudget = (EditText) view.findViewById(R.id.remain);
+        etMonthlyBudget = (EditText) view.findViewById(R.id.budget);
+        tvRemainingBudget = (TextView) view.findViewById(R.id.remainNum);
+        tvMonthlyBudget = (TextView) view.findViewById(R.id.budgetNum);
+        databaseAccess.open();
+        float Budget = databaseAccess.getBudget(thisUsername);
+        tvMonthlyBudget.setText(String.valueOf(Budget));
         btInputBudget = (Button) view.findViewById(R.id.inputBudget);
 
         btInputBudget.setOnClickListener(new View.OnClickListener() {
@@ -41,60 +77,36 @@ public class ExpenditureFragment extends Fragment {
             }
         });
 
-        txt = (TextView)view.findViewById(R.id.currentmonth);
+        txt = (TextView)view.findViewById(R.id.month);
         String currentMonth = String.valueOf(months[gCalendar.get(Calendar.MONTH)]);
         txt.setText(currentMonth);
 
-        txt = (TextView)view.findViewById(R.id.threemonths);
-        String threeMonths = String.valueOf((months[(((gCalendar.get(Calendar.MONTH)-3)+12)%12)]));
-        txt.setText(threeMonths);
 
-        txt = (TextView)view.findViewById(R.id.twomonths);
-        String twoMonths = String.valueOf((months[(((gCalendar.get(Calendar.MONTH)-2)+12)%12)]));
-        txt.setText(twoMonths);
-
-        txt = (TextView)view.findViewById(R.id.lastmonth);
-        String lastMonth = String.valueOf((months[(((gCalendar.get(Calendar.MONTH)-1)+12)%12)]));
-        txt.setText(lastMonth);
-
-
-        txt = (TextView)view.findViewById(R.id.currentyear);
+        txt = (TextView)view.findViewById(R.id.year);
         String currentYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
         txt.setText(currentYear);
 
-        txt = (TextView)view.findViewById(R.id.threemonthsyear);
-        if (gCalendar.get(Calendar.MONTH) >= 2){
-            String threeMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(threeMonthsYear);
-        }
-        else {
-            String threeMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(threeMonthsYear);
-        }
 
-        txt = (TextView)view.findViewById(R.id.twomonthsyear);
-        if (gCalendar.get(Calendar.MONTH) >= 1){
-            String twoMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(twoMonthsYear);
+        String month = "0";
+        if (gCalendar.get(Calendar.MONTH)<10){
+            month = (currentYear + "-" + "0" + Integer.toString(gCalendar.get(Calendar.MONTH)+1));
         }
-        else {
-            String twoMonthsYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(twoMonthsYear);
+        else{
+            month = (currentYear + "-" + Integer.toString(gCalendar.get(Calendar.MONTH)+1));
         }
-
-        txt = (TextView)view.findViewById(R.id.lastmonthyear);
-        if (gCalendar.get(Calendar.MONTH) >= 0){
-            String lastMonthYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(lastMonthYear);
-        }
-        else {
-            String lastMonthYear = String.valueOf((gCalendar.get(Calendar.YEAR)));
-            txt.setText(lastMonthYear);
-        }
-
+        totalMonthlyExpenditure = databaseAccess.getMonthlyExpenditure(month,thisUsername);
+        tvMonthlyExpenditure = (TextView) view.findViewById(R.id.expenditure);
+        tvMonthlyExpenditure.setText("$" + String.valueOf(totalMonthlyExpenditure));
+        float remainingBudget = Budget - totalMonthlyExpenditure;
+        tvRemainingBudget.setText(String.valueOf(remainingBudget));
+        databaseAccess.close();
         return view;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ExpenditureFragment newInstance() {
         return new ExpenditureFragment();
     }

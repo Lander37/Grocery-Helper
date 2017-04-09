@@ -13,6 +13,14 @@ public class Profile {
     private int healthEmphasis;
     private int profileID;
 
+    /**
+     * @param username name of person who is using this account.
+     * @param password access key unique to this user to get access to this account.
+     * @param defaultLocation location of the user's preferred area.
+     * @param dpId refers to the dietary preferences of this user.
+     * @param healthEmphasis scale of how healthy this user preferred his choices to be.
+     * @param profileID refers to the profile of this user.
+     */
     public Profile(String username, String password, String defaultLocation, int dpId, int healthEmphasis, int profileID){
         this.username = username;
         this.password = password;
@@ -27,7 +35,6 @@ public class Profile {
     }
 
     /**
-     *
      * @param username
      */
     public void setUsername(String username) {
@@ -39,7 +46,6 @@ public class Profile {
     }
 
     /**
-     *
      * @param Password
      */
     public void setPassword(String Password) {
@@ -51,7 +57,6 @@ public class Profile {
     }
 
     /**
-     *
      * @param defaultLocation
      */
     public void setDefaultLocation(String defaultLocation) {
@@ -63,7 +68,6 @@ public class Profile {
     }
 
     /**
-     *
      * @param dpId
      */
     public void setdpId(int dpId) {
@@ -74,7 +78,6 @@ public class Profile {
         return healthEmphasis;
     }
     /**
-     *
      * @param healthEmphasis
      */
     public void setHealthEmphasis(int healthEmphasis) {
@@ -85,7 +88,6 @@ public class Profile {
         return profileID;
     }
     /**
-     *
      * @param profileID
      */
     public void setProfileID(int profileID) {

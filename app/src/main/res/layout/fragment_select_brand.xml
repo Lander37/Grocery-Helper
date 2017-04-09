@@ -1,0 +1,109 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myfirstapp.ui.SelectBrandFragment">
+
+    <Button
+        android:id="@+id/FilterP"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="270dp"
+        android:text="Filter" />
+    <Button
+        android:id="@+id/LocationP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:text="Location" />
+
+    <TextView
+        android:id="@+id/productCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="60dp"
+        android:textAlignment="center"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/backB"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="440dp"
+        android:text="Back to List"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/deleteB"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="440dp"
+        android:text="Delete Item"
+        android:textSize="15sp"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/brandTable"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginTop="100dp">
+
+        <TableLayout
+            android:id="@+id/overviewTable"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <TableRow
+                android:id="@+id/overviewRow"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <TextView
+                    android:id="@+id/brandName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="15dp"
+                    android:text="Brand"/>
+
+                <TextView
+                    android:id="@+id/productName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:paddingBottom="20dp"
+                    android:text="Product Name"/>
+
+                <TextView
+                    android:id="@+id/nettWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="25dp"
+                    android:text="Nett Weight"/>
+
+                <TextView
+                    android:id="@+id/brandPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="35dp"
+                    android:paddingRight="10dp"
+                    android:text="Price"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

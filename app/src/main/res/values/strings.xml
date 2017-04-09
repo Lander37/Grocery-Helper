@@ -17,12 +17,11 @@
         <item>@string/sortby_Date_earliest</item>
         <item>@string/sortby_Date_latest</item>
         <item>@string/sortby_Price</item>
-        <item>@string/sortby_Quantity</item>
+
     </string-array>
     <string name="sortby_Date_earliest">Date(earliest)</string>
     <string name="sortby_Date_latest">Date(latest)</string>
     <string name="sortby_Price">Price</string>
-    <string name="sortby_Quantity">Quantity</string>
 
     <string name="title_activity_cart">CartActivity</string>
     <string name="title_activity_select_product_category">SelectProductCategoryActivity</string>
@@ -37,7 +36,8 @@
     <string name="menu_profile">Profile</string>
 
     <string name="create_list_dialog_1_prompt">Enter name of new list</string>
-    <string name="create_list_dialog_2_prompt">List has been confirmed!</string>
+    <string name="create_list_dialog_2_prompt">List name already exists! \nPlease choose another list name</string>
+    <string name="list_confirmed_prompt">List has been confirmed!</string>
     <string name="create_list_dialog_list_name_placeholder">List name</string>
     <string name="product_add_dialog_1_prompt_placeholder">Do you want to add Product to the list?</string>
     <string name="product_add_dialog_1_prompt_pt1">Do you want to add </string>
@@ -68,6 +68,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="login_dialog1_prompt">Your selected username and password cannot be empty!</string>
+    <string name="login_dialog2_prompt">Your selected password is too short!</string>
+    <string name="edit_profile_cfm_dialog">Your Profile has been updated!</string>
+    <string name="invalid_login_dialog_prompt">Your username and/or password is wrong! Please try again.</string>
 
 
 </resources>

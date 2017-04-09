@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/logout_dialog">
+    tools:showIn="@layout/dialog_logout">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/logout_dialog_prompt"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -24,7 +24,7 @@
         tools:layout_editor_absoluteX="24dp" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
+        android:id="@+id/logout_ok_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
         app:srcCompat="@drawable/ic_approval_white" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton5"
+        android:id="@+id/logout_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
