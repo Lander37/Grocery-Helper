@@ -89,7 +89,6 @@ public class CartFragment extends Fragment {
             row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT));
 
-            /*
 
             String[] colText = {listName, totalCost};
             for (String text : colText) {
