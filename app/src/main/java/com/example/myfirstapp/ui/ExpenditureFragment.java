@@ -43,19 +43,13 @@ public class ExpenditureFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
 
         /**
-         * Creates an array of months, spelt out
+         * Creates an array of months, spelt out in string
           */
 
         String months [] = {
