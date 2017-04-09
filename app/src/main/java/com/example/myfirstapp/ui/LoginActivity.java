@@ -38,6 +38,13 @@ public class LoginActivity extends AppCompatActivity {
                 databaseAccess.open();
                 loginValid = databaseAccess.isLoginValid(loginUsername,loginPassword);
                 databaseAccess.close();
+
+                /**
+                 * Checks if the username is correct. If correct, the interface will change,
+                 * otherwise, a pop-up dialog will appear to indicate that the username is
+                 * invalid.
+                 */
+
                 if (loginValid){
                     thisUsername = loginUsername;
                     launchActivity();
@@ -51,6 +58,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * Starts the Navigation Activity
+     */
     private void launchActivity() {
 
         Intent intent = new Intent(this, NavigationActivity.class);
