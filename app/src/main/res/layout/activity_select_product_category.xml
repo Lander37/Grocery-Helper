@@ -61,7 +61,7 @@
                 android:id="@+id/diary"
                 android:layout_width="fill_parent"
                 android:layout_height="55dp"
-                android:text="Diary" />
+                android:text="Dairy" />
 
             <Button
                 android:id="@+id/fats"
