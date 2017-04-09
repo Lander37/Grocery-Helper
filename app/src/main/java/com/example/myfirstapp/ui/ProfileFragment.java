@@ -76,7 +76,11 @@ public class ProfileFragment extends Fragment {
         });
 
 
-
+        /**
+         * Retrieves the health preference, health emphasis, default location from
+         * the database
+         * @param thisUsername  username of the current user of the app
+         */
         databaseAccess.open();
         healthPref = databaseAccess.getDpId(thisUsername);
         healthEmphasis = databaseAccess.getHealthEmphasis(thisUsername);
@@ -93,7 +97,9 @@ public class ProfileFragment extends Fragment {
         spLocationList.setAdapter(adapter);
         spLocationList.setSelection(getIndex(spLocationList, defaultLocation));
 
-
+        /**
+         * healthPref
+         */
 
         if ((healthPref % 2)==0){
             isCheckedGF = false;

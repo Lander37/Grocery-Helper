@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    /**
+     * Initates the transition into the login activity class
+     */
+
     private void launchLogin() {
 
         Intent intent = new Intent(this, LoginActivity.class);

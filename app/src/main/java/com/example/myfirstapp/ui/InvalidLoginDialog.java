@@ -13,6 +13,10 @@ import com.example.myfirstapp.R;
  * Created by admin on 4/4/2017.
  */
 
+
+/**
+ *
+ */
 public class InvalidLoginDialog extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,11 @@ public class InvalidLoginDialog extends DialogFragment {
         TextView LoginPrompt = (TextView) v.findViewById(R.id.invalid_login_dialog_prompt);
         return v;
     }
+
+    /**
+     * Instantiates the fragment of InvalidLoginDialog
+     * @return
+     */
 
     public static InvalidLoginDialog newInstance() {
         InvalidLoginDialog invalidDialog = new InvalidLoginDialog();

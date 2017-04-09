@@ -25,7 +25,7 @@ public class ProductAddConfirmDialog extends DialogFragment {
     @Override
 
     /**
-     * Creates a bundle class to store values of product_ID, productName, groceryList
+     * Creates a bundle class to store values of product_ID, productName and groceryList
      *
      */
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,10 @@ public class ProductAddConfirmDialog extends DialogFragment {
     public static ProductAddConfirmDialog newInstance(int prod_id, String prodName, int gl_id) {
         ProductAddConfirmDialog productAddConfirmDialog = new ProductAddConfirmDialog();
 
+        /**
+         *  Creates a bundle to store the values of product id, product name, and grocery list id
+         *  for it to be transferred to another activity
+         */
         Bundle args = new Bundle();
         args.putInt("prod_id", prod_id);
         args.putString("prod_name", prodName);
