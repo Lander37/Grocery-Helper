@@ -40,6 +40,14 @@ public class FilterDietaryPrefDialog extends DialogFragment {
         healthPref = databaseAccess.getDpId(thisUsername);
         databaseAccess.close();
 
+        /**
+         * The health preference value consists of 4 binary digits, each digit represents
+         * the binary value of each preference. The last digit gives the preference for gluten-free,
+         * the second last digit gives, the last digit gives the preference for vegetarian,
+         * and first digit gives the preference for halal
+         * @param healthPref     the 4 digit binary preference value
+         */
+
         if ((healthPref % 2)==0){
             isCheckedGF = false;
         }
