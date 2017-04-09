@@ -23,7 +23,7 @@ public class CreateListDialog1 extends DialogFragment {
     private EditText listNameInput;
 
     /**
-     *
+     * Saves the Instance State
      * @param savedInstanceState
      */
     @Override
@@ -34,13 +34,7 @@ public class CreateListDialog1 extends DialogFragment {
 
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

@@ -27,7 +27,7 @@ public class CartFragment extends Fragment {
     private ArrayList<GroceryList> gListArray;
 
     /**
-     *
+     * Creates a new array of
      * @param savedInstanceState
      */
     @Override
@@ -53,7 +53,9 @@ public class CartFragment extends Fragment {
         btAddList = (Button) view.findViewById(R.id.addList);
         TableLayout tableLayout = (TableLayout) view.findViewById(R.id.overviewTable);
 
-        // Add header row
+        /**
+         * Add header row
+         */
         TableRow rowHeader = new TableRow(view.getContext());
         rowHeader.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
@@ -62,12 +64,17 @@ public class CartFragment extends Fragment {
        if (cursor.getCount() > 0) {*/
 
         for (int i = 0; i < gListArray.size(); i++) {
-            // Read columns data
+            /**
+             * Read columns data
+              */
+
             String listName = gListArray.get(i).getName();
             String totalCost = df.format(gListArray.get(i).getTotalCost()) + "";
             final int gl_id = gListArray.get(i).getGL_ID();
 
-            // data rows
+            /**
+             * Handles the data rows
+             */
             TableRow row = new TableRow(view.getContext());
             row.setClickable(true);
             row.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +88,8 @@ public class CartFragment extends Fragment {
 
             row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT));
+
+            /*
 
             String[] colText = {listName, totalCost};
             for (String text : colText) {

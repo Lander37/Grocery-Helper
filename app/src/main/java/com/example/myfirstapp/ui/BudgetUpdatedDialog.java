@@ -25,13 +25,7 @@ public class BudgetUpdatedDialog extends DialogFragment {
 
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return v
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dialog_budget_update, container, false);
@@ -48,7 +42,7 @@ public class BudgetUpdatedDialog extends DialogFragment {
     }
 
     /**
-     *
+     * Creates a new instance of the dialog indicating that budget has been updated
      * @return pop up that diaog has been updated.
      */
     public static BudgetUpdatedDialog newInstance() {

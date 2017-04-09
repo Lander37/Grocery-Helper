@@ -19,10 +19,6 @@ import static com.example.myfirstapp.ui.MainActivity.thisUsername;
  */
 
 public class ChooseLocationDialog extends DialogFragment {
-    /**
-     *
-     * @param savedInstanceState
-     */
     private String defaultLocation;
     private DatabaseAccess databaseAccess;
 
@@ -32,13 +28,7 @@ public class ChooseLocationDialog extends DialogFragment {
 
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
@@ -62,8 +52,8 @@ public class ChooseLocationDialog extends DialogFragment {
     }
 
     /**
-     *
-     * @return
+     * Creates a new instance of the location Dialog
+     * @return  a new location dialog
      */
     public static ChooseLocationDialog newInstance() {
         ChooseLocationDialog chooseLocaDialog = new ChooseLocationDialog();

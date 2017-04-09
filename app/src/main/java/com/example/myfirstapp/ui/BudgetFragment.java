@@ -45,6 +45,12 @@ public class BudgetFragment extends Fragment {
         btCalculate = (Button) view.findViewById(R.id.budgetconfirm);
         btBack = (Button) view.findViewById(R.id.back);
 
+        /**
+         * Open the budget database to update the budget of the current use and then transfer
+         * the UI to the expenditure main UI
+         * @param thisUsername     username of the current user
+         */
+
         btCalculate.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -70,7 +76,7 @@ public class BudgetFragment extends Fragment {
     }
 
     /**
-     *
+     * C
      * @return
      */
     public static BudgetFragment newInstance() {
