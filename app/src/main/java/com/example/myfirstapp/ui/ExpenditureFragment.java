@@ -52,6 +52,11 @@ public class ExpenditureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
+
+        /**
+         * Creates an array of months, spelt out
+          */
+
         String months [] = {
                 "January","February","March","April",
                 "May","June","July","August",
@@ -87,6 +92,11 @@ public class ExpenditureFragment extends Fragment {
         txt.setText(currentYear);
 
 
+        /**
+         * Displays the current month in string by using the numeric value of the current
+         * month
+         * @param MONTH
+         */
         String month = "0";
         if (gCalendar.get(Calendar.MONTH)<10){
             month = (currentYear + "-" + "0" + Integer.toString(gCalendar.get(Calendar.MONTH)+1));
