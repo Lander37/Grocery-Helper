@@ -34,7 +34,8 @@ public class ExpenditureFragment extends Fragment {
     private TextView tvRemainingBudget;
 
     /**
-     *
+     * Runs the code saving the instance state in addition to creating a bundle fot the
+     * saved Instance state
      * @param savedInstanceState
      */
     @Override
@@ -42,19 +43,13 @@ public class ExpenditureFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.databaseAccess= DatabaseAccess.getInstance(getContext());
 
         /**
-         * Creates an array of months, spelt out
+         * Creates an array of months, spelt out in string
           */
 
         String months [] = {
