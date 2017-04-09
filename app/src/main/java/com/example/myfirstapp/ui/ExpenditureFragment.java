@@ -34,7 +34,8 @@ public class ExpenditureFragment extends Fragment {
     private TextView tvRemainingBudget;
 
     /**
-     *
+     * Runs the code saving the instance state in addition to creating a bundle fot the
+     * saved Instance state
      * @param savedInstanceState
      */
     @Override
